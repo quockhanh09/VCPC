@@ -4,12 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "node index.js",
     "dev": "nodemon index.js"
-=======
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> d0ffbd4f98274423ea20ce9b78a2d751464d4cbb
   },
   "keywords": [],
   "author": "",
@@ -17,11 +13,8 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.1.0"
-<<<<<<< HEAD
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-=======
->>>>>>> d0ffbd4f98274423ea20ce9b78a2d751464d4cbb
   }
 }
