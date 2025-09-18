@@ -24,48 +24,13 @@ import 'flag-icons/css/flag-icons.min.css'
 //
 import logo from "./assets/img/Logo-name.png";
 // import iconGlobal from "./assets/img/Icon.svg";
-import heroBg from "./assets/img/herobanner.png";
-import iconYoutube from "./assets/img/Icon-youtube.svg";
-import iconInsta from "./assets/img/Icon-insta.svg";
-import iconFace from "./assets/img/Facebook.svg";
-import iconQr from "./assets/img/qr1-1.svg";
-import appStore from "./assets/img/testimonials/appstore.svg";
-import ggplay from "./assets/img/testimonials/gg play.svg";
-import logoFull from "./assets/img/Logo-full.png";
+import heroBg from "./assets/img/herobanner-1.png";
 import tabDot from "./assets/img/tab-dot.png";
-import ttImg from "./assets/img/fortress-1.png"
-import no1 from "./assets/img/no1.png";
-import no2 from "./assets/img/no2.png";
-import no3 from "./assets/img/no3.png";
-import statusBg from "./assets/img/elrodika-05.png";
-import nv12 from "./assets/img/nv-12.png";
-import bgTime from "./assets/img/br-season.jpeg";
-import seasonImg from "./assets/img/season 2025.png";
-import logosword from "./assets/img/TheGuardian_Logo_VIE 3.png"
-import chinhSach from "./assets/img/Chính sách bảo mật.pdf"
-import dieuKhoan from "./assets/img/The Guardians_Điều khoản sử dụng.pdf"
 
-import canonDefault from "./assets/img/character=canon, state=default.png";
-import canonZoom from "./assets/img/character=canon, state=zoom.png";
-import holyDefault from "./assets/img/character=holy, state=default.png";
-import holyZoom from "./assets/img/character=holy, state=zoom.png";
-import assasinDefault from "./assets/img/character=assasin, state=default.png";
-import assasinZoom from "./assets/img/character=assasin, state=zoom.png";
-import warriorDefault from "./assets/img/character=warrior, state=default.png";
-import warriorZoom from "./assets/img/character=warrior, state=zoom.png";
-import mageDefault from "./assets/img/character=mage, state=default.png";
-import mageZoom from "./assets/img/character=mage, state=zoom.png";
-import archerDefault from "./assets/img/character=archer, state=default.png";
-import archerZoom from "./assets/img/character=archer, state=zoom.png";
-// danh sách nhân vật
-const characters = [
-  { key: "canon", default: canonDefault, zoom: canonZoom },
-  { key: "holy", default: holyDefault, zoom: holyZoom },
-  { key: "assasin", default: assasinDefault, zoom: assasinZoom },
-  { key: "warrior", default: warriorDefault, zoom: warriorZoom },
-  { key: "mage", default: mageDefault, zoom: mageZoom },
-  { key: "archer", default: archerDefault, zoom: archerZoom },
-];
+import hero1 from "./assets/img/image1.png";
+import heroInput from "./assets/img/bginput.png";
+import bgI3 from "./assets/img/bgI3.png";
+
 
 import event1 from "./assets/img/lucarly-08.png";
 import event2 from "./assets/img/lucarly-02.png";
@@ -77,53 +42,98 @@ const eventImages = [event1, event2, event3, event4];
 
 function App() {
 
- const [commentsColumn1, setCommentsColumn1] = useState([
-    "Đắm chìm trong một thế giới sống động như thật!... ",
-    "Đồ họa quá đỉnh! Thế giới trong game được thiết kế tỉ mỉ...",
-    "Cảm giác chiến thắng sau mỗi thử thách thật sự thỏa mãn...Cảm giác chiến thắng sau mỗi thử thách thật sự thỏa mãn...",
-    "Đắm chìm trong một thế giới sống động như thật! Đồ họa của game thực sự là một tác phẩm nghệ thuật. Từ những ngọn cỏ lay động trước gió, ánh nắng xuyên qua tán lá, cho đến kiến trúc tráng lệ của các thành phố cổ kính, mọi chi tiết đều được chăm chút tỉ mỉ đến kinh ngạc. Hiệu ứng ánh sáng và đổ bóng chân thực càng làm tăng thêm chiều sâu và sự cuốn hút cho thế giới ảo này, khiến người chơi hoàn toàn bị mê hoặc và quên đi ranh giới giữa thực và ảo.",
-    "Cảm giác chiến thắng sau mỗi thử thách thật sự thỏa mãn..."
-  ]);
-
-  const commentsColumn2 = [
-    "Gameplay sáng tạo và gây nghiện!...",
-    "Trải nghiệm gameplay mượt mà và đầy thử thách!...",
-    "Gameplay sáng tạo và gây nghiện! Cơ chế chiến đấu mượt mà, các nhiệm vụ đa dạng và luôn có điều gì đó mới mẻ để khám phá.",
-    "Trải nghiệm gameplay mượt mà và đầy thử thách!...",
-    "Trải nghiệm gameplay mượt mà và đầy thử thách!...",
-    "Trải nghiệm gameplay mượt mà và đầy thử thách! Cơ chế chiến đấu của game được thiết kế tinh tế, đòi hỏi người chơi không chỉ có kỹ năng cá nhân mà còn phải có tư duy chiến thuật. Sự đa dạng trong cách xây dựng nhân vật, lựa chọn vũ khí và kỹ năng mở ra vô vàn chiến thuật khác nhau. Các nhiệm vụ được thiết kế thông minh, không lặp lại nhàm chán mà luôn mang đến những thử thách mới mẻ, đòi hỏi người chơi phải vận dụng tất cả những gì mình có để vượt qua.",
-
-  ];
-
-  const commentsColumn3 = [
-    "Hiệu ứng ánh sáng và đổ bóng chân thực...",
-    "Game mang lại những khoảnh khắc đáng nhớ...",
-    "Đắm chìm trong một thế giới sống động như thật! Đồ họa của game thực sự là một tác phẩm nghệ thuật. Từ những ngọn cỏ lay động trước gió, ánh nắng xuyên qua tán lá, cho đến kiến trúc tráng lệ của các thành phố cổ kính, mọi chi tiết đều được chăm chút tỉ mỉ đến kinh ngạc. Hiệu ứng ánh sáng và đổ bóng chân thực càng làm tăng thêm chiều sâu và sự cuốn hút cho thế giới ảo này, khiến người chơi hoàn toàn bị mê hoặc và quên đi ranh giới giữa thực và ảo.",
-    "Game mang lại những khoảnh khắc đáng nhớ...",
-    "Game mang lại những khoảnh khắc đáng nhớ...",
-    
-  ];
-
-  const [newComment, setNewComment] = useState("");
-
-  // hàm render 1 cột
-  const renderColumn = (comments) => (
-    <div className="column">
-      {comments.map((text, i) => (
-        <div key={i} className="comment">
-          @decaf
-          <br />
-          {text}
-        </div>
-      ))}
-    </div>
-  );
-
-  const handleAddComment = () => {
-    if (newComment.trim() === "") return;
-    setCommentsColumn1([...commentsColumn1, newComment]);
-    setNewComment(""); // clear textarea
+  const newsData = {
+    copyright: [
+      {
+        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+        title: "Hội thảo Nâng cao Năng lực Quản lý Nhà nước về Bản quyền Tác giả và Quyền Liên quan",
+        desc: "Trung tâm Bảo vệ Bản quyền Việt Nam vừa tổ chức hội thảo chuyên sâu nhằm tăng cường kiến thức và kỹ năng cho các cán bộ quản lý. Sự kiện đã cập nhật những quy định mới nhất của pháp luật, đồng thời chia sẻ kinh nghiệm quốc tế trong việc bảo vệ quyền sở hữu trí tuệ.",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=120&q=80",
+        title: "Phát động Cuộc thi 'Sáng Tạo Và Tôn Trọng Bản Quyền': Sân Chơi Mới Cho Người Trẻ",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=120&q=80",
+        title: "Hợp Tác Chặt Chẽ Với Cơ Quan Quốc Tế Trong Cuộc Chiến Chống Vi Phạm Bản Quyền Số",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=120&q=80",
+        title: "Công Bố Báo Cáo Thường Niên: Tình Hình Vi Phạm Bản Quyền Năm 2025",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=120&q=80",
+        title: "Lễ Trao Giấy Chứng Nhận Bản Quyền: Vun Đắp Nền Tảng Cho Sự Sáng Tạo",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=120&q=80",
+        title: "Cảnh Báo: Các Chiêu Trò Lừa Đảo Mạo Danh Cơ Quan Bản Quyền Ngày Càng Phức Tạp",
+        author: "VCPC Editor",
+        date: "01 tháng 08, 2025"
+      }
+    ],
+    event: [
+      {
+        img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+        title: "Sự kiện: Ngày hội Sáng tạo Việt Nam 2025",
+        desc: "Ngày hội quy tụ hàng trăm tác giả, nghệ sĩ, doanh nghiệp sáng tạo với nhiều hoạt động giao lưu, triển lãm, workshop hấp dẫn.",
+        author: "VCPC Event",
+        date: "15 tháng 07, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3c5c?auto=format&fit=crop&w=120&q=80",
+        title: "Hội thảo: Bảo vệ bản quyền trong thời đại số",
+        author: "VCPC Event",
+        date: "10 tháng 07, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=120&q=80",
+        title: "Triển lãm tác phẩm sáng tạo trẻ",
+        author: "VCPC Event",
+        date: "05 tháng 07, 2025"
+      }
+    ],
+    law: [
+      {
+        img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3c5c?auto=format&fit=crop&w=600&q=80",
+        title: "Luật Sở hữu trí tuệ sửa đổi 2025",
+        desc: "Luật mới cập nhật nhiều quy định quan trọng về bảo vệ quyền tác giả, quyền liên quan và xử lý vi phạm.",
+        author: "VCPC Law",
+        date: "01 tháng 06, 2025"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=120&q=80",
+        title: "Nghị định hướng dẫn thi hành Luật Sở hữu trí tuệ",
+        author: "VCPC Law",
+        date: "15 tháng 05, 2025"
+      }
+    ]
   };
+
+  const [tab, setTab] = useState("copyright");
+  const [news, setNews] = useState(newsData);
+
+
+
+  const tabList = [
+    { key: "copyright", label: "Tin tức bản quyền", color: "#BFD6FF", text: "#224394" },
+    { key: "event", label: "Sự kiện", color: "#224394", text: "#fff" },
+    { key: "law", label: "Văn bản pháp luật", color: "#10214B", text: "#fff" }
+  ];
+
+  const current = news[tab];
+  const main = current[0];
+  const list = current.slice(1);
 
   const [timeLeft, setTimeLeft] = useState({
     days: "00",
@@ -152,52 +162,7 @@ function App() {
     });
 
     // ===== CHARACTER CARD =====
-    const cards = document.querySelectorAll(".character-card");
-
-    cards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
-        if (!card.classList.contains("active")) {
-          const hoverImg = card.querySelector("img.hover");
-          if (hoverImg) {
-            card.style.width = hoverImg.naturalWidth + "px";
-            card.style.height = hoverImg.naturalHeight + "px";
-          }
-          card.classList.add("show-overlay");
-        }
-      });
-
-      card.addEventListener("mouseleave", () => {
-        if (!card.classList.contains("active")) {
-          const defaultImg = card.querySelector("img.default");
-          if (defaultImg) {
-            card.style.width = defaultImg.naturalWidth + "px";
-            card.style.height = defaultImg.naturalHeight + "px";
-          }
-          card.classList.remove("show-overlay");
-        }
-      });
-
-      card.addEventListener("click", () => {
-        const isActive = card.classList.contains("active");
-        cards.forEach((c) => {
-          c.classList.remove("active");
-          c.classList.remove("show-overlay");
-          const defaultImg = c.querySelector("img.default");
-          if (defaultImg) {
-            c.style.width = defaultImg.naturalWidth + "px";
-            c.style.height = defaultImg.naturalHeight + "px";
-          }
-        });
-        if (!isActive) {
-          card.classList.add("active", "show-overlay");
-          const hoverImg = card.querySelector("img.hover");
-          if (hoverImg) {
-            card.style.width = hoverImg.naturalWidth + "px";
-            card.style.height = hoverImg.naturalHeight + "px";
-          }
-        }
-      });
-    });
+    
 
     // ===== INIT CHARACTER SIZE =====
     const setDefaultSize = () => {
@@ -254,348 +219,555 @@ function App() {
 
 
   return (
-  <Router>
-    <div className="index-page">
-      
-      <Header/>
-      <Routes>
-        
-       <Route
-        path="/" 
-        element={
-        <>
-        <section
-        id="hero"
-        className="hero section"
-        style={{
-          margin: 0,
-          padding: 0,
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          minHeight: "500px",
-          maxHeight: "70vh",
-          width: "100vw",
-        }}
-      >
-        <div
-          className="parallax-window fullscreen hero-flex"
-          style={{
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div className="container hero-container">
-            <div className="hero-main">
-             
-              
-            </div>
-          </div>
-        </div>
-      </section>
+    <Router>
+      <div className="index-page" style={{ background: "#FFFAF2" }}>
 
-     
-      <section id="about" className="about section">
-     
-        <div className="tab-menu">
-          <button className="tab-link active" data-tab="news">TIN TỨC</button>
-          <img src={tabDot} alt="dot" className="tab-dot" />
-          <button className="tab-link" data-tab="rank">XẾP HẠNG</button>
-          <img src={tabDot} alt="dot" className="tab-dot" />
-          <button className="tab-link" data-tab="event">SỰ KIỆN</button>
-        </div>
+        <Header />
+        <Routes>
 
-       
-
-        <div id="news" className="tab-content active" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-          <div className="news-grid">
-            {[1, 2, 3, 4].map((i) => (
-
-              <article className="news-card" key={i} >
-                <div className="news-inner">
-                  <div className="news-thumb">
-                    <img src={ttImg} alt={`news ${i}`} />
+          <Route
+            path="/"
+            element={
+              <>
+                <section
+                  id="hero"
+                  className="hero section"
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    backgroundImage: `url(${heroBg})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    minHeight: "500px",
+                    maxHeight: "70vh",
+                    width: "100vw",
+                    marginTop: "30px",
+                  }}
+                >
+                  <div
+                    className="parallax-window fullscreen hero-flex"
+                    style={{
+                      width: "100vw",
+                      height: "100vh",
+                      display: "flex",
+                      alignItems: "center",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
+                  >
                   </div>
-                  <div className="news-body">
-                    <p className="news-meta">CẬP NHẬT TRÒ CHƠI | 1 NGÀY TRƯỚC</p>
-                    <h3 className="news-title">KHỞI ĐỘNG SERVER MÙA GIẢI 2025</h3>
-                    <p className="news-desc">
-                      Hỡi các chiến binh!<br />
-                      Mùa giải [Tên Mùa Giải Mới] chính thức khai mở, mang theo những thử thách cam go hơn,
-                      những chiến lược đỉnh cao hơn và những phần thưởng vinh quang hơn bao giờ hết!
-                    </p>
+                </section>
+
+
+
+                <section id="about" className="about section" style={{ background: "#FFFAF2", padding: "40px 0" }}>
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gridTemplateRows: "1fr 1fr",
+                    gap: 0,
+                    maxWidth: 1150,
+                    margin: "0 auto",
+                    background: "#FFFAF2",
+                    borderCollapse: "collapse"
+                  }}>
+                    {/* Top left */}
+                    <div style={{
+                      borderRight: "1px solid #D9D9D9",
+                      padding: "32px 32px 24px 32px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      borderBottom: "1px solid #D9D9D9",
+                      minHeight: 240
+                    }}>
+                      <div style={{ fontWeight: 900, fontSize: 30, color: "#10214B", lineHeight: 1.18, marginBottom: 16, textTransform: "uppercase", letterSpacing: 0.2, textAlign: "right" }}>
+                        TRUNG TÂM BẢO VỆ<br />
+                        <span style={{ color: "#224394", fontSize: 30, fontWeight: 900 }}>BẢN QUYỀN VIỆT NAM</span>
+                      </div>
+                      <div style={{ color: "#10214B", fontSize: 15.5, marginBottom: 24, maxWidth: 420, fontWeight: 400, lineHeight: 1.5, textAlign: "right", marginLeft: "auto" }}>
+                        Đơn vị thuộc Cục Bản quyền tác giả, Bộ Văn hóa, Thể thao và Du lịch, chuyên tư vấn, hỗ trợ pháp lý và thực thi bảo vệ quyền tác giả, quyền liên quan tại Việt Nam.
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", marginTop: 8, justifyContent: "flex-end" }}>
+                        <a href="#" style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                          background: "#10214B",
+                          color: "#fff",
+                          fontSize: 22,
+                          marginRight: 12,
+                          textDecoration: "none"
+                        }}>
+                          <i className="bi bi-chevron-right"></i>
+                        </a>
+                        <span style={{ color: "#10214B", fontWeight: 500, fontSize: 17 }}>Xem thêm</span>
+                      </div>
+                    </div>
+                    {/* Top right */}
+                    <div style={{
+                      padding: "32px 32px 24px 32px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      borderBottom: "1px solid #D9D9D9"
+                    }}>
+                      <div style={{ fontWeight: 700, fontSize: 52, color: "#2852BB", marginBottom: 0, lineHeight: 1 }}>350.000+</div>
+                      <div style={{ color: "#10214B", fontSize: 22, fontWeight: 400, marginTop: 6, fontStyle: "italic" }}>tác phẩm bản quyền</div>
+                    </div>
+                    {/* Bottom left */}
+                    <div style={{
+                      borderRight: "1px solid #D9D9D9",
+                      padding: "32px 32px 24px 32px",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}>
+                      <div style={{ fontWeight: 700, fontSize: 52, color: "#2852BB", marginBottom: 0, lineHeight: 1, textAlign: "right" }}>5.000+</div>
+                      <div style={{ color: "#10214B", fontSize: 22, fontWeight: 400, marginTop: 6, textAlign: "right", fontStyle: "italic" }}>tác giả đồng hành</div>
+                    </div>
+                    {/* Bottom right */}
+                    <div style={{ padding: "32px 32px 24px 32px", display: "flex", gap: 24, alignItems: "center" }}>
+                      <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                        <div style={{ color: "#10214B", fontSize: 15, marginBottom: 24, lineHeight: 1.5 }}>
+                          Tác phẩm bản quyền là thành quả sáng tạo độc đáo của cá nhân hay tổ chức, cần được bảo vệ pháp lý để tôn vinh công sức của tác giả và thúc đẩy sự phát triển của tri thức, nghệ thuật.
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                          <a href="#" style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: 40,
+                            height: 40,
+                            borderRadius: "50%",
+                            background: "#10214B",
+                            color: "#fff",
+                            fontSize: 22,
+                            textDecoration: "none"
+                          }}>
+                            <i className="bi bi-chevron-right"></i>
+                          </a>
+                          <span style={{ color: "#10214B", fontWeight: 500, fontSize: 18 }}>Xem thêm</span>
+                        </div>
+                      </div>
+                      <img src={hero1} alt="art" style={{ width: 200, height: 200, objectFit: "cover" }} />
+                    </div>
                   </div>
-                </div>
-              </article>
+                </section>
 
-            ))}
-          </div>
-          <a href="/News" className="btn-more">
-            Xem thêm <i className="bi bi-arrow-right"></i>
-          </a>
-        </div>
+                {/* ===== STATS ===== */}
+                {/* SEARCH BAR (stats section replaced) */}
+                <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
+                  <form style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: 800,
+                    height: 80,
+                    background: "#fff",
+                    borderRadius: 18,
+                    boxShadow: "0 4px 24px 0 rgba(16,33,75,0.07)",
+                    overflow: "hidden"
+                  }}>
+                    <div style={{
+                      flex: 1,
+                      height: "100%",
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      border: "none",
+                      paddingLeft: 18,
+                      background: "none"
+                    }}>
+                      {/* Centered heroInput image absolutely in the input area */}
+                      <img
+                        src={heroInput}
+                        alt="bginput"
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          zIndex: 1,
+                          pointerEvents: "none",
+                          userSelect: "none"
+                        }}
+                      />
 
-        {/* Xếp hạng */}
-        <div id="rank" className="tab-content">
-          <div className="rank-top">
-            <div className="player" style={{ marginTop: "80px" }}>
-              <img src={no2} alt="no2" />
-              <h4>SOOAH<br />LV.99</h4>
-            </div>
-            <div className="player" style={{ marginTop: "-40px" }}>
-              <img src={no1} alt="no1" />
-              <h4>DECAF<br />LV.99</h4>
-            </div>
-            <div className="player" style={{ marginTop: "80px" }}>
-              <img src={no3} alt="no3" />
-              <h4>GRACE<br />LV.99</h4>
-            </div>
-          </div>
-          <table className="rank-table">
-            <thead>
-              <tr>
-                <th>HẠNG</th>
-                <th>TÊN NGƯỜI DÙNG</th>
-                <th>NHÂN VẬT</th>
-                <th>LEVEL</th>
-                <th>BANG HỘI</th>
-                <th>SERVER</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ color: "#ECC689" }}>
-                <td>1</td>
-                <td>DECAF</td>
-                <td>CHIẾN BINH</td>
-                <td>99</td>
-                <td>DECAF</td>
-                <td>VALION</td>
-              </tr>
-              <tr style={{ color: "#ECC689" }}>
-                <td>2</td>
-                <td>SOOAH</td>
-                <td>SÁT THỦ</td>
-                <td>99</td>
-                <td>VK ENT</td>
-                <td>TRIAD</td>
-              </tr>
-              <tr style={{ color: "#ECC689" }}>
-                <td>3</td>
-                <td>GRACE</td>
-                <td>THÁNH KỴ SĨ</td>
-                <td>99</td>
-                <td>VK ENT</td>
-                <td>TRIAD</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>DEFT</td>
-                <td>CHIẾN BINH</td>
-                <td>96</td>
-                <td>KT</td>
-                <td>ASTRID</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>FAKER</td>
-                <td>CUNG THỦ</td>
-                <td>96</td>
-                <td>T1</td>
-                <td>ASTRID</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>ZEUS</td>
-                <td>XẠ THỦ PHÁO</td>
-                <td>94</td>
-                <td>HLE</td>
-                <td>VALION</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>PEANUT</td>
-                <td>THÁNH KỴ SĨ</td>
-                <td>98</td>
-                <td>HLE</td>
-                <td>VALION</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>RASCAL</td>
-                <td>CUNG THỦ</td>
-                <td>97</td>
-                <td>DRX</td>
-                <td>TRIAD</td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>ONER</td>
-                <td>SÁT THỦ</td>
-                <td>94</td>
-                <td>T1</td>
-                <td>VALION</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>PERFECT</td>
-                <td>XẠ THỦ PHÁO</td>
-                <td>94</td>
-                <td>KT</td>
-                <td>VALION</td>
-              </tr>
-              {/* ... copy thêm các hàng còn lại từ file gốc */}
-            </tbody>
-          </table>
-          <a href="/News" className="btn-more">
-            Xem thêm <i className="bi bi-arrow-right"></i>
-          </a>
-        </div>
+                      <input
+                        type="text"
+                        placeholder="Tìm kiếm tác phẩm"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          border: "none",
+                          outline: "none",
+                          background: "transparent",
+                          fontSize: 20,
+                          color: "#B6C0D2",
+                          fontWeight: 400,
+                          padding: "0 0 0 8px",
+                          zIndex: 2,
+                          position: "relative"
+                        }}
+                      />
+                    </div>
 
-        {/* Sự kiện */}
-        <div id="event" className="tab-content">
-          <div className="event-grid">
-            {eventImages.map((img, i) => (
-              <div
-                key={i}
-                className="event-card"
-                style={{ backgroundImage: `url(${img})` }}
-              >
-                <div className="overlay"></div>
-                <div className="event-info">
-                  <p className="event-year">2025</p>
-                  <p className="event-date">30 . 10</p>
-                 <a href="/News" style={{color: "black"}}><p className="event-title">
-                    Khu Thi Đấu Cyber Galaxy: <br />
-                    Chung Kết Mùa Giải 2025
-                  </p></a> 
-                  <span className="event-link">VEVE.AI.VN</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <a href="/News" className="btn-more">
-            Xem thêm <i className="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </section>
-
-      {/* ===== STATS ===== */}
-      <section
-        id="stats"
-        className="stats"
-        style={{
-          backgroundImage: `url(${statusBg})`,
-          backgroundSize: "cover",        // không bị lặp, phủ toàn bộ section
-          backgroundPosition: "center",   // căn giữa ảnh
-          backgroundRepeat: "no-repeat",  // không lặp ảnh
-          minHeight: "500px", 
-          maxHeight: "1200px",
-          width: "100%",
-          alignItems: "center",
-          display: "flex",
-          position: "relative",           // để overlay hoặc nội dung nổi trên
-          color: "#fff",                  // cho chữ sáng lên
-          zIndex: 1,
-        }}
-      >
-        <div className="container" data-aos-delay="100" >
-          <div className="row gy-4">
-            <div className="col-lg-8 stats-card">
-              <article className="news-stats-card">
-                <div className="news-stats-inner">
-                  <div className="news-stats-body">
-                    <p
-                      className="news-stats"
+                    <button
+                      type="submit"
                       style={{
-                        fontFamily: "'Times New Roman', Times, serif",
-                        textAlign: "center",
+                        height: "100%",
+                        minWidth: 160,
+                        background: "linear-gradient(180deg, #2852BB 0%, #A6BDF3 100%)",
+                        color: "#fff",
+                        fontWeight: 500,
+                        fontSize: 22,
+                        border: "none",
+                        borderRadius: "0 18px 18px 0",
+                        boxShadow: "0 4px 16px 0 rgba(16,33,75,0.10)",
+                        cursor: "pointer",
+                        transition: "background 0.2s"
                       }}
                     >
-                      Chào mừng đến với thế giới của những cuộc phiêu lưu bất tận! Game nhập vai (RPG) không chỉ là một
-                      trò chơi, mà là một cánh cửa mở ra những câu chuyện huyền bí, nơi bạn không chỉ điều khiển nhân vật
-                      mà còn sống cuộc đời của họ. Hãy tạo dựng số phận của riêng bạn, từ một người lính vô danh trở thành
-                      anh hùng cứu thế giới, hoặc một pháp sư quyền năng điều khiển các nguyên tố.
-                    </p>
+                      Tìm kiếm
+                    </button>
+                  </form>
+                </div>
+
+
+                <section
+                  id="services"
+                  className="services section"
+                  style={{
+                    backgroundImage: `url(${bgI3})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    padding: "20px 0px",
+                  }}
+                >
+
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 60,
+                    padding: "32px 0",
+
+                  }}>
+                    {/* Card 1 */}
+                    <div style={{
+                      width: 340,
+                      minHeight: 340,
+                      borderRadius: 20,
+                      background: "rgba(90, 101, 110, 0.32)",
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                      border: "1.5px solid rgba(255,255,255,0.18)",
+                      padding: "32px 28px 28px 28px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start"
+                    }}
+                                     
+                     onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
+
+                      <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
+
+                      <div style={{
+                        fontSize: 22,
+                        fontWeight: 700,
+                        marginBottom: 12,
+                        background: "linear-gradient(90deg, #4DE1C1 0%, #3B8CFF 60%, #A259F7 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text"
+                      }}>
+                        CÔNG BỐ BẢN QUYỀN
+                      </div>
+
+                      <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
+                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
+                      </div>
+
+                      <button className="btn-service-hero"  >Đăng ký dịch vụ</button>
+                    </div>
+                    {/* Card 2 */}
+
+                    <div style={{
+                      width: 340,
+                      minHeight: 340,
+                      borderRadius: 20,
+                      background: "rgba(90, 101, 110, 0.32)",
+
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                      border: "1.5px solid rgba(255,255,255,0.18)",
+                      padding: "32px 28px 28px 28px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start"
+                    }}
+                    
+                     onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
+
+                      <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
+
+                      <div style={{
+                        fontSize: 22,
+                        fontWeight: 700,
+                        marginBottom: 12,
+                        background: "linear-gradient(90deg, #4DE1C1 0%, #3B8CFF 60%, #A259F7 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text"
+                      }}>
+                        GIÁM ĐỊNH BẢN QUYỀN
+                      </div>
+
+                      <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
+                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
+                      </div>
+
+                      <button className="btn-service-hero" >Đăng ký dịch vụ</button>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div style={{
+                      width: 340,
+                      minHeight: 340,
+                      borderRadius: 20,
+                      background: "rgba(90, 101, 110, 0.32)",
+
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                      border: "1.5px solid rgba(255,255,255,0.18)",
+                      padding: "32px 28px 28px 28px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start"
+                    }}
+
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+                    >
+
+                      <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
+
+                      <div style={{
+                        fontSize: 22,
+                        fontWeight: 700,
+                        marginBottom: 12,
+                        background: "linear-gradient(90deg, #4DE1C1 0%, #3B8CFF 60%, #A259F7 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text"
+                      }}>
+                        GIAO DỊCH BẢN QUYỀN
+                      </div>
+
+                      <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
+                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
+                      </div>
+                      <button className="btn-service-hero" >
+                        Đăng ký dịch vụ
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </article>
+                </section>
 
-              <a href="/Deatails" className="btn-stats-more">
-                TÌM HIỂU THÊM <i className="bi bi-arrow-right"></i>
-              </a>
-            </div>
-            <div className="col-lg-4">
-              <img
-                src={nv12}
-                alt=""
-                style={{ width: "700px", height: "auto", transform: "translateX(-120px)" }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ===== CHARACTERS ===== */}
-      <section
-        id="services"
-        className="services section"
-        style={{
-          backgroundImage: "linear-gradient(#272C36 100%, #2E3F55 80%, #545660 80%)",
-          padding: "20px 0px",
-        }}
-      >
-        <div className="tab-menu-character">
-          <img src={tabDot} alt="dot" className="tab-dot" />
-          <button className="">NHÂN VẬT</button>
-          <img src={tabDot} alt="dot" className="tab-dot" />
-        </div>
-        <div className="container character-main">
-          <div className="character-list">
-            {characters.map((char, i) => (
-              <div className="character-card" key={i}>
-                <div className="character-image">
-                  <img src={char.default} alt={`${char.key}-default`} className="default" />
-                  <img src={char.zoom} alt={`${char.key}-hover`} className="hover" />
-                </div>
-                <div className="character-overlay">
-                  <h3>{`CHARACTER ${i + 1}`}</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur. Cras aliquet cras et cras aliquam
-                    volutpat non dolor sagittis sed.
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="character-btn">
-          <a href="/Deatails" className="btn-stats-more-character">
-            XEM THÊM <i className="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </section>
-      </>
-      }
-      /> 
+                {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
+                {(() => {
+                  // Demo data for many cards
+                  const trendingList = [
+                    {
+                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
+                      title: "VIẾT TIẾP CÂU...",
+                      author: "Duyên Quỳnh & N...",
+                      price: "$103,025",
+                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=1",
+                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      color: '#ff9800',
+                    },
+                    {
+                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
+                      title: "CÒN GÌ ĐẸP...",
+                      author: "Nguyễn Hùng",
+                      price: "$180,345",
+                      avatar: null,
+                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      color: '#3b5cff',
+                      isPause: true,
+                    },
+                    {
+                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
+                      title: "LẠC TRÔI",
+                      author: "Sơn Tùng M-TP",
+                      price: "$9,945.1",
+                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=2",
+                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      color: '#7b61ff',
+                    },
+                    {
+                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
+                      title: "BÀI CA HY VỌNG",
+                      author: "Trọng Tấn",
+                      price: "$12,000",
+                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=3",
+                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      color: '#ff9800',
+                    },
+                    {
+                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
+                      title: "NƠI NÀY CÓ ANH",
+                      author: "Sơn Tùng M-TP",
+                      price: "$8,000",
+                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=4",
+                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      color: '#7b61ff',
+                    },
+                  ];
+                  const [center, setCenter] = useState(1); // index of center card
+                  const visibleCount = 3;
+                  const getCardClass = (idx) => {
+                    if (idx === center) return 'trending-card trending-card-center';
+                    if (idx === center - 1 || idx === center + 1) return 'trending-card trending-card-side';
+                    return 'trending-card trending-card-blur';
+                  };
+                  const handleCardClick = (idx) => {
+                    setCenter(idx);
+                  };
+                  // Only show 3 cards in center, but render all for blur effect
+                  return (
+                    <section style={{ background: '#FFFAF2', padding: '48px 0 24px 0' }}>
+                      <div style={{ maxWidth: 1150, margin: '0 auto', padding: 0 }}>
+                        <h2 style={{
+                          textAlign: 'center',
+                          fontWeight: 800,
+                          fontSize: 36,
+                          color: '#b7a6e8',
+                          marginBottom: 36,
+                          letterSpacing: 0.5,
+                          fontFamily: 'Lora, serif'
+                        }}>
+                          Bản quyền đang xu hướng
+                        </h2>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginBottom: 32, position: 'relative', minHeight: 340 }}>
+                          {trendingList.map((item, idx) => {
+                            const cardClass = getCardClass(idx);
+                            return (
+                              <div
+                                key={idx}
+                                className={cardClass}
+                                style={{
+                                  margin: idx === center ? '0 24px' : '0 0px',
+                                  zIndex: idx === center ? 2 : 1,
+                                  cursor: idx === center ? 'default' : 'pointer',
+                                  transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
+                                  filter: idx === center ? 'none' : (idx === center - 1 || idx === center + 1 ? 'none' : 'blur(2.5px) grayscale(0.5) opacity(0.6)'),
+                                  opacity: idx === center ? 1 : (idx === center - 1 || idx === center + 1 ? 0.7 : 0.4),
+                                  pointerEvents: idx < center - 1 || idx > center + 1 ? 'none' : 'auto',
+                                  background: '#fff',
+                                  borderRadius: 24,
+                                  boxShadow: idx === center ? '0 0 0 4px #f3f0ff, 0 2px 16px 0 rgba(180,180,200,0.10)' : '0 2px 16px 0 rgba(180,180,200,0.10)',
+                                  width: 300,
+                                  padding: 24,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  position: 'relative',
+                                  border: idx === center ? '3px solid' : '3px solid transparent',
+                                  
+                                }}
+                                onClick={() => idx !== center && handleCardClick(idx)}
+                              >
+                                <img src={item.img} alt={item.title} style={{ width: 220, height: 140, objectFit: 'cover', borderRadius: 16, marginBottom: 18 }} />
+                                <div style={{ display: 'flex', alignItems: 'center', width: '100%', marginBottom: 8 }}>
+                                  {item.isPause ? (
+                                    <div style={{ width: 36, height: 36, borderRadius: 8, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>
+                                      <i className="fa-solid fa-pause" style={{ color: '#fff', fontSize: 20 }}></i>
+                                    </div>
+                                  ) : (
+                                    <img src={item.avatar} alt="avatar" style={{ width: 36, height: 36, borderRadius: 8, marginRight: 8 }} />
+                                  )}
+                                  <div style={{ flex: 1 }}>
+                                    <div style={{ fontWeight: 700, fontSize: 18, color: item.color, textTransform: 'uppercase', letterSpacing: 0.5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{item.title}</div>
+                                    <div style={{ color: '#888', fontSize: 14, fontWeight: 400, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{item.author}</div>
+                                  </div>
+                                  {item.icon}
+                                </div>
+                                <div style={{ width: '100%', textAlign: 'right', fontWeight: 700, fontSize: 20, color: '#222', marginBottom: idx === center ? 16 : 0 }}>{item.price}</div>
+                                {idx === center && (
+                                  <button style={{
+                                    width: '100%',
+                                    background: 'linear-gradient(90deg,#3b5cff 0%,#7b61ff 100%)',
+                                    color: '#fff',
+                                    border: 'none',
+                                    borderRadius: 12,
+                                    fontWeight: 700,
+                                    fontSize: 20,
+                                    padding: '12px 0',
+                                    marginTop: 8,
+                                    marginBottom: 0,
+                                    cursor: 'pointer',
+                                    boxShadow: '0 2px 8px 0 rgba(123,97,255,0.10)',
+                                    transition: 'background 0.2s'
+                                  }}>Chọn ngay</button>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
+                          <button style={{
+                            background: '#fff',
+                            color: '#7b61ff',
+                            border: 'none',
+                            borderRadius: 24,
+                            fontWeight: 700,
+                            fontSize: 20,
+                            padding: '10px 40px',
+                            boxShadow: '0 2px 8px 0 rgba(123,97,255,0.10)',
+                            cursor: 'pointer',
+                            transition: 'background 0.2s'
+                          }}>Xem thêm</button>
+                        </div>
+                      </div>
+                    </section>
+                  );
+                })()}
 
-      <Route path="/Contact" element={<Contact />} />
-      <Route path="/News" element={<News />} />
-      <Route path="/Deatails" element={<Details />} />
-      <Route path="/Newsletter" element={<Newsletter />} />
-      <Route path="/Register" element={<Register />} />
-      <Route path="/Login" element={<Login />} />
-    </Routes>
-    <Countdown/>
-    {/* ===== FOOTER ===== */}
-    <Footer/>
 
-    </div>
-</Router>
+                
+              </>
+            }
+          />
+
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/News" element={<News />} />
+          <Route path="/Deatails" element={<Details />} />
+          <Route path="/Newsletter" element={<Newsletter />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Login" element={<Login />} />
+        </Routes>
+        <Countdown />
+        {/* ===== FOOTER ===== */}
+        <Footer />
+
+      </div>
+    </Router>
   );
 }
 

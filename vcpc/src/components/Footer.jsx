@@ -1,4 +1,7 @@
-import logosword from "../assets/img/TheGuardian_Logo_VIE 3.png";
+import facebookLogo from "../assets/img/Facebook.svg";
+import youtubeLogo from "../assets/img/Youtube.svg";
+import linkedinLogo from "../assets/img/Linkedin.svg";
+import footerLogo from "../assets/img/footerI.png";
 import logo from "../assets/img/Logo-name.png";
 import "../style/App.css";
 // file PDF bạn có thể để trong public hoặc import như asset
@@ -8,124 +11,70 @@ import dieuKhoan from "../assets/img/The Guardians_Điều khoản sử dụng.p
 function Footer() {
   return (
     <footer
-      className="tv-footer"
-      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+      style={{
+        width: "100%",
+        background: "linear-gradient(180deg, #FFFAF2 0%, #D0D3DC 15% ,#A3ADC7 27%, #6479A9 43%, #345092 62%, #253A6A 80%, #182544 100%)",
+        color: "#fff",
+        padding: "0",
+        fontFamily: "'Montserrat', Arial, sans-serif",
+        marginTop: 0
+      }}
     >
-      <div className="tv-top">
-        <div className="tv-left">
-          <img src={logosword} alt="sword logo" className="tv-sword-large" />
-        </div>
-
-        <div className="tv-main">
-          <div className="tv-welcome">CHÀO MỪNG CÁC VỆ THẦN !</div>
-
-          <h1 className="tv-heading">
-            KẾT NỐI VỚI <span>THẾ GIỚI VỆ THẦN</span>
-          </h1>
-
-          <p className="tv-sub">
-            Cập nhật sắc lệnh vệ thần hàng tuần để không bỏ lỡ tin tức quan trọng
-            và cơ hội vàng sở hữu NFT trước ra mắt! Đây là chìa khóa để bạn dẫn
-            đầu trong thế giới vệ thần!
-          </p>
-
-          {/* Thay form bằng div thường */}
-          <div className="tv-form">
-            <div className="tv-inputs">
-              <label className="lbl">
-                <div className="lbl-title">Tên của bạn</div>
-                <input
-                  className="tv-input"
-                  type="text"
-                  placeholder="Nhập tên của bạn"
-                />
-              </label>
-
-              <label className="lbl">
-                <div className="lbl-title">Email của bạn</div>
-                <input
-                  className="tv-input"
-                  type="email"
-                  placeholder="Nhập email của bạn"
-                />
-              </label>
-            </div>
-
-            <div className="tv-submit-wrap">
-              <button className="tv-btn" type="button">
-                <a
-                  href="/Register"
-                  style={{ color: "#233D4D", textDecoration: "none" }}
-                >
-                  ĐĂNG KÝ
-                </a>
-              </button>
-            </div>
+      <div style={{
+        fontFamily:"Lora,seft",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: "48px 0 24px 0"
+      }}>
+        {/* Left: Logo and Info */}
+        <div style={{ flex: 1.5, minWidth: 400, display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
+            <img src={footerLogo} alt="VCPC" style={{ height: 80, width: "auto" }} />
+          </div>
+          <div style={{ color: "#fff", fontSize: 16, fontWeight: 400, marginBottom: 4 }}>
+            Số 33 Ngõ 294/2 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội.<br />
+            MST: 0110541851<br />
+            Điện thoại:<br />
+            Email:<br />
+            Đại diện pháp luật: Nguyễn Văn Cương (Mr.)
+          </div>
+          <div style={{ color: "#B6C0D2", fontSize: 14}}>
+            Bản quyền thuộc về VCPC ©
           </div>
         </div>
-      </div>
-
-      {/* separator row */}
-      <div className="tv-sep-row">
-        <div className="sep-inner">
-          <div className="sep-logo">
-            <img src={logo} alt="small sword" className="tv-sword-small" />
-          </div>
-
-          <nav className="sep-nav">
-            <a href="/">TRANG CHỦ</a>
-            <a href="/Deatails">GIỚI THIỆU</a>
-            <a href="/#rank">BẢNG XẾP HẠNG</a>
-            <a href="/Contact">HỖ TRỢ</a>
-          </nav>
-
-          <div className="sep-socials">
-            <a
-              href="#"
-              className="ic"
-              style={{ color: "#ECC689", fontSize: "16px" }}
-            >
-              <i className="bi bi-twitter-x"></i>
+        {/* Center: Links */}
+        <div style={{ fontFamily:"Lora,seft", flex: 1, minWidth: 180, display: "flex", flexDirection: "column", gap: 8 ,marginLeft: 500}}>
+          <div style={{ fontWeight: 700, fontSize: 18, color: "#fff", marginBottom: 8 }}>TRANG CHỦ</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Trang chủ</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Tin tức & Sự kiện</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Công bố bản quyền</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Dịch vụ bản quyền</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Hỗ trợ</div>
+        </div>
+        {/* Right: Quick Links */}
+        <div style={{ fontFamily:"Lora,seft", flex: 1, minWidth: 180, display: "flex", flexDirection: "column", gap: 8 ,textAlign:"right"}}>
+          
+          <div style={{ fontWeight: 700, fontSize: 18, color: "#fff", marginBottom: 8 }}>TRUY CẬP NHANH</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Đăng ký bản quyền</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Thông tin bản quyền</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Văn bản pháp luật</div>
+          <div style={{ color: "#fff", fontSize: 15, fontWeight: 400, marginBottom: 2 }}>Các loại biểu mẫu</div>
+          
+          <div style={{ display: "flex", gap: 18, marginTop: 40, textAlign:"right", justifyContent :"flex-end"}}>
+            <a href="#" style={{ color: "#fff", fontSize: 24 }}>
+              <img src={facebookLogo} alt="Facebook" style={{ width: 40, height: 40, objectFit: "contain" }} />
             </a>
-            <a
-              href="#"
-              className="ic"
-              style={{ color: "#ECC689", fontSize: "16px" }}
-            >
-              <i className="bi bi-youtube"></i>
+            <a href="#" style={{ color: "#fff", fontSize: 24 }}>
+              <img src={youtubeLogo} alt="YouTube" style={{ width: 40, height: 40, objectFit: "contain" }} />
             </a>
-            <a
-              href="#"
-              className="ic"
-              style={{ color: "#ECC689", fontSize: "16px" }}
-            >
-              <i className="bi bi-facebook"></i>
-            </a>
-            <a
-              href="#"
-              className="ic"
-              style={{ color: "#ECC689", fontSize: "16px" }}
-            >
-              <i className="bi bi-instagram"></i>
+            <a href="#" style={{ color: "#fff", fontSize: 24 }}>
+              <img src={linkedinLogo} alt="LinkedIn" style={{ width: 40, height: 40, objectFit: "contain" }} />
             </a>
           </div>
-        </div>
-      </div>
-
-      <div className="tv-sep"></div>
-
-      <div className="tv-bottom">
-        <div className="b-center">
-          Bản quyền thuộc về @VKENTERTAINMENTJSC.
-        </div>
-        <div className="b-right">
-          <a href={chinhSach} style={{ color: "#ECC689", textDecoration: "none" }}>
-            CHÍNH SÁCH QUYỀN RIÊNG TƯ
-          </a>{" "}
-          |{" "}
-          <a href={dieuKhoan} style={{ color: "#ECC689", textDecoration: "none" }}>
-            ĐIỀU KHOẢN SỬ DỤNG
-          </a>
         </div>
       </div>
     </footer>
