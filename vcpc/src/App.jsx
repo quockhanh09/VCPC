@@ -1,4 +1,12 @@
-import { useState, useEffect } from "react";
+import trendingImg1 from "./assets/img/image109.png";
+import trendingImg2 from "./assets/img/image106.png";
+import trendingImg3 from "./assets/img/image107.png";
+import trendingAvatar1 from "./assets/img/image108.png";
+import trendingAvatar3 from "./assets/img/Group-143726086.png";
+
+import iconTreanding from "./assets/img/CollectorLog-ETH.png";
+import iconTreanding1 from "./assets/img/imageA.png";
+import { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import Layout from "./Layout.jsx";
@@ -587,113 +595,259 @@ function App() {
                   </div>
                 </section>
 
+{/* Tin nổi bật section */}
+        <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 0 80px 0' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 0 }}>
+            <div style={{ fontWeight: 700, fontSize: 38, color: '#10214B', fontFamily: 'Lora, serif', marginBottom: 0 }}>Tin nổi bật</div>
+            <div style={{ display: 'flex', gap: 12 }}>
+              {tabList.map((tabItem) => (
+                <button
+                  key={tabItem.key}
+                  onClick={() => setTab(tabItem.key)}
+                  style={{
+                    background: tab === tabItem.key ? tabItem.color : '#fff',
+                    color: tab === tabItem.key ? tabItem.text : '#10214B',
+                    fontWeight: 600,
+                    fontSize: 17,
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '8px 22px',
+                    marginRight: 0,
+                    marginBottom: 0,
+                    cursor: 'pointer',
+                    boxShadow: tab === tabItem.key ? '0 2px 8px 0 rgba(180,180,200,0.10)' : 'none',
+                    transition: 'all 0.2s',
+                    outline: 'none',
+                  }}
+                >
+                  {tabItem.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div style={{ borderBottom: '2px solid #222', margin: '16px 0 24px 0' }} />
+          <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+            {/* Main news left */}
+            <div style={{ flex: 1.2, minWidth: 340 }}>
+              <img src={main.img} alt={main.title} style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 4, marginBottom: 18 }} />
+              <div style={{ color: '#222', fontSize: 14, fontWeight: 700, marginBottom: 8, fontFamily: 'Montserrat, sans-serif' }}>
+                {main.author} <span style={{ fontWeight: 400, color: '#888', marginLeft: 8 }}>| {main.date}</span>
+              </div>
+              <div style={{ fontWeight: 800, fontSize: 22, color: '#222', marginBottom: 10, lineHeight: 1.3, fontFamily: 'Lora, serif' }}>{main.title}</div>
+              {main.desc && <div style={{ color: '#444', fontSize: 15, lineHeight: 1.6, fontFamily: 'Montserrat, sans-serif' }}>{main.desc}</div>}
+            </div>
+            {/* List news right */}
+            <div style={{ flex: 1, minWidth: 260, display: 'flex', flexDirection: 'column', gap: 18 }}>
+              {list.map((item, idx) => (
+                <div key={idx} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                  <img src={item.img} alt={item.title} style={{ width: 90, height: 60, objectFit: 'cover', borderRadius: 4 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ color: '#222', fontSize: 13, fontWeight: 700, marginBottom: 2, fontFamily: 'Montserrat, sans-serif' }}>
+                      {item.author} <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>| {item.date}</span>
+                    </div>
+                    <div style={{ fontWeight: 600, fontSize: 15.5, color: '#222', lineHeight: 1.35, fontFamily: 'Lora, serif' }}>{item.title}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
 
                 {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
                 {(() => {
-                  // Demo data for many cards
+                
                   const trendingList = [
                     {
-                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
-                      title: "VIẾT TIẾP CÂU...",
-                      author: "Duyên Quỳnh & N...",
-                      price: "$103,025",
-                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=1",
-                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      img: trendingImg1,
+                      title: 'VIẾT TIẾP CÂU...',
+                      author: 'Nguyễn Hùng',
+                      price: '$180,025',
+                      avatar: trendingAvatar1,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
                       color: '#ff9800',
                     },
                     {
-                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
-                      title: "CÒN GÌ ĐẸP...",
-                      author: "Nguyễn Hùng",
-                      price: "$180,345",
+                      img: trendingImg2,
+                      title: 'CÒN GÌ ĐẸP...',
+                      author: 'Nguyễn Hùng',
+                      price: '$180,345',
                       avatar: null,
-                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
                       color: '#3b5cff',
                       isPause: true,
                     },
                     {
-                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
-                      title: "LẠC TRÔI",
-                      author: "Sơn Tùng M-TP",
-                      price: "$9,945.1",
-                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=2",
-                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      img: trendingImg3,
+                      title: 'LẠC TRÔI',
+                      author: 'Sơn Tùng M-TP',
+                      price: '$9,945.1',
+                      avatar: trendingAvatar3,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
                       color: '#7b61ff',
                     },
                     {
-                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
-                      title: "BÀI CA HY VỌNG",
-                      author: "Trọng Tấn",
-                      price: "$12,000",
-                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=3",
-                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      img: trendingImg1,
+                      title: 'BÀI CA HY VỌNG',
+                      author: 'Trọng Tấn',
+                      price: '$12,000',
+                      avatar: trendingAvatar1,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
                       color: '#ff9800',
                     },
                     {
-                      img: "https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27",
-                      title: "NƠI NÀY CÓ ANH",
-                      author: "Sơn Tùng M-TP",
-                      price: "$8,000",
-                      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=4",
-                      icon: <i className="fa-solid fa-download" style={{ color: '#7b61ff', fontSize: 22, marginLeft: 8 }}></i>,
+                      img: trendingImg2,
+                      title: 'NƠI NÀY CÓ ANH',
+                      author: 'Sơn Tùng M-TP',
+                      price: '$8,000',
+                      avatar: trendingAvatar3,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
                       color: '#7b61ff',
+                    },
+                    {
+                      img: trendingImg3,
+                      title: 'HÀNH TRÌNH MỚI',
+                      author: 'Minh Vương',
+                      price: '$15,000',
+                      avatar: trendingAvatar1,
+                      icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, 
+                      color: '#ff9800',
                     },
                   ];
                   const [center, setCenter] = useState(1); // index of center card
                   const visibleCount = 3;
-                  const getCardClass = (idx) => {
-                    if (idx === center) return 'trending-card trending-card-center';
-                    if (idx === center - 1 || idx === center + 1) return 'trending-card trending-card-side';
-                    return 'trending-card trending-card-blur';
-                  };
-                  const handleCardClick = (idx) => {
-                    setCenter(idx);
-                  };
-                  // Only show 3 cards in center, but render all for blur effect
+                  // Drag logic
+                  const carouselRef = useRef(null);
+                  const [isDragging, setIsDragging] = useState(false);
+                  const [startX, setStartX] = useState(0);
+                  const [scrollLeft, setScrollLeft] = useState(0);
+
+                  useEffect(() => {
+                    const carousel = carouselRef.current;
+                    if (!carousel) return;
+                    const handleMouseDown = (e) => {
+                      setIsDragging(true);
+                      setStartX(e.pageX - carousel.offsetLeft);
+                      setScrollLeft(carousel.scrollLeft);
+                    };
+                    const handleMouseLeave = () => setIsDragging(false);
+                    const handleMouseUp = () => setIsDragging(false);
+                    const handleMouseMove = (e) => {
+                      if (!isDragging) return;
+                      e.preventDefault();
+                      const x = e.pageX - carousel.offsetLeft;
+                      const walk = (x - startX) * 1.2; // scroll speed
+                      carousel.scrollLeft = scrollLeft - walk;
+                    };
+                    carousel.addEventListener('mousedown', handleMouseDown);
+                    carousel.addEventListener('mouseleave', handleMouseLeave);
+                    carousel.addEventListener('mouseup', handleMouseUp);
+                    carousel.addEventListener('mousemove', handleMouseMove);
+                    return () => {
+                      carousel.removeEventListener('mousedown', handleMouseDown);
+                      carousel.removeEventListener('mouseleave', handleMouseLeave);
+                      carousel.removeEventListener('mouseup', handleMouseUp);
+                      carousel.removeEventListener('mousemove', handleMouseMove);
+                    };
+                  }, [isDragging, startX, scrollLeft]);
+
+                  // Center calculation on scroll
+                  useEffect(() => {
+                    const carousel = carouselRef.current;
+                    if (!carousel) return;
+                    const handleScroll = () => {
+                      const cardWidth = 300 + 24; // width + margin
+                      const scroll = carousel.scrollLeft;
+                      const idx = Math.round(scroll / cardWidth) + 1;
+                      setCenter(Math.max(1, Math.min(trendingList.length - 2, idx)));
+                    };
+                    carousel.addEventListener('scroll', handleScroll);
+                    return () => carousel.removeEventListener('scroll', handleScroll);
+                  }, [trendingList.length]);
+
                   return (
-                    <section style={{ background: '#FFFAF2', padding: '48px 0 24px 0' }}>
-                      <div style={{ maxWidth: 1150, margin: '0 auto', padding: 0 }}>
-                        <h2 style={{
-                          textAlign: 'center',
-                          fontWeight: 800,
-                          fontSize: 36,
-                          color: '#b7a6e8',
-                          marginBottom: 36,
-                          letterSpacing: 0.5,
-                          fontFamily: 'Lora, serif'
-                        }}>
+                    <section style={{ background: '#FFFAF2', padding: '48px 0 80px 0' }}>
+                      <div style={{ maxWidth: '100vw', margin: '0 auto', padding: 0 }}>
+                        <h2
+                          style={{
+                            textAlign: 'center',
+                            fontWeight: 800,
+                            fontSize: 36,
+                            marginBottom: 36,
+                            letterSpacing: 0.5,
+                            fontFamily: 'Lora, serif',
+                            background: 'linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            color: 'transparent',
+                          }}
+                        >
                           Bản quyền đang xu hướng
                         </h2>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: 0, marginBottom: 32, position: 'relative', minHeight: 340 }}>
+                        <div
+                          ref={carouselRef}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            gap: 0,
+                            marginBottom: 32,
+                            position: 'relative',
+                            minHeight: 340,
+                            overflowX: 'auto',
+                            scrollBehavior: 'smooth',
+                            cursor: isDragging ? 'grabbing' : 'grab',
+                            userSelect: 'none',
+                            WebkitOverflowScrolling: 'touch',
+                            padding: '0 10vw',
+                            scrollbarWidth: 'none', // Firefox
+                            msOverflowStyle: 'none', // IE/Edge
+                          }}
+                          className="trending-carousel-hide-scroll"
+                        >
                           {trendingList.map((item, idx) => {
-                            const cardClass = getCardClass(idx);
+                            const isCenter = idx === center;
+                            const isSide = idx === center - 1 || idx === center + 1;
                             return (
                               <div
                                 key={idx}
-                                className={cardClass}
+                                className={
+                                  (isCenter ? 'trending-card trending-card-center trending-card-gradient-border' :
+                                    (isSide ? 'trending-card trending-card-center' : 'trending-card trending-card-blur'))
+                                }
                                 style={{
-                                  margin: idx === center ? '0 24px' : '0 0px',
-                                  zIndex: idx === center ? 2 : 1,
-                                  cursor: idx === center ? 'default' : 'pointer',
+                                  margin: isCenter ? '0 24px' : '0 0px',
+                                  zIndex: isCenter ? 2 : 1,
+                                  cursor: 'pointer',
                                   transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
-                                  filter: idx === center ? 'none' : (idx === center - 1 || idx === center + 1 ? 'none' : 'blur(2.5px) grayscale(0.5) opacity(0.6)'),
-                                  opacity: idx === center ? 1 : (idx === center - 1 || idx === center + 1 ? 0.7 : 0.4),
-                                  pointerEvents: idx < center - 1 || idx > center + 1 ? 'none' : 'auto',
+                                  filter: (isCenter || isSide) ? 'none' : 'blur(2.5px) grayscale(0.5) opacity(0.6)',
+                                  opacity: (isCenter || isSide) ? 1 : 0.4,
+                                  pointerEvents: 'auto',
                                   background: '#fff',
                                   borderRadius: 24,
-                                  boxShadow: idx === center ? '0 0 0 4px #f3f0ff, 0 2px 16px 0 rgba(180,180,200,0.10)' : '0 2px 16px 0 rgba(180,180,200,0.10)',
-                                  width: 300,
-                                  padding: 24,
+                                  boxShadow: isCenter ? '0 0 0 4px #f3f0ff, 0 2px 16px 0 rgba(180,180,200,0.10)' : '0 2px 16px 0 rgba(180,180,200,0.10)',
+                                  width: 360,
+                                  padding: 32,
                                   display: 'flex',
                                   flexDirection: 'column',
                                   alignItems: 'center',
                                   position: 'relative',
-                                  border: idx === center ? '3px solid' : '3px solid transparent',
-                                  
+                                  border: isCenter ? '3px solid #3667E2' : '3px solid transparent',
+                                  // borderImage removed, handled by CSS below
                                 }}
-                                onClick={() => idx !== center && handleCardClick(idx)}
+                                onClick={() => {
+                                  // Only allow click if card is not blurred (center or side)
+                                  if (isCenter) return;
+                                  if (isSide && carouselRef.current) {
+                                    // Scroll to center this card
+                                    const cardWidth = 300 + 24;
+                                    const scrollTo = (idx - 1) * cardWidth;
+                                    carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+                                  }
+                                }}
                               >
-                                <img src={item.img} alt={item.title} style={{ width: 220, height: 140, objectFit: 'cover', borderRadius: 16, marginBottom: 18 }} />
+                                <img src={item.img} alt={item.title} style={{ width: 300, height: 250, objectFit: 'cover', borderRadius: 16, marginBottom: 22 }} />
                                 <div style={{ display: 'flex', alignItems: 'center', width: '100%', marginBottom: 8 }}>
                                   {item.isPause ? (
                                     <div style={{ width: 36, height: 36, borderRadius: 8, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>
@@ -708,8 +862,8 @@ function App() {
                                   </div>
                                   {item.icon}
                                 </div>
-                                <div style={{ width: '100%', textAlign: 'right', fontWeight: 700, fontSize: 20, color: '#222', marginBottom: idx === center ? 16 : 0 }}>{item.price}</div>
-                                {idx === center && (
+                                <div style={{ width: '100%', textAlign: 'right', fontWeight: 700, fontSize: 20, color: '#222', marginBottom: isCenter ? 16 : 0 }}>{item.price}</div>
+                                {isCenter && (
                                   <button style={{
                                     width: '100%',
                                     background: 'linear-gradient(90deg,#3b5cff 0%,#7b61ff 100%)',
@@ -733,8 +887,8 @@ function App() {
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
                           <button style={{
                             background: '#fff',
-                            color: '#7b61ff',
-                            border: 'none',
+                            color: '#3667E2',
+                            border: '2px solid #3667E2',
                             borderRadius: 24,
                             fontWeight: 700,
                             fontSize: 20,
