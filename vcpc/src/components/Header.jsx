@@ -25,7 +25,9 @@ function Header() {
         justifyContent: "space-between",
       }}
     >
-      <img src={logo} alt="VCPC Logo" style={{ height: 60, marginRight: 32, flexShrink: 0 }} />
+      <Link to="/">
+        <img src={logo} alt="VCPC Logo" style={{ height: 60, marginRight: 32, flexShrink: 0, cursor: 'pointer' }} />
+      </Link>
       <nav id="navmenu" className="navmenu" style={{ flexShrink: 0 }}>
         <ul style={{
          
