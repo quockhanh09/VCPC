@@ -39,8 +39,8 @@ function Header() {
           padding: 0,
           minWidth: 700,
         }}>
-          <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>VỀ CHÚNG TÔI</Link></li>
-          <li><Link to="/News" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>TIN TỨC</Link></li>
+          <li><Link to="/Introduction" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>VỀ CHÚNG TÔI</Link></li>
+          <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>TIN TỨC</Link></li>
           <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>CÔNG BỐ</Link></li>
           <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>DỊCH VỤ BẢN QUYỀN</Link></li>
           <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>SÀN GIAO DỊCH</Link></li>

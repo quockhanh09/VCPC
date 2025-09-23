@@ -13,7 +13,7 @@ function Countdown() {
     <section id="contact-location" style={{ background: "#FFFAF2", padding: "40px 0 60px 0" }}>
       {/* Call-to-action bar */}
       <div style={{
-        maxWidth: 1200,
+        maxWidth: 1300,
         margin: "0 auto 80px auto",
         padding: 0,
         borderRadius: 12,

@@ -14,7 +14,7 @@ import Header from "./components/Header";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
-import News from "./components/News";
+import Introduction from "./components/Introduction";
 import Details from "./components/Deatails";
 import Newsletter from "./components/Newsletter";
 import Register from "./signup-in/Register";
@@ -910,7 +910,7 @@ function App() {
           />
 
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/News" element={<News />} />
+          <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Deatails" element={<Details />} />
           <Route path="/Newsletter" element={<Newsletter />} />
           <Route path="/Register" element={<Register />} />
