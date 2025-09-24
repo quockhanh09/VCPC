@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import Contact from "./components/Contact";
 import Introduction from "./components/Introduction";
 import Details from "./components/Deatails";
-import Newsletter from "./components/Newsletter";
+import News from "./components/News";
 import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
 
@@ -99,7 +99,7 @@ function App() {
         date: "15 tháng 07, 2025"
       },
       {
-        img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3c5c?auto=format&fit=crop&w=120&q=80",
+        img: "https://www.centrala.vn/storage/news/1744355533BACKDOOR%20-%20T%E1%BA%A4T%20T%E1%BA%A6N%20T%E1%BA%ACT%20V%E1%BB%80%20BACKDOOR%20B%E1%BA%A0N%20C%E1%BA%A6N%20N%C3%8AN%20BI%E1%BA%BET%20(3).png",
         title: "Hội thảo: Bảo vệ bản quyền trong thời đại số",
         author: "VCPC Event",
         date: "10 tháng 07, 2025"
@@ -113,7 +113,7 @@ function App() {
     ],
     law: [
       {
-        img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3c5c?auto=format&fit=crop&w=600&q=80",
+        img: "https://cdn.thuvienphapluat.vn/uploads/Hoidapphapluat/2025/LTN/thang5/luat-shtt.jpg",
         title: "Luật Sở hữu trí tuệ sửa đổi 2025",
         desc: "Luật mới cập nhật nhiều quy định quan trọng về bảo vệ quyền tác giả, quyền liên quan và xử lý vi phạm.",
         author: "VCPC Law",
@@ -124,7 +124,14 @@ function App() {
         title: "Nghị định hướng dẫn thi hành Luật Sở hữu trí tuệ",
         author: "VCPC Law",
         date: "15 tháng 05, 2025"
-      }
+      },
+       {
+        img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
+        title: "Sự kiện: Ngày hội Sáng tạo Việt Nam 2025",
+        desc: "Ngày hội quy tụ hàng trăm tác giả, nghệ sĩ, doanh nghiệp sáng tạo với nhiều hoạt động giao lưu, triển lãm, workshop hấp dẫn.",
+        author: "VCPC Event",
+        date: "15 tháng 07, 2025"
+      },
     ]
   };
 
@@ -912,7 +919,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Deatails" element={<Details />} />
-          <Route path="/Newsletter" element={<Newsletter />} />
+          <Route path="/News" element={<News />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
         </Routes>

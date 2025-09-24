@@ -92,7 +92,7 @@ const YEARS = [
 
 ];
 
-function News() {
+function Introduction() {
   const [selected, setSelected] = useState(0);
   return (
     <>
@@ -240,4 +240,4 @@ function News() {
   );
 }
 
-export default News;
+export default Introduction;
