@@ -1,3 +1,18 @@
+
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import "../style/App.css";
+
+// Import ảnh
+import imgNews1 from "../assets/img/news-related-1.jpg";
+import imgNews2 from "../assets/img/news-related-2.jpg";
+import imgNews3 from "../assets/img/news-related-3.jpg";
+import heroInput from "../assets/img/bginput.png";
+import imgNews4  from "../assets/img/ads-baner.png";
+import imgEventMain from "../assets/img/politics_post01.png";
+import imgCopyright1 from "../assets/img/image-100.png";
+
+
 // Dữ liệu event
 const MAIN_EVENT = {
   image: imgEventMain,
@@ -11,18 +26,7 @@ const SUB_EVENTS = [
   { title: 'Hội nghị hợp tác quốc tế về bản quyền', date: '08-06-2025' },
   { title: 'Hội thảo về thực thi bản quyền trên môi trường số', date: '08-06-2025' },
 ];
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import "../style/App.css";
 
-// Import ảnh
-import imgNews1 from "../assets/img/news-related-1.jpg";
-import imgNews2 from "../assets/img/news-related-2.jpg";
-import imgNews3 from "../assets/img/news-related-3.jpg";
-import heroInput from "../assets/img/bginput.png";
-import imgNews4  from "../assets/img/ads-baner.png";
-import imgEventMain from "../assets/img/politics_post01.png";
-import imgCopyright1 from "../assets/img/image-100.png";
 // Dữ liệu tin chính và tin liên quan
 const MAIN_NEWS = {
   image: imgNews1,
