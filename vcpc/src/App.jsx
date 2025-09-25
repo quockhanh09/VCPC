@@ -19,6 +19,7 @@ import Details from "./components/Deatails";
 import News from "./components/News";
 import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
+import Letter from "./components/Letter";
 
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -920,6 +921,7 @@ function App() {
           <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Deatails" element={<Details />} />
           <Route path="/News" element={<News />} />
+          <Route path="/Letter" element={<Letter />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
         </Routes>
