@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "../style/App.css";
 import "../style/img-3d.css";
-import bgDe from "../assets/img/004-01_Character.png";
+import bgDe from "../assets/img/Copyright Market_001.jpg";
+import img99 from "../assets/img/image99.png";
 // ===== Import ảnh Nhân Vật =====
 import canonImg from "../assets/img/character=canon, state=zoom.png";
 import holyImg from "../assets/img/character=holy, state=zoom.png";
@@ -291,93 +292,98 @@ useEffect(() => {
       className="service-details section"
       style={{ padding: "30px 0", backgroundImage: `url(${bgDe})` , backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
-      {/* Nhân Vật Chính */}
-      <div style={{ marginTop: "140px" }}>
-        <div style={{ textAlign: "center", margin: "40px 0" }}>
-          <h2 className="gu-title-box">NHÂN VẬT CHÍNH</h2>
-        </div>
-
-       <div className="gu-wrapper">
-  <div className="gu-list">
-    {/* Canon */}
-    <div
-      className={`gu-item ${locked === "canon" ? "active" : ""}`}
-      data-char="canon"
-    >
-      <div className="gu-card">
-        <img src={canonImg} alt="canon" />
-      </div>
-      <div className="gu-name-floor">CANON SHOOTER</div>
-    </div>
-
-    {/* Holy */}
-    <div
-      className={`gu-item-2 ${locked === "holy" ? "active" : ""}`}
-      data-char="holy"
-    >
-      <div className="gu-card-2">
-        <img src={holyImg} alt="holy" />
-      </div>
-      <div className="gu-name-floor">HOLY KNIGHT</div>
-    </div>
-
-    {/* Warrior */}
-    <div
-      className={`gu-item-3 ${locked === "warrior" ? "active" : ""}`}
-      data-char="warrior"
-    >
-      <div className="gu-card-3">
-        <img src={warriorImg} alt="warrior" />
-      </div>
-      <div className="gu-name-floor">WARRIOR</div>
-    </div>
-
-    {/* Assassin */}
-    <div
-      className={`gu-item-4 ${locked === "assassin" ? "active" : ""}`}
-      data-char="assassin"
-    >
-      <div className="gu-card-4">
-        <img src={assassinImg} alt="assassin" />
-      </div>
-      <div className="gu-name-floor">ASSASSIN</div>
-    </div>
-
-    {/* Archer */}
-    <div
-      className={`gu-item-5 ${locked === "archer" ? "active" : ""}`}
-      data-char="archer"
-    >
-      <div className="gu-card-5">
-        <img src={archerImg} alt="archer" />
-      </div>
-      <div className="gu-name-floor">ARCHER</div>
-    </div>
-
-    {/* Mage */}
-    <div
-      className={`gu-item-6 ${locked === "mage" ? "active" : ""}`}
-      data-char="mage"
-    >
-      <div className="gu-card-6">
-        <img src={mageImg} alt="mage" />
-      </div>
-      <div className="gu-name-floor">MAGE</div>
-    </div>
-  </div>
-</div>
-
-
-        {currentChar && (
-          <div id="guInfo" className="gu-thongtin">
-            <h3>CỐT TRUYỆN</h3>
-            <p>{characters[currentChar].story}</p>
-            <h3>VAI TRÒ</h3>
-            <p>{characters[currentChar].role}</p>
-            <h3>VŨ KHÍ</h3>
-            <p>{characters[currentChar].weapon}</p>
+      {/* HERO BANNER SECTION - UI sát mẫu */}
+      <div style={{
+        width: '100%',
+        minHeight: 600,
+        
+        position: 'relative',
+        overflow: 'visible',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 0 40px 0',
+      }}>
+        {/* Star/particle effects */}
+        <div style={{position:'absolute',top:30,left:60,width:8,height:8,borderRadius:'50%',background:'#6ec6ff',opacity:0.7,boxShadow:'0 0 12px #6ec6ff'}}></div>
+        <div style={{position:'absolute',top:80,left:'55%',width:6,height:6,borderRadius:'50%',background:'#b18cff',opacity:0.7,boxShadow:'0 0 8px #b18cff'}}></div>
+        <div style={{position:'absolute',top:120,right:120,width:10,height:10,borderRadius:'50%',background:'#3cf2b6',opacity:0.6,boxShadow:'0 0 16px #3cf2b6'}}></div>
+        <div style={{position:'absolute',top:420,left:'60%',width:7,height:7,borderRadius:'50%',background:'#f2a3e2',opacity:0.6,boxShadow:'0 0 10px #f2a3e2'}}></div>
+        {/* Main content */}
+        <div style={{display:'flex',width:'100%',maxWidth:1200,alignItems:'center',justifyContent:'space-between',zIndex:2}}>
+          {/* Left: Text */}
+          <div style={{ flex: 1, paddingLeft: 32, maxWidth: 540 }}>
+            <div style={{
+              fontSize: 60,
+              fontWeight: 800,
+              lineHeight: 1.08,
+              marginBottom: 18,
+              background: 'linear-gradient(90deg, #3cf2b6 10%, #6ec6ff 40%, #b18cff 70%, #f2a3e2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block',
+              letterSpacing: '-2px',
+            }}>
+              Tìm Kiếm &<br />Giao Dịch <span style={{ display: 'inline-block' }}>Bản Quyền</span>
+            </div>
+            <div style={{ color: '#c7cbe7', fontSize: 18, marginBottom: 36, maxWidth: 480, fontWeight: 400, lineHeight: 1.5 }}>
+              Tham gia sàn giao dịch bản quyền giúp các tác giả thương mại hóa tài sản trí tuệ của mình, đồng thời thu hút đầu tư và thúc đẩy sự phát triển của ngành công nghiệp sáng tạo.
+            </div>
+            <div style={{ display: 'flex', gap: 18, marginBottom: 44 }}>
+              <button style={{
+                background: 'linear-gradient(90deg,#3a8dff 60%,#6ec6ff 100%)', color: '#fff', border: 'none', borderRadius: 32,
+                padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
+                boxShadow: '0 2px 12px 0 #3a8dff44', transition: 'background 0.2s',
+              }}>Tìm hiểu</button>
+              <button style={{
+                background: 'rgba(255,255,255,0.04)', color: '#fff', border: '2px solid #fff', borderRadius: 32,
+                padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
+                boxShadow: '0 2px 12px 0 #fff2', transition: 'background 0.2s',
+              }}>Đăng tác phẩm</button>
+            </div>
+            <div style={{ display: 'flex', gap: 56, marginTop: 36 }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>232K+</div>
+                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Tác phẩm</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>200K+</div>
+                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Nghệ sĩ</div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>10K+</div>
+                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Giao dịch</div>
+              </div>
+            </div>
           </div>
-        )}
+          {/* Right: Banner Card */}
+          <div className="banner-3d-wrap">
+            <div className="banner-3d-card-bg"></div>
+            <div className="banner-3d-card">
+              <img src={img99} alt="Lạc Trôi" className="banner-3d-img" />
+              <div className="banner-3d-info">
+                <div className="banner-3d-avatar"></div>
+                <div className="banner-3d-meta">
+                  <div className="banner-3d-title">Lạc Trôi</div>
+                  <div className="banner-3d-user">@sontungmtp</div>
+                  <div className="banner-3d-price">$5758.31</div>
+                </div>
+                <div className="banner-3d-dot"></div>
+              </div>
+              <div className="banner-3d-timer">
+                <div className="banner-3d-timer-col"><div>17</div><div className="banner-3d-timer-label">Hours</div></div>
+                <span>:</span>
+                <div className="banner-3d-timer-col"><div>56</div><div className="banner-3d-timer-label">Minutes</div></div>
+                <span>:</span>
+                <div className="banner-3d-timer-col"><div>03</div><div className="banner-3d-timer-label">Seconds</div></div>
+              </div>
+              {/* Star/particle overlay on card */}
+              <div className="banner-3d-star banner-3d-star1"></div>
+              <div className="banner-3d-star banner-3d-star2"></div>
+              <div className="banner-3d-star banner-3d-star3"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div
