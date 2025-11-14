@@ -7,7 +7,7 @@ import trendingAvatar3 from "./assets/img/Group-143726086.png";
 import iconTreanding from "./assets/img/CollectorLog-ETH.png";
 import iconTreanding1 from "./assets/img/imageA.png";
 import { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 // import Layout from "./Layout.jsx";
 import Header from "./components/Header";
@@ -20,7 +20,7 @@ import News from "./components/News";
 import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
 import Letter from "./components/Letter";
-
+import Comingsoon from "./components/comingsoon";
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -49,7 +49,8 @@ import event4 from "./assets/img/kram-11.png";
 
 const eventImages = [event1, event2, event3, event4];
 
-function App() {
+function AppContent() {
+  const location = useLocation();
 
   const newsData = {
     copyright: [
@@ -235,13 +236,12 @@ function App() {
 
 
   return (
-    <Router>
-      <div className="index-page" style={{ background: "#FFFAF2" }}>
+    <div className="index-page" style={{ background: "#FFFAF2" }}>
+        {location.pathname !== "/Comingsoon" && <Header />}
+      
+      <Routes>
 
-        <Header />
-        <Routes>
-
-          <Route
+        <Route
             path="/"
             element={
               <>
@@ -924,12 +924,20 @@ function App() {
           <Route path="/Letter" element={<Letter />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Comingsoon" element={<Comingsoon />} />
         </Routes>
-        <Countdown />
+        {location.pathname !== "/Comingsoon" && <Countdown />}
         {/* ===== FOOTER ===== */}
         <Footer />
 
       </div>
+    );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
