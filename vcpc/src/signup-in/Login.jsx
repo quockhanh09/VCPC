@@ -98,7 +98,7 @@ const Login = () => {
         }}>
           <div style={{ fontWeight: 700, fontSize: 32, color: '#222', textAlign: 'center', marginBottom: 4, letterSpacing: 0.2 }}>Đăng nhập</div>
           <div style={{ color: '#888', fontSize: 16, marginBottom: 18, textAlign: 'center', fontWeight: 400 }}>
-            Bạn chưa có tài khoản? <a href="/register" style={{ color: '#22336C', textDecoration: 'underline', fontWeight: 500 }}>Đăng ký tài khoản</a>
+            Bạn chưa có tài khoản? <a href="/Register" style={{ color: '#22336C', textDecoration: 'underline', fontWeight: 500 }}>Đăng ký tài khoản</a>
           </div>
           {/* Social login buttons */}
           <button style={{
