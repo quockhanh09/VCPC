@@ -1,408 +1,448 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../style/App.css";
 import "../style/img-3d.css";
 import bgDe from "../assets/img/Copyright Market_001.jpg";
 import img99 from "../assets/img/image99.png";
-// ===== Import ảnh Nhân Vật =====
-import canonImg from "../assets/img/character=canon, state=zoom.png";
-import holyImg from "../assets/img/character=holy, state=zoom.png";
-import warriorImg from "../assets/img/character=warrior, state=zoom.png";
-import assassinImg from "../assets/img/character=assasin, state=zoom.png";
-import archerImg from "../assets/img/character=archer, state=zoom.png";
-import mageImg from "../assets/img/character=mage, state=zoom.png";
-// ===== Import ảnh Realm/Feature/Item/Money =====
-import npcRealmImg from "../assets/img/image-287.png";
-import petRealmImg from "../assets/img/Picture1.png";
-import bossRealmImg from "../assets/img/Picture2.png";
-import guildRealmImg from "../assets/img/Picture3.png";
-import mapImg from "../assets/img/Picture4.png";
-import dungeonImg from "../assets/img/Picture6.png";
-import forgeImg from "../assets/img/Picture7.png";
-import questImg from "../assets/img/Picture8.png";
-//
-import equipment1 from "../assets/img/Picture12.png";
-import equipment2 from "../assets/img/Picture13.png";
-import equipment3 from "../assets/img/Picture14.png";
-import equipment4 from "../assets/img/Picture15.png";
-import equipment5 from "../assets/img/Picture16.png";
-import equipment6 from "../assets/img/Picture17.png";
-import equipment7 from "../assets/img/Picture18.png";
-import equipment8 from "../assets/img/Icon_Weapon_PC01_000_1.png";
-import equipment9 from "../assets/img/Icon_Weapon_PC02_001_0.png";
-import equipment10 from "../assets/img/Icon_Weapon_PC03_000_1.png";
-import equipment11 from "../assets/img/Icon_Weapon_PC04_000_4.png";
-import equipment12 from "../assets/img/Icon_Weapon_PC05_000_1.png";
-import equipment13 from "../assets/img/Icon_Weapon_PC06_000_1.png";
-//
-import gemRed from "../assets/img/Icon_Gem_Red_001.png";
-import moneyGold from "../assets/img/Picture9.png";
-import moneyDiamondRed from "../assets/img/Picture10.png";
-import moneyDiamondBlue from "../assets/img/Picture11.png";
-import gem4 from "../assets/img/Icon_Gem_Brown_001.png";
-import gem5 from "../assets/img/Icon_Gem_Olive_001.png";
-import gem6 from "../assets/img/Icon_Gem_Yellow_001.png";
-import gem7 from "../assets/img/Icon_Gem_Orange_001.png";
-import gem8 from "../assets/img/Icon_Gem_SkyBlue_001.png";
-import gem9 from "../assets/img/Icon_Gem_Violet_001.png";
-import gem10 from "../assets/img/Icon_Gem_AddCrimson_001.png";
-import gem11 from "../assets/img/Icon_Gem_AddLightPurple_001.png";
-import gem12 from "../assets/img/Icon_Gem_AddLightRed_001.png";
-import gem13 from "../assets/img/Icon_Gem_AddGreen_001.png";
-import gem14 from "../assets/img/Icon_Gem_AddMint_001.png";
-import gem15 from "../assets/img/Icon_Gem_AddNavyBlue_001.png";
-import gem16 from "../assets/img/Icon_Gem_AddSkyBlue_001.png";
-//
-import consumables1 from "../assets/img/Icon_Consume_HpPotion_002.png";
-import consumables2 from "../assets/img/Icon_Consume_Enchant_WeaponStone_001.png";
-import consumables3 from "../assets/img/Icon_Consume_Enchant_JewelStone_001.png";
-import consumables4 from "../assets/img/Icon_Consume_Enchant_ArmorStone_001.png";
-import consumables5 from "../assets/img/Icon_Mat_CosFabric_001.png";
-import consumables6 from "../assets/img/Icon_Consume_PercentUp_001.png";
-import consumables7 from "../assets/img/Icon_Consume_SkillResetScroll_001.png";
-import consumables8 from "../assets/img/Icon_Consume_WarpScroll_001.png";
-import consumables9 from "../assets/img/Icon_Mat_BossSet_PC01_01.png";
-import consumables10 from "../assets/img/Icon_Mat_BossSet_PC01_02.png";
-import consumables11 from "../assets/img/Icon_Mat_BossSet_PC01_03.png";
-import consumables12 from "../assets/img/Icon_Mat_BossSet_PC01_04.png";
-import consumables13 from "../assets/img/Icon_Mat_CosFeather_001.png";
-import consumables14 from "../assets/img/Icon_Soulstone_Pet_10.png";
-import consumables15 from "../assets/img/Icon_RandBoxGuardian_002.png";
-import consumables16 from "../assets/img/Icon_RandAcc_001.png";
-//
-import skin1 from "../assets/img/Icon_CosBack_AngelWing_001_2.png";
-import skin2 from "../assets/img/Icon_CosBack_BackPack_001.png";
-import skin3 from "../assets/img/Icon_CosBack_PumpkinHead_001.png";
-import skin4 from "../assets/img/Icon_CosBack_RabbitLilac_001.png";
-import skin5 from "../assets/img/Icon_CosBody_PC01_905_2.png";
-import skin6 from "../assets/img/Icon_CosBody_PC02_905.png";
-import skin7 from "../assets/img/Icon_CosBody_PC03_907.png";
-import skin8 from "../assets/img/Icon_CosBody_PC04_908_2.png";
-import skin9 from "../assets/img/Icon_CosBody_PC04_952_2.png";
-import skin10 from "../assets/img/Icon_CosBody_PC06_953.png";
-import skin11 from "../assets/img/Icon_CosWeapon_PC01_906.png";
-import skin12 from "../assets/img/Icon_CosWeapon_PC02_1001_2.png";
-import skin13 from "../assets/img/Icon_CosWeapon_PC03_905_2.png";
-import skin14 from "../assets/img/Icon_CosWeapon_PC04_901_2.png";
-import skin15 from "../assets/img/Icon_CosWeapon_PC05_908_2.png";
-import skin16 from "../assets/img/Icon_CosWeapon_PC06_907_2.png";
+import heroInput from "../assets/img/bginput.png";
+
+import appa from "../assets/img/partner.png";
+import vcpmc from "../assets/img/partner1.png";
+import riav from "../assets/img/partner2.png";
+import trendingImg1 from "../assets/img/image109.png";
+import trendingImg2 from "../assets/img/image106.png";
+import trendingImg3 from "../assets/img/image107.png";
+import trendingAvatar1 from "../assets/img/image108.png";
+import trendingAvatar3 from "../assets/img/Group-143726086.png";
+
+import iconTreanding from "../assets/img/CollectorLog-ETH.png";
 
 
-const characters = {
-  canon: {
-    story:
-      "Có kiến thức sâu rộng về máy móc và văn minh nhờ ảnh hưởng của ông nội, một kỹ sư cung đình trong thời kỳ hoàng kim của Vương Quốc Diot. Dù có vẻ ngoài đáng yêu và tính cách sôi nổi, cô lại sở hữu hỏa lực khủng khiếp trong chiến đấu. Có tin đồn rằng cô tham gia trận chiến để thử nghiệm vũ khí mạnh mẽ mới của mình.",
-    role:
-      "Tấn công tầm xa, gây sát thương lớn bằng bom mạnh mẽ và sử dụng các loại thuốc hồi phục đặc chế.",
-    weapon: "Bom và pháo tầm xa",
-  },
-  holy: {
-    story:
-      "Là một tu sĩ của Đại Thần Điện Yulla, thuộc Liên Minh Thần Thánh Asgard. Với đức tin và công lý vững chắc, Thánh Kỵ Sĩ luôn tiên phong trong mọi trận chiến để thanh tẩy thế giới khỏi những thế lực đen tối sau khi chứng kiến những thay đổi bất thường của lục địa",
-    role: "Cận chiến, tấn công mạnh mẽ, có khả năng bảo vệ đồng đội",
-    weapon: "Đại kiếm",
-  },
-  warrior: {
-    story:
-      "Sinh ra từ liên minh bộ tộc dã man, Chiến Binh từng có ước mơ trở thành học giả khi còn nhỏ. Tuy nhiên, sau những biến cố lớn của thế giới, anh ta đã cầm vũ khí và tham gia chiến trường để bảo vệ bộ tộc và những người thân yêu.",
-    role:
-      "Tanker cận chiến, có khả năng chịu đựng mọi đòn tấn công của kẻ địch, bảo vệ đồng đội.",
-    weapon: "Khiên và rìu",
-  },
-  assassin: {
-    story:
-      "Xuất thân từ tổ chức sát thủ bí ẩn của Vương Quốc Kaidan, Sát Thủ từng hoạt động như một mật vụ và được đồn đoán là một thợ săn tiền thưởng lạnh lùng. Dù có vẻ ngoài khắc kỷ, họ lại nổi tiếng là những người luôn giữ chữ tín và sẵn sàng xông pha tiền tuyến.",
-    role: "Cận chiến, nhanh nhẹn, khả năng gây sát thương cao trong chớp nhoáng.",
-    weapon: "Song kiếm và song đao",
-  },
-  archer: {
-    story:
-      "Sử dụng các kỹ năng đa dạng và nhanh nhẹn để gây rối loạn chiến trường, bao gồm các kỹ năng diện rộng bắn nhiều mũi tên và kỹ năng sát thương lớn gây sát thương chí mạng.",
-    role:
-      "Tấn công vật lý tầm xa, linh hoạt và nhanh nhẹn, né tránh đòn tấn công của kẻ thù và gây sát thương bằng các đòn đánh khó lường.",
-    weapon: "Cung",
-  },
-  mage: {
-    story:
-      "Đến từ vùng biên của Đế Quốc Ma Đạo, một khu vực đã bị hố đen nuốt chửng. Pháp Sư thông minh từ nhỏ, sớm nắm vững kiến thức về nguyên tố và phép thuật, luôn dẫn dắt những người cùng lứa. Sau khi tự mình tu luyện trên dãy núi Valion, cô nhận ra những thay đổi của thế giới và tự nguyện tham gia chiến trường.",
-    role:
-      "Tấn công tầm xa, gây sát thương diện rộng bằng phép thuật nguyên tố và có khả năng cản trở hành động của kẻ địch.",
-    weapon: "Phép thuật nguyên tố",
-  },
-};
+function Deatails() {
+  // Trending data & hooks
+  const trendingList = [
+    { img: trendingImg1, title: 'VIẾT TIẾP CÂU...', author: 'Nguyễn Hùng', price: '$180,025', avatar: trendingAvatar1, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#ff9800' },
+    { img: trendingImg2, title: 'CÒN GÌ ĐẸP...', author: 'Nguyễn Hùng', price: '$180,345', avatar: null, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#3b5cff', isPause: true },
+    { img: trendingImg3, title: 'LẠC TRÔI', author: 'Sơn Tùng M-TP', price: '$9,945.1', avatar: trendingAvatar3, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#7b61ff' },
+    { img: trendingImg1, title: 'BÀI CA HY VỌNG', author: 'Trọng Tấn', price: '$12,000', avatar: trendingAvatar1, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#ff9800' },
+    { img: trendingImg2, title: 'NƠI NÀY CÓ ANH', author: 'Sơn Tùng M-TP', price: '$8,000', avatar: trendingAvatar3, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#7b61ff' },
+    { img: trendingImg3, title: 'HÀNH TRÌNH MỚI', author: 'Minh Vương', price: '$15,000', avatar: trendingAvatar1, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#ff9800' },
+  ];
+  const [center, setCenter] = useState(1);
+  const carouselRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-const sections = {
-  realm: [
-    { id: "npc-realm", label: "NPC", img: npcRealmImg, text: "Với gần 400 nhân vật, hệ thống NPC (Non-Player Character) trong Vệ Thần - The Guardians được xây dựng đa dạng và phong phú, đóng vai trò không thể thiếu trong việc định hình trải nghiệm của người chơi, từ việc hỗ trợ vận hành các tính năng cốt lõi đến việc làm sâu sắc thêm thế giới và cốt truyện game" },
-    { id: "pet-realm", label: "LINH THÚ", img: petRealmImg, text: "Linh thú là một trong những điểm cốt lõi và độc đáo của Vệ Thần - The Guardians, mang lại chiều sâu chiến thuật và hỗ trợ đa dạng cho người chơi. Linh thú là những Vệ thần đồng hành mạnh mẽ, đóng vai trò như một người bạn chiến đấu trung thành và là nguồn sức mạnh bổ trợ quan trọng cho nhân vật chính. Mỗi Linh thú sở hữu ngoại hình, bộ kỹ năng, và thuộc tính riêng biệt, phù hợp với nhiều phong cách chơi và chiến thuật khác nhau." },
-    { id: "boss-realm", label: "QUÁI & TRÙM", img: bossRealmImg, text: "Mỗi khu vực có các loại quái vật đặc trưng với cấp độ và sức mạnh tương ứng, yêu cầu người chơi phải phát triển nhân vật để có thể đối phó.Trùm Hầm ngục Là những kẻ địch mạnh mẽ xuất hiện ở cuối mỗi Hầm ngục, yêu cầu người chơi phải có chiến thuật rõ ràng và sức mạnh đủ lớn để đánh bại. Các Hầm ngục như Rừng Hein, Vùng Đất Ngập Lụt, Vùng Đầm Lầy Ô Nhiễm, và Lối Đi Đến Pháo Đài đều có những Trùm riêng biệt với bộ kỹ năng độc đáo và sức chống chịu cao." },
-    { id: "guild-realm", label: "BANG HỘI", img: guildRealmImg, text: "Bang hội là một tính năng xã hội và cộng đồng cốt lõi, nơi người chơi có thể tập hợp, hợp tác và cùng nhau phát triển, mang lại nhiều lợi ích và trải nghiệm độc đáo. Thành viên thuộc Bang Hội có thể xem danh sách bang hội, các thông báo bang hội, và thông tin trạng thái của các thành viên khác. Ngoài ra còn có thể đóng góp Vàng và Điểm Danh vọng để tăng điểm kinh nghiệm Bang hội (Guild EXP)." },
-  ],
-  feature: [
-    { id: "map-box", label: "BẢN ĐỒ", img: mapImg, text: "Trò chơi có một hệ thống bản đồ phong phú, bao gồm các khu vực chính và các Hầm ngục đa dạng. Các khu vực chính trên bản đồ thế giới bao gồm: Vương Quốc Diot, Làng Gió Đông, Rừng Hein, Vùng Đất Ngập Lụt, Vùng Đầm Lầy Ô Nhiễm, Lối Đi Đến Pháo Đài, Hẻm Núi Gale, Khu Rừng Ẩn Giấu, Thành Astrid, Núi Tuyết Valion, Thành Diot,và các loại Hầm ngục khác nhau." },
-    { id: "dungeon-box", label: "HẦM NGỤC", img: dungeonImg, text: "Hầm ngục thông thường: Đây là các Hầm ngục cơ bản, được tích hợp trong các khu vực chính của bản đồ thế giới. Người chơi sẽ vượt qua các đấu trường và đối mặt với các Trùm Hầm ngục. Hầm ngục anh hùng: Đây là phiên bản khó hơn của các Hầm ngục thông thường, mang đến thử thách cao hơn và phần thưởng giá trị hơn, bao gồm các vật phẩm hiếm, những khu vực tương tự như Hầm ngục thông thường, tuy nhiên các Trùm sẽ trở nên mạnh và khó đánh bại hơn." },
-    { id: "forge-box", label: "LÒ RÈN", img: forgeImg, text: "Hệ thống Lò Rèn là một trong những tính năng cốt lõi nhất trong Vệ Thần - The Guardians, nơi người chơi có thể nâng cấp, tùy biến và tối ưu hóa trang bị của mình để tăng cường sức mạnh chiến đấu. Người chơi có thể truy cập Lò rèn thông qua NPC Berman (Đại Lý) trong làng hoặc thông qua menu nhanh “Lò rèn”." },
-    { id: "quest-box", label: "NHIỆM VỤ", img: questImg, text: "Hệ thống nhiệm vụ có mục đích giúp người chơi hứng thú hơn với nội dung của trò chơi, luyện tập thuần thục các thao tác, trải nghiệm gần gũi với các sự kiện để dễ dàng khám phá những điểm đặc biệt và thú vị của trò chơi. Hệ thống nhiệm vụ cho các nhân vật được thiết kế sẵn trong trò chơi đưa ra trong suốt quá trình chơi, khi người chơi đạt đến một cấp độ hoặc điều kiện nhất định thì người mới có thể mở khóa các cấp nhiệm vụ mới." },
-  ],
-  item: [
-    {
-      id: "equipment-box",
-      label: "TRANG BỊ",
-      items: [
-        { img: equipment1, title: "Áo Giáp", desc: "Tăng phòng thủ và máu cho nhân vật" },
-        { img: equipment2, title: "Thắt Lưng", desc: "Tăng phòng thủ và máu cho nhân vật" },
-        { img: equipment3, title: "Găng tay", desc: "Tăng phòng thủ và tỷ lệ chí mạng cho nhân vật" },
-        { img: equipment4, title: "Giày", desc: "Tăng phòng thủ và máu cho nhân vật" },
-        { img: equipment5, title: "Dây chuyền", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment6, title: "Hoa tai", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment7, title: "Nhẫn", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment8, title: "Rìa", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment9, title: "Cung", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment10, title: "Cầu ma thuật", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment11, title: "Pháo", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment12, title: "Kiếm", desc: "Tăng sát thương lên Quái vật thường" },
-        { img: equipment13, title: "Song đao", desc: "Tăng sát thương lên Quái vật thường" },
-      ],
-    },
-    {
-      id: "gem-box",
-      label: "ĐÁ QUÝ",
-      items: [
-        { img: gemRed, title: "Hồng Ngọc", desc: "Tăng chỉ số nhân vật" },
-        { img: gem4, title: "Hổ Phách", desc: "Tăng chỉ số nhân vật" },
-        { img: gem5, title: "Olivine", desc: "Tăng chỉ số nhân vật" },
-        { img: gem6, title: "Hoàng Ngọc", desc: "Tăng chỉ số nhân vật" },
-        { img: gem7, title: "Thạch Anh Vàng", desc: "Tăng chỉ số nhân vật" },
-        { img: gem8, title: "Ngọc Mắt Mèo", desc: "Tăng chỉ số nhân vật" },
-        { img: gem9, title: "Thạch Anh Tím", desc: "Tăng chỉ số nhân vật" },
-        { img: gem10, title: "Kunzite", desc: "Tăng chỉ số nhân vật" },
-        { img: gem11, title: "Fluorite", desc: "Tăng chỉ số nhân vật" },
-        { img: gem12, title: "Spinel", desc: "Tăng chỉ số nhân vật" },
-        { img: gem13, title: "Citrine", desc: "Tăng chỉ số nhân vật" },
-        { img: gem14, title: "Verdelite", desc: "Tăng chỉ số nhân vật" },
-        { img: gem15, title: "Kyanite", desc: "Tăng chỉ số nhân vật" },
-        { img: gem16, title: "Topaz", desc: "Tăng chỉ số nhân vật" },
-      ],
-    },
-    {
-      id: "consumables",
-      label: "TIÊU HAO PHẨM",
-      items: [
-        { img: consumables1, title: "Máu", desc: "Hồi phục máu cho nhân vật" },
-        { img: consumables2, title: "Đá Cường Hóa Vũ Khí", desc: "Sử dụng để cường hóa vũ khí" },
-        { img: consumables3, title: "Đá Cường Hóa Giáp", desc: "Sử dụng để cường hóa giáp" },
-        { img: consumables4, title: "Đá Cường Hóa Phụ Kiện", desc: "Sử dụng để cường hóa phụ kiện" },
-        { img: consumables5, title: "Vải Ma Thuật", desc: "Nguyên liệu chế tạo trang phục đặc biệt" },
-        { img: consumables6, title: "Thẻ Tăng Tỷ Lệ Cường Hóa Cấp Thấp Nhất", desc: "Tăng tỷ lệ thành công của việc cường hóa khi sử dụng" },
-        { img: consumables7, title: "Sắc Lệnh Phục Hồi Kỹ Năng", desc: "Khôi phục toàn bộ điểm kỹ năng đã sử dụng" },
-        { img: consumables8, title: "Sắc Lệnh Phục Hồi Di Chuyển", desc: "Tăng chỉ số nhân vật" },
-        { img: consumables9, title: "Bảo Châu Hắc Vân Vũ", desc: "Nguyên liệu chế tác vật phẩm bộ Hắc Vân Vũ" },
-        { img: consumables10, title: "Bảo Châu Thần Thú", desc: "Nguyên liệu chế tác vật phẩm bộ Thần Thú" },
-        { img: consumables11, title: "Bảo Châu Giáp Hạng Nặng", desc: "Nguyên liệu chế tác vật phẩm bộ Giáp Hạng Nặng" },
-        { img: consumables12, title: "Bảo Châu Vương Quốc Kỵ Sĩ Trưởng", desc: "Nguyên liệu chế tác vật phẩm bộ Kỵ Sĩ Vương Quốc Trưởng" },
-        { img: consumables13, title: "Lông Vũ Linh Hồn", desc: "Nguyên liệu chế tạo trang phục đặc biệt" },
-        { img: consumables14, title: "Đá Kĩ Năng", desc: "Sử dụng để nhận 1 điểm kỹ năng" },
-        { img: consumables15, title: "Hòm Triệu Hồi", desc: "Mở ra ngẫu nhiên các loại linh thú" },
-        { img: consumables16, title: "Hòm Đá Qúy", desc: "Mở ra các loại đá quý" },
-      ],
-    },
-    {
-      id: "skin",
-      label: "TRANG PHỤC",
-      items: [
-        { img: skin1, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin2, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin3, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin4, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin5, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin6, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin7, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin8, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin9, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin10, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin11, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin12, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin13, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin14, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin15, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-        { img: skin16, title: "Trang phục", desc: "Tăng chỉ số nhân vật" },
-      ],
-    }
-  ],
-};
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    const handleMouseDown = (e) => { setIsDragging(true); setStartX(e.pageX - carousel.offsetLeft); setScrollLeft(carousel.scrollLeft); };
+    const handleMouseLeave = () => setIsDragging(false);
+    const handleMouseUp = () => setIsDragging(false);
+    const handleMouseMove = (e) => { if (!isDragging) return; e.preventDefault(); const x = e.pageX - carousel.offsetLeft; const walk = (x - startX) * 1.2; carousel.scrollLeft = scrollLeft - walk; };
+    carousel.addEventListener('mousedown', handleMouseDown);
+    carousel.addEventListener('mouseleave', handleMouseLeave);
+    carousel.addEventListener('mouseup', handleMouseUp);
+    carousel.addEventListener('mousemove', handleMouseMove);
+    return () => { carousel.removeEventListener('mousedown', handleMouseDown); carousel.removeEventListener('mouseleave', handleMouseLeave); carousel.removeEventListener('mouseup', handleMouseUp); carousel.removeEventListener('mousemove', handleMouseMove); };
+  }, [isDragging, startX, scrollLeft]);
+  useEffect(() => {
+    const carousel = carouselRef.current; if (!carousel) return; const handleScroll = () => { const cardWidth = 300 + 24; const scroll = carousel.scrollLeft; const idx = Math.round(scroll / cardWidth) + 1; setCenter(Math.max(1, Math.min(trendingList.length - 2, idx))); }; carousel.addEventListener('scroll', handleScroll); return () => carousel.removeEventListener('scroll', handleScroll);
+  }, [trendingList.length]);
 
-function GameContent() {
-  const [locked, setLocked] = useState(null);   // nhân vật đã click (khóa)
-  const [hovered, setHovered] = useState(null); // nhân vật đang hover
-  const [active, setActive] = useState({
-    realm: sections.realm[0].id,
-    feature: sections.feature[0].id,
-    item: sections.item[0].id,
-  });
+  // License listing data & hooks
+  const categories = ['Âm nhạc', 'Hội họa', 'Văn học', 'Kiến trúc', 'Phần mềm', 'Bản ghi', 'Bài hát'];
+  const [activeCat, setActiveCat] = useState('Âm nhạc');
+  const artworks = [
+    { id: 1, img: trendingImg3, name: 'Lạc Trôi', artist: 'Sơn Tùng M-TP', price: '$1670', cat: 'Âm nhạc' },
+    { id: 2, img: trendingImg1, name: 'Bài Ca Hy Vọng', artist: 'Trọng Tấn', price: '$1670', cat: 'Âm nhạc' },
+    { id: 3, img: trendingImg2, name: 'Nơi Này Có Anh', artist: 'Sơn Tùng M-TP', price: '$1670', cat: 'Âm nhạc' },
+    { id: 4, img: trendingImg3, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Âm nhạc' },
+    { id: 5, img: trendingImg1, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Âm nhạc' },
+    { id: 6, img: trendingImg2, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Âm nhạc' },
+    { id: 7, img: trendingImg3, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Âm nhạc' },
+    { id: 8, img: trendingImg1, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Âm nhạc' },
 
-  // Khi click nhân vật
-const handleSelectChar = (charKey) => {
-  if (locked === charKey) {
-    // Nếu đang click lại chính nhân vật đã khóa => hủy chọn
-    setLocked(null);
-    setHovered(null); // reset luôn hover cho chắc
-  } else {
-    // Ngược lại thì khóa nhân vật mới
-    setLocked(charKey);
-  }
-};
-
-  // Khi hover nhân vật
-  const handleHoverChar = (charKey) => {
-    if (!locked) {
-      setHovered(charKey); // chỉ hiển thị hover nếu chưa khóa
-    }
-  };
-
-useEffect(() => {
-    const items = document.querySelectorAll(
-      ".gu-item, .gu-item-2, .gu-item-3, .gu-item-4, .gu-item-5, .gu-item-6"
-    );
-
-    items.forEach((item) => {
-      const charKey = item.getAttribute("data-char");
-
-      const onEnter = () => handleHoverChar(charKey);
-      const onClick = () => handleSelectChar(charKey);
-
-      item.addEventListener("mouseenter", onEnter);
-      item.addEventListener("click", onClick);
-
-      // cleanup đúng cách
-      return () => {
-        item.removeEventListener("mouseenter", onEnter);
-        item.removeEventListener("click", onClick);
-      };
-    });
-  }, [locked]);
-
- const currentChar = locked || hovered;
-
-  const handleSwitch = (group, id) => {
-    setActive((prev) => ({ ...prev, [group]: id }));
-  };
+    { id: 9, img: trendingImg3, name: 'Lạc Trôi', artist: 'Sơn Tùng M-TP', price: '$1670', cat: 'Hội họa' },
+    { id: 10, img: trendingImg1, name: 'Bài Ca Hy Vọng', artist: 'Trọng Tấn', price: '$1670', cat: 'Hội họa' },
+    { id: 11, img: trendingImg2, name: 'Nơi Này Có Anh', artist: 'Sơn Tùng M-TP', price: '$1670', cat: 'Hội họa' },
+    { id: 12, img: trendingImg3, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Hội họa' },
+    { id: 13, img: trendingImg1, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Hội họa' },
+    { id: 14, img: trendingImg2, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Hội họa' },
+    { id: 15, img: trendingImg3, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Hội họa' },
+    { id: 16, img: trendingImg1, name: 'Artwork Name', artist: 'Artist Name', price: '$1670', cat: 'Hội họa' },
+  ];
+  const filtered = artworks.filter(a => a.cat === activeCat).slice(0, 8);
+  // Nghệ sĩ đồng hành (section cuối theo mẫu)
+  const accompanyArtists = [
+    { id: 1, name: 'Nguyễn Văn...', eth: '3.2 ETH' },
+    { id: 2, name: 'Sơn Tùng M-TP', eth: '3.2 ETH' },
+    { id: 3, name: 'Tùng Dương', eth: '3.2 ETH' },
+    { id: 4, name: 'Nguyễn Hùng', eth: '3.2 ETH' },
+    { id: 5, name: 'Mỹ Tâm', eth: '3.2 ETH' },
+    { id: 6, name: 'RPT MCK', eth: '3.2 ETH', highlight: true },
+    { id: 7, name: 'Đen Vâu', eth: '3.2 ETH' },
+    { id: 8, name: 'Soobin Hoàn...', eth: '3.2 ETH' },
+    { id: 9, name: 'Tự Long', eth: '3.2 ETH' },
+    
+  ];
 
   return (
-   <section
-      id="service-details"
-      className="service-details section"
-      style={{ padding: "30px 0", backgroundImage: `url(${bgDe})` , backgroundSize: 'cover', backgroundPosition: 'center' }}
-    >
-      {/* HERO BANNER SECTION - UI sát mẫu */}
-      <div style={{
-        width: '100%',
-        minHeight: 600,
-        
-        position: 'relative',
-        overflow: 'visible',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 0 40px 0',
-      }}>
-        {/* Star/particle effects */}
-        <div style={{position:'absolute',top:30,left:60,width:8,height:8,borderRadius:'50%',background:'#6ec6ff',opacity:0.7,boxShadow:'0 0 12px #6ec6ff'}}></div>
-        <div style={{position:'absolute',top:80,left:'55%',width:6,height:6,borderRadius:'50%',background:'#b18cff',opacity:0.7,boxShadow:'0 0 8px #b18cff'}}></div>
-        <div style={{position:'absolute',top:120,right:120,width:10,height:10,borderRadius:'50%',background:'#3cf2b6',opacity:0.6,boxShadow:'0 0 16px #3cf2b6'}}></div>
-        <div style={{position:'absolute',top:420,left:'60%',width:7,height:7,borderRadius:'50%',background:'#f2a3e2',opacity:0.6,boxShadow:'0 0 10px #f2a3e2'}}></div>
-        {/* Main content */}
-        <div style={{display:'flex',width:'100%',maxWidth:1200,alignItems:'center',justifyContent:'space-between',zIndex:2}}>
-          {/* Left: Text */}
-          <div style={{ flex: 1, paddingLeft: 32, maxWidth: 540 }}>
-            <div style={{
-              fontSize: 60,
-              fontWeight: 800,
-              lineHeight: 1.08,
-              marginBottom: 18,
-              background: 'linear-gradient(90deg, #3cf2b6 10%, #6ec6ff 40%, #b18cff 70%, #f2a3e2 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'inline-block',
-              letterSpacing: '-2px',
-            }}>
-              Tìm Kiếm &<br />Giao Dịch <span style={{ display: 'inline-block' }}>Bản Quyền</span>
-            </div>
-            <div style={{ color: '#c7cbe7', fontSize: 18, marginBottom: 36, maxWidth: 480, fontWeight: 400, lineHeight: 1.5 }}>
-              Tham gia sàn giao dịch bản quyền giúp các tác giả thương mại hóa tài sản trí tuệ của mình, đồng thời thu hút đầu tư và thúc đẩy sự phát triển của ngành công nghiệp sáng tạo.
-            </div>
-            <div style={{ display: 'flex', gap: 18, marginBottom: 44 }}>
-              <button style={{
-                background: 'linear-gradient(90deg,#3a8dff 60%,#6ec6ff 100%)', color: '#fff', border: 'none', borderRadius: 32,
-                padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
-                boxShadow: '0 2px 12px 0 #3a8dff44', transition: 'background 0.2s',
-              }}>Tìm hiểu</button>
-              <button style={{
-                background: 'rgba(255,255,255,0.04)', color: '#fff', border: '2px solid #fff', borderRadius: 32,
-                padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
-                boxShadow: '0 2px 12px 0 #fff2', transition: 'background 0.2s',
-              }}>Đăng tác phẩm</button>
-            </div>
-            <div style={{ display: 'flex', gap: 56, marginTop: 36 }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>232K+</div>
-                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Tác phẩm</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>200K+</div>
-                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Nghệ sĩ</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow:'0 2px 8px #0006' }}>10K+</div>
-                <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Giao dịch</div>
-              </div>
-            </div>
-          </div>
-          {/* Right: Banner Card */}
-          <div className="banner-3d-wrap">
-            <div className="banner-3d-card-bg"></div>
-            <div className="banner-3d-card">
-              <img src={img99} alt="Lạc Trôi" className="banner-3d-img" />
-              <div className="banner-3d-info">
-                <div className="banner-3d-avatar"></div>
-                <div className="banner-3d-meta">
-                  <div className="banner-3d-title">Lạc Trôi</div>
-                  <div className="banner-3d-user">@sontungmtp</div>
-                  <div className="banner-3d-price">$5758.31</div>
+    <>
+      <section
+        id="service-details"
+        className="service-details section"
+        style={{ padding: "30px 0", backgroundImage: `url(${bgDe})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
+
+        <section
+          id="service-details"
+          className="service-details section"
+          style={{ padding: "30px 0", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        >
+          {/* HERO BANNER SECTION - UI sát mẫu */}
+          <div style={{
+            width: '100%',
+            minHeight: 600,
+
+            position: 'relative',
+            overflow: 'visible',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 0 40px 0',
+          }}>
+            {/* Star/particle effects */}
+            
+            <div style={{ position: 'absolute', top: 420, left: '60%', width: 7, height: 7, borderRadius: '50%', background: '#f2a3e2', opacity: 0.6, boxShadow: '0 0 10px #f2a3e2' }}></div>
+            {/* Main content */}
+            <div style={{ display: 'flex', width: '100%', maxWidth: 1200, alignItems: 'center', justifyContent: 'space-between', zIndex: 2 }}>
+              {/* Left: Text */}
+              <div style={{ flex: 1, paddingLeft: 32, maxWidth: 540 }}>
+                <div style={{
+                  fontSize: 60,
+                  fontWeight: 800,
+                  lineHeight: 1.08,
+                  marginBottom: 18,
+                  background: 'linear-gradient(90deg, #3cf2b6 10%, #6ec6ff 40%, #b18cff 70%, #f2a3e2 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  display: 'inline-block',
+                  letterSpacing: '-2px',
+                }}>
+                  Tìm Kiếm &<br />Giao Dịch <span style={{ display: 'inline-block' }}>Bản Quyền</span>
                 </div>
-                <div className="banner-3d-dot"></div>
+                <div style={{ color: '#c7cbe7', fontSize: 18, marginBottom: 36, maxWidth: 480, fontWeight: 400, lineHeight: 1.5 }}>
+                  Tham gia sàn giao dịch bản quyền giúp các tác giả thương mại hóa tài sản trí tuệ của mình, đồng thời thu hút đầu tư và thúc đẩy sự phát triển của ngành công nghiệp sáng tạo.
+                </div>
+                <div style={{ display: 'flex', gap: 18, marginBottom: 44 }}>
+                  <button style={{
+                    background: 'linear-gradient(90deg,#3a8dff 60%,#6ec6ff 100%)', color: '#fff', border: 'none', borderRadius: 32,
+                    padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
+                    boxShadow: '0 2px 12px 0 #3a8dff44', transition: 'background 0.2s',
+                  }}>Tìm hiểu</button>
+                  <button style={{
+                    background: 'rgba(255,255,255,0.04)', color: '#fff', border: '2px solid #fff', borderRadius: 32,
+                    padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
+                    boxShadow: '0 2px 12px 0 #fff2', transition: 'background 0.2s',
+                  }}>Đăng tác phẩm</button>
+                </div>
+                <div style={{ display: 'flex', gap: 56, marginTop: 36 }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>232K+</div>
+                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Tác phẩm</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>200K+</div>
+                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Nghệ sĩ</div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>10K+</div>
+                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Giao dịch</div>
+                  </div>
+                </div>
               </div>
-              <div className="banner-3d-timer">
-                <div className="banner-3d-timer-col"><div>17</div><div className="banner-3d-timer-label">Hours</div></div>
-                <span>:</span>
-                <div className="banner-3d-timer-col"><div>56</div><div className="banner-3d-timer-label">Minutes</div></div>
-                <span>:</span>
-                <div className="banner-3d-timer-col"><div>03</div><div className="banner-3d-timer-label">Seconds</div></div>
+              {/* Right: Banner Card */}
+              <div className="banner-3d-wrap">
+                <div className="banner-3d-card-bg"></div>
+                <div className="banner-3d-card">
+                  <img src={img99} alt="Lạc Trôi" className="banner-3d-img" />
+                  <div className="banner-3d-info">
+                    <div className="banner-3d-avatar"></div>
+                    <div className="banner-3d-meta">
+                      <div className="banner-3d-title">Lạc Trôi</div>
+                      <div className="banner-3d-user">@sontungmtp</div>
+                      <div className="banner-3d-price">$5758.31</div>
+                    </div>
+                    <div className="banner-3d-dot"></div>
+                  </div>
+                  <div className="banner-3d-timer">
+                    <div className="banner-3d-timer-col"><div>17</div><div className="banner-3d-timer-label">Hours</div></div>
+                    <span>:</span>
+                    <div className="banner-3d-timer-col"><div>56</div><div className="banner-3d-timer-label">Minutes</div></div>
+                    <span>:</span>
+                    <div className="banner-3d-timer-col"><div>03</div><div className="banner-3d-timer-label">Seconds</div></div>
+                  </div>
+                  {/* Star/particle overlay on card */}
+                  <div className="banner-3d-star banner-3d-star1"></div>
+                  <div className="banner-3d-star banner-3d-star2"></div>
+                  <div className="banner-3d-star banner-3d-star3"></div>
+                </div>
               </div>
-              {/* Star/particle overlay on card */}
-              <div className="banner-3d-star banner-3d-star1"></div>
-              <div className="banner-3d-star banner-3d-star2"></div>
-              <div className="banner-3d-star banner-3d-star3"></div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div
-        style={{
-          width: '80%',
-          height: '1px',
-          backgroundColor: '#EDD9B9',
-          margin: '70px auto',
-        }}
-      />
+          <div
+            style={{
+              width: '80%',
+              height: '1px',
+              backgroundColor: '#EDD9B9',
+              margin: '70px auto',
+            }}
+          />
 
-      
-      {/* ===== Realm ===== */}
-     
-    </section>
+          {/* Partner logos row (three imported images) */}
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 36 }}>
+            <div style={{ display: 'flex', gap: 72, alignItems: 'center' }}>
+              <img
+                src={appa}
+                alt="APPA"
+                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
+                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
+                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              />
+              <img
+                src={vcpmc}
+                alt="VCPMC"
+                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
+                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
+                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              />
+              <img
+                src={riav}
+                alt="RIAV"
+                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
+                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
+                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              />
+            </div>
+          </div>
+        </section>
+
+
+        {/* Trending Section */}
+        <section style={{ padding: '48px 0 80px 0' }}>
+          <div style={{ maxWidth: '100vw', margin: '0 auto', padding: 0 }}>
+            <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: 36, marginBottom: 36, letterSpacing: 0.5, fontFamily: 'Lora, serif', background: 'linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Bản quyền đang xu hướng</h2>
+            <div ref={carouselRef} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 0, marginBottom: 32, position: 'relative', minHeight: 340, overflowX: 'auto', scrollBehavior: 'smooth', cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none', WebkitOverflowScrolling: 'touch', padding: '0 10vw', scrollbarWidth: 'none', msOverflowStyle: 'none' }} className="trending-carousel-hide-scroll">
+              {trendingList.map((item, idx) => {
+                const isCenter = idx === center;
+                const isSide = idx === center - 1 || idx === center + 1;
+                return (
+                  <div key={idx} className={isCenter ? 'trending-card trending-card-center trending-card-gradient-border' : (isSide ? 'trending-card trending-card-center' : 'trending-card trending-card-blur')} style={{ margin: isCenter ? '0 24px' : '0 0px', zIndex: isCenter ? 2 : 1, cursor: 'pointer', transition: 'all 0.3s cubic-bezier(.4,2,.6,1)', filter: (isCenter || isSide) ? 'none' : 'blur(2.5px) grayscale(0.5) opacity(0.6)', opacity: (isCenter || isSide) ? 1 : 0.4, pointerEvents: 'auto', background: '#19172cd2', borderRadius: 24, boxShadow: isCenter ? '0 0 0 4px #2900cc4b, 0 2px 16px 0 rgba(180,180,200,0.10)' : '0 2px 16px 0 rgba(180,180,200,0.10)', width: 360, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', border: isCenter ? '3px solid #3667E2' : '3px solid transparent' }} onClick={() => { if (isCenter) return; if (isSide && carouselRef.current) { const cardWidth = 300 + 24; const scrollTo = (idx - 1) * cardWidth; carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' }); } }}>
+                    <img src={item.img} alt={item.title} style={{ width: 300, height: 250, objectFit: 'cover', borderRadius: 16, marginBottom: 22 }} />
+                    <div style={{ display: 'flex', alignItems: 'center', width: '100%', marginBottom: 8 }}>
+                      {item.isPause ? <div style={{ width: 36, height: 36, borderRadius: 8, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}><i className="fa-solid fa-pause" style={{ color: '#fff', fontSize: 20 }}></i></div> : <img src={item.avatar} alt="avatar" style={{ width: 36, height: 36, borderRadius: 8, marginRight: 8 }} />}
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, fontSize: 18, color: item.color, textTransform: 'uppercase', letterSpacing: 0.5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{item.title}</div>
+                        <div style={{ color: '#888', fontSize: 14, fontWeight: 400, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{item.author}</div>
+                      </div>
+                      {item.icon}
+                    </div>
+                    <div style={{ width: '100%', textAlign: 'right', fontWeight: 700, fontSize: 20, color: '#ffffffff', marginBottom: isCenter ? 16 : 0 }}>{item.price}</div>
+                    {isCenter && <button style={{ width: '100%', background: 'linear-gradient(90deg,#3b5cff 0%,#7b61ff 100%)', color: '#fff', border: 'none', borderRadius: 12, fontWeight: 700, fontSize: 20, padding: '12px 0', marginTop: 8, marginBottom: 0, cursor: 'pointer', boxShadow: '0 2px 8px 0 rgba(123,97,255,0.10)', transition: 'background 0.2s' }}>Chọn ngay</button>}
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
+              <form style={{ display: "flex", alignItems: "center", width: 800, height: 80, background: "#fff", borderRadius: 18, boxShadow: "0 4px 24px 0 rgba(16,33,75,0.07)", overflow: "hidden" }}>
+                <div style={{ flex: 1, height: "100%", position: "relative", display: "flex", alignItems: "center", border: "none", paddingLeft: 18, background: "none" }}>
+                  <img src={heroInput} alt="bginput" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 1, pointerEvents: "none", userSelect: "none" }} />
+                  <input type="text" placeholder="Tìm kiếm tác phẩm" style={{ width: "100%", height: "100%", border: "none", outline: "none", background: "transparent", fontSize: 20, color: "#B6C0D2", fontWeight: 400, padding: "0 0 0 8px", zIndex: 2, position: "relative" }} />
+                </div>
+                <button type="submit" style={{ height: "100%", minWidth: 160, background: "linear-gradient(180deg, #2852BB 0%, #A6BDF3 100%)", color: "#fff", fontWeight: 500, fontSize: 22, border: "none", borderRadius: "0 18px 18px 0", boxShadow: "0 4px 16px 0 rgba(16,33,75,0.10)", cursor: "pointer", transition: "background 0.2s" }}>Tìm kiếm</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          {/* License Listing Section */}
+          <div className="license-section" style={{ position: 'relative', padding: '40px 0 100px 0' }}>
+           
+            <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: 38, marginBottom: 34, letterSpacing: .5, fontFamily: 'Lora, serif', background: 'linear-gradient(90deg,#3cf2b6 0%, #6ec6ff 40%, #b18cff 70%, #6654F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>DANH SÁCH BẢN QUYỀN</h2>
+            <div className="license-tabs" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 18, margin: '0 auto 42px', maxWidth: 1100 }}>
+              {categories.map(cat => (
+                <button key={cat} onClick={() => setActiveCat(cat)} className={'license-tab' + (activeCat === cat ? ' active' : '')}>{cat}</button>
+              ))}
+            </div>
+            <div className="license-grid" style={{ maxWidth: 1380, margin: '0 auto' }}>
+              {filtered.map((art, idx) => (
+                <div key={art.id} className="license-card" style={{ position: 'relative' }}>
+                  {idx === 3 && <div style={{ position: 'absolute', bottom: 12, right: 14, width: 12, height: 12, background: '#6ec6ff', borderRadius: '50%', boxShadow: '0 0 12px #6ec6ff' }} />}
+                  <img src={art.img} alt={art.name} className="license-card-img" />
+                  <div className="license-card-body">
+                    <div className="license-card-title">{art.name}</div>
+                    <div className="license-card-artist">{art.artist}</div>
+                    <div className="license-card-price">{art.price}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+              <button className="license-more-btn">Xem thêm</button>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          {/* Timeline (Quy trình giao dịch bản quyền) */}
+          <div className="cp-container">
+            <h2 className="cp-title">QUY TRÌNH GIAO DỊCH BẢN QUYỀN</h2>
+            <p className="cp-sub">Quy trình giao dịch bản quyền được tóm tắt gồm trong 3 bước: định giá tác phẩm, niêm yết và giao dịch trên sàn, sau đó hoàn tất thủ tục pháp lý.</p>
+
+            <div className="cp-timeline">
+              <div className="cp-line"></div>
+
+              {/* Step 1 */}
+              <div className="cp-item left">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 1</div>
+                  <h3 className="cp-heading">Lựa chọn bản quyền</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="cp-item right">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 2</div>
+                  <h3 className="cp-heading">Điền mẫu đăng ký</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="cp-item left">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 3</div>
+                  <h3 className="cp-heading">Nhận kết quả</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="cp-item right">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 4</div>
+                  <h3 className="cp-heading">Hợp đồng & Thanh toán</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="cp-item left">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 5</div>
+                  <h3 className="cp-heading">Cấp phép</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                  <span className="cp-star" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              {/* Step 6 */}
+              <div className="cp-item right">
+                <span className="cp-dot"></span>
+                <div className="cp-box">
+                  <div className="cp-step">Bước 6</div>
+                  <h3 className="cp-heading">Sử dụng & Quản lý</h3>
+                  <p className="cp-text">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+          <section id="accompany-artists" style={{ padding: '70px 0 90px' }}>
+            <div style={{ maxWidth: 1250, margin: '0 auto', padding: '0 20px' }}>
+              <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: 32, marginBottom: 20, letterSpacing: .5, color: '#fff' }}>NGHỆ SĨ ĐỒNG HÀNH</h2>
+              <p style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto 58px', lineHeight: 1.55, color: '#c7cbe7', fontSize: 15 }}>
+                VCPC luôn tự hào có sự đồng hành và ủng hộ từ các nghệ sĩ uy tín, góp phần tạo nên một cộng đồng sáng tạo văn minh, tôn trọng bản quyền.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '26px 28px', justifyItems: 'stretch' }}>
+                {accompanyArtists.map(a => (
+                  <div key={a.id} style={{ position: 'relative' }}>
+                    {/* Outer gradient border wrapper with notch */}
+                    <div style={{
+                      position: 'relative',
+                      background: 'linear-gradient(90deg,#2ab9ff 0%, #4b6ce9 50%, #6a58d9 100%)',
+                      padding: 1,
+                      borderRadius: 12,
+                      clipPath: 'polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 55px) 100%,0 100%)',
+                      boxShadow: '0 4px 12px -2px rgba(40,120,200,0.25), 0 2px 6px 0 rgba(0,0,0,0.35)',
+                      transition: 'transform .25s ease, box-shadow .25s ease'
+                    }}>
+                      {/* Inner content card */}
+                      <div style={{
+                        background: '#121a31',
+                        borderRadius: 11,
+                        clipPath: 'polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 55px) 100%,0 100%)',
+                        padding: '14px 22px 18px 18px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 14,
+                        minHeight: 86,
+                        position: 'relative'
+                      }}>
+                        <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#d9d9d9', flexShrink: 0 }} />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontWeight: 600, fontSize: 16, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: .2 }}>{a.name}</div>
+                          <div style={{ display: 'flex', alignItems: 'center', marginTop: 5 }}>
+                            <img src={iconTreanding} alt="eth" style={{ width: 16, height: 16, objectFit: 'contain', marginRight: 6 }} />
+                            <span style={{ fontSize: 12, fontWeight: 500, color: '#c7cbe7', letterSpacing: '.3px' }}>{a.eth}</span>
+                          </div>
+                        </div>
+                        <button style={{ background: 'none', border: 'none', color: '#1ea9ff', fontSize: 15, fontWeight: 600, cursor: 'pointer', padding: 4, textDecoration: 'underline' }}>Theo dõi</button>
+                        {/* Diagonal notch subtle fill */}
+                        <div style={{ position: 'absolute', bottom: 0, right: 0, width: 70, height: 36, background: 'linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%)', clipPath: 'polygon(100% 0,0 100%,100% 100%)' }} />
+                      </div>
+                      {/* Star highlight */}
+                      
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 60 }}>
+                <button style={{
+                  background: 'rgba(0,0,0,0.15)',
+                  color: '#fff',
+                  border: '1px solid #1ea9ff',
+                  borderRadius: 40,
+                  padding: '14px 42px',
+                  fontSize: 16,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  boxShadow: '0 0 0 2px rgba(30,169,255,0.25) inset'
+                }}>Xem thêm</button>
+              </div>
+            </div>
+          </section>
+      </section>
+
+    </>
+
   );
 }
 
-export default GameContent;
+export default Deatails;
 
 
 

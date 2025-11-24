@@ -6,6 +6,175 @@
 .trending-carousel-hide-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+/* ================= License Listing (Danh sách bản quyền) ================= */
+.license-tabs {
+  position: relative;
+}
+.license-tab {
+  font-family: 'Inter', 'Raleway', sans-serif;
+  background: rgba(255,255,255,0.06);
+  color: #d5dcf5;
+  border: 2px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: .3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background .25s, color .25s, box-shadow .25s, border-color .25s;
+}
+.license-tab:hover {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+.license-tab.active {
+  background: linear-gradient(90deg,#2763ff 0%,#62baff 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px -4px rgba(98,186,255,0.45);
+}
+
+.license-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+  gap: 40px 34px;
+  justify-items: center;
+  padding: 0 50px;
+}
+@media (min-width: 1300px) {
+  .license-grid {
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+
+.license-card {
+  width: 260px;
+  /* Layered background: subtle radial glow + dark gradient */
+  background:
+    radial-gradient(circle at 38% 26%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.05) 38%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0) 72%),
+    linear-gradient(180deg,#151d34 0%,#0e1324 65%,#0a1124 100%);
+  padding: 26px 22px 26px;
+  border-radius: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Inner + outer shadow for depth */
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 4px 12px -6px rgba(255,255,255,0.12),
+    0 6px 26px -10px rgba(20,28,60,0.65),
+    0 0 0 1px #1e2644;
+  overflow: hidden;
+  transition: transform .25s cubic-bezier(.4,2,.6,1), box-shadow .25s;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.license-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(130deg,#2f4a74 0%,#22407f 30%,#462e89 55%,#6b2d88 75%,#8c3ca2 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: .35;
+  filter: drop-shadow(0 0 6px rgba(110,198,255,0.25));
+}
+.license-card::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 70% 70%, rgba(110,198,255,0.35) 0%, rgba(110,198,255,0.12) 28%, rgba(110,198,255,0) 70%);
+  pointer-events: none;
+  opacity: .55;
+}
+.license-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 14px 40px -16px rgba(70,130,220,0.65),
+    0 0 0 2px #2f4c80;
+}
+.license-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px -6px rgba(0,0,0,0.55);
+}
+.license-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.license-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: .3px;
+}
+.license-card-artist {
+  font-size: 13.5px;
+  color: #9aa4bf;
+  font-weight: 400;
+}
+.license-card-price {
+  font-size: 15px;
+  font-weight: 600;
+  color: #d9e2ff;
+  margin-top: 6px;
+  text-align: right;
+}
+
+.license-more-btn {
+  background: #10162B;
+  border: 1px solid #2d4370;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 46px;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: .4px;
+  box-shadow: 0 4px 18px -4px rgba(40,70,120,0.55);
+  position: relative;
+  overflow: hidden;
+  transition: background .25s, box-shadow .25s, transform .25s;
+}
+.license-more-btn::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  transform: skewX(-36deg);
+  animation: shine 4s linear infinite;
+}
+@keyframes shine {
+  0% { left: -30%; }
+  55% { left: 130%; }
+  100% { left: 130%; }
+}
+.license-more-btn:hover {
+  background: linear-gradient(90deg,#2852BB 0%,#6ec6ff 100%);
+  box-shadow: 0 8px 28px -8px rgba(50,110,255,0.55);
+  transform: translateY(-3px);
+}
+.license-more-btn:active {
+  transform: translateY(0);
+}
 /* Gradient border for trending center card */
 .trending-card-gradient-border::before {
   content: "";
@@ -15,6 +184,9 @@
   border-radius: 24px;
   background: linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
   -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -1615,6 +1787,205 @@ float: right;
   width: 16px;
   /* chỉnh size icon */
   height: 16px;
+}
+
+/* ================= Timeline: Quy trình giao dịch bản quyền ================= */
+.cp-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 10px 22px 80px;
+  position: relative;
+}
+.cp-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-align: center;
+  margin: 0 0 14px;
+  background: linear-gradient(90deg,#69EACB 0%,#EACCF8 48%,#6654F1 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Lora', serif;
+}
+.cp-sub {
+  max-width: 860px;
+  margin: 0 auto 56px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 160%;
+  color: #c7cbe7;
+}
+.cp-timeline {
+  position: relative;
+  padding: 10px 0 30px;
+  width: 100%;
+  min-height: 720px;
+  --cp-gap: 80px; /* khoảng cách dot -> cạnh card */
+  --cp-arrow-gap: 10px; /* khoảng trống giữa đầu mũi tên và cạnh card */
+}
+.cp-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,#69EACB 0%,#EACCF8 48%,#6654F1 100%);
+  border-radius: 8px;
+  box-shadow: 0 0 18px -4px rgba(102,84,241,.55);
+}
+.cp-item {
+  position: relative;
+  width: 50%;
+  padding: 14px var(--cp-gap) 14px 0; /* nới padding phải cho nhóm bên trái */
+  box-sizing: border-box;
+}
+.cp-item.right { left: 50%; padding: 14px 0 14px var(--cp-gap); }
+.cp-item + .cp-item { margin-top: 40px; }
+.cp-box {
+  background: linear-gradient(180deg,#121529 0%,#0d1020 80%);
+  border-radius: 18px;
+  padding: 28px 26px 30px;
+  position: relative;
+  color: #d7dbef;
+  font-family: 'Inter','Raleway',sans-serif;
+  box-shadow: 0 8px 32px -10px rgba(18,24,48,0.8), 0 0 0 1px #1d2542;
+  overflow: hidden;
+}
+.cp-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(130deg,#69EACB 0%,#EACCF8 50%,#6654F1 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: .55;
+}
+.cp-step {
+  font-size: 18px; /* tăng kích thước chữ */
+  font-weight: 700;
+  letter-spacing: .12em; /* giảm nhẹ để dễ đọc hơn khi to */
+  text-transform: uppercase;
+  color: #69EACB;
+  margin: 0 0 12px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0; /* thêm chiều cao vùng hiển thị */
+}
+.cp-heading {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: .3px;
+}
+.cp-text {
+  margin: 0;
+  font-size: 14.2px;
+  line-height: 165%;
+  color: #b6bfd7;
+}
+.cp-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%,-50%);
+  background: #69EACB;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #181b30, 0 0 12px 4px rgba(105,234,203,0.5);
+  z-index: 3;
+}
+
+.cp-item.right .cp-dot { left: 0; }
+.cp-item.left .cp-dot { left: 100%; }
+
+/* Arrow (dashed line + head) from dot to card */
+.cp-item.left .cp-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  /* chiều dài nét đứt = khoảng cách - đầu mũi tên - khoảng trống */
+  width: calc(var(--cp-gap) - 10px - var(--cp-arrow-gap));
+  left: calc(-1 * (var(--cp-gap) - 10px - var(--cp-arrow-gap)));
+  height: 0;
+  border-top: 2px dashed #69EACB;
+  transform: translateY(-50%);
+  opacity: .9;
+}
+.cp-item.left .cp-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  /* đầu mũi tên lùi vào để tạo khoảng trống với card */
+  left: calc(-1 * var(--cp-gap) + var(--cp-arrow-gap));
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 12px solid #69EACB;
+}
+.cp-item.right .cp-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  /* bắt đầu từ tâm dot ra phía card */
+  left: 8px;
+  width: calc(var(--cp-gap) - 10px - var(--cp-arrow-gap));
+  height: 0;
+  border-top: 2px dashed #69EACB;
+  transform: translateY(-50%);
+  opacity: .9;
+}
+.cp-item.right .cp-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(8px + var(--cp-gap) - 10px - var(--cp-arrow-gap)); /* lùi lại tạo khoảng trống */
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #69EACB;
+}
+
+/* Decorative small star on step 5 */
+.cp-star {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg,#69EACB,#EACCF8,#6654F1);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  filter: drop-shadow(0 0 6px rgba(234,204,248,0.6));
+  animation: cpStar 4s linear infinite;
+}
+@keyframes cpStar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@media (max-width: 992px) {
+  .cp-item, .cp-item.right { left: 0; width: 100%; padding: 14px 0; }
+  .cp-line { left: 10px; transform: none; }
+  .cp-item.left .cp-dot, .cp-item.right .cp-dot { left: 10px; transform: translate(-50%,-50%); }
+  .cp-box { margin-left: 46px; }
+}
+@media (max-width: 560px) {
+  .cp-title { font-size: 26px; }
+  .cp-sub { font-size: 14px; }
+  .cp-heading { font-size: 18px; }
+  .cp-text { font-size: 13.5px; }
 }
 
 
@@ -3642,6 +4013,7 @@ a.nav-link.active .icon-img {
   background: radial-gradient(120% 70% at 50% 120%, rgba(0, 0, 0, calc(0.35 * var(--glass-depth))) 0%, transparent 60%);
   pointer-events: none;
   opacity: .9;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
 }
 
 
