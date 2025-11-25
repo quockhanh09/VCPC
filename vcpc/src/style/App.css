@@ -1823,6 +1823,11 @@ float: right;
   min-height: 720px;
   --cp-gap: 80px; /* khoảng cách dot -> cạnh card */
   --cp-arrow-gap: 10px; /* khoảng trống giữa đầu mũi tên và cạnh card */
+  /* màu cho nét đứt và mũi tên (theo ảnh mẫu) */
+  --cp-dash: #4fb5ff;
+  --cp-arrow-start: #42d2ff; /* teal at arrow tip */
+  --cp-arrow-end: #6a58d9;   /* purple towards base */
+  --cp-arrow-width: 16px;     /* bề ngang đầu mũi tên */
 }
 .cp-line {
   position: absolute;
@@ -1916,10 +1921,10 @@ float: right;
   position: absolute;
   top: 50%;
   /* chiều dài nét đứt = khoảng cách - đầu mũi tên - khoảng trống */
-  width: calc(var(--cp-gap) - 10px - var(--cp-arrow-gap));
-  left: calc(-1 * (var(--cp-gap) - 10px - var(--cp-arrow-gap)));
+  width: calc(var(--cp-gap) - var(--cp-arrow-width) - var(--cp-arrow-gap));
+  left: calc(-1 * (var(--cp-gap) - var(--cp-arrow-width) - var(--cp-arrow-gap)));
   height: 0;
-  border-top: 2px dashed #69EACB;
+  border-top: 2px dashed var(--cp-dash);
   transform: translateY(-50%);
   opacity: .9;
 }
@@ -1930,21 +1935,20 @@ float: right;
   /* đầu mũi tên lùi vào để tạo khoảng trống với card */
   left: calc(-1 * var(--cp-gap) + var(--cp-arrow-gap));
   transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-right: 12px solid #69EACB;
+  width: var(--cp-arrow-width);
+  height: 14px;
+  background: linear-gradient(90deg, var(--cp-arrow-start) 0%, var(--cp-arrow-end) 100%);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%); /* tam giác hướng sang trái */
 }
 .cp-item.right .cp-dot::after {
   content: "";
   position: absolute;
   top: 50%;
   /* bắt đầu từ tâm dot ra phía card */
-  left: 8px;
-  width: calc(var(--cp-gap) - 10px - var(--cp-arrow-gap));
+  left: 16px; /* bắt đầu từ viền phải của dot (16px) */
+  width: calc(var(--cp-gap) - var(--cp-arrow-width) - var(--cp-arrow-gap));
   height: 0;
-  border-top: 2px dashed #69EACB;
+  border-top: 2px dashed var(--cp-dash);
   transform: translateY(-50%);
   opacity: .9;
 }
@@ -1952,13 +1956,13 @@ float: right;
   content: "";
   position: absolute;
   top: 50%;
-  left: calc(8px + var(--cp-gap) - 10px - var(--cp-arrow-gap)); /* lùi lại tạo khoảng trống */
+  /* đặt cạnh trái của đầu mũi tên đúng tại điểm kết thúc nét đứt */
+  left: calc(16px + var(--cp-gap) - var(--cp-arrow-width) - var(--cp-arrow-gap));
   transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 12px solid #69EACB;
+  width: var(--cp-arrow-width);
+  height: 14px;
+  background: linear-gradient(90deg, var(--cp-arrow-end) 0%, var(--cp-arrow-start) 100%);
+  clip-path: polygon(100% 50%, 0 0, 0 100%); /* tam giác hướng sang phải */
 }
 
 /* Decorative small star on step 5 */
