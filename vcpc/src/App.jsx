@@ -922,8 +922,8 @@ function AppContent() {
           <Route path="/Deatails" element={<Details />} />
           <Route path="/News" element={<News />} />
           <Route path="/Letter" element={<Letter />} />
-          {/* Use lowercase path for consistency and to avoid case-sensitive 404 in production */}
-          <Route path="/register" element={<Register />} />
+          
+          <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Comingsoon" element={<Comingsoon />} />
         </Routes>
