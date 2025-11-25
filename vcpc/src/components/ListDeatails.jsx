@@ -1,14 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import "../style/App.css";
 import "../style/img-3d.css";
 import bgDe from "../assets/img/Copyright Market_001.jpg";
-import img99 from "../assets/img/image99.png";
 import heroInput from "../assets/img/bginput.png";
 
-import appa from "../assets/img/partner.png";
-import vcpmc from "../assets/img/partner1.png";
-import riav from "../assets/img/partner2.png";
 import trendingImg1 from "../assets/img/image109.png";
 import trendingImg2 from "../assets/img/image106.png";
 import trendingImg3 from "../assets/img/image107.png";
@@ -18,8 +13,11 @@ import trendingAvatar3 from "../assets/img/Group-143726086.png";
 import iconTreanding from "../assets/img/CollectorLog-ETH.png";
 
 
-function Deatails() {
-  const navigate = useNavigate();
+function ListDeatails() {
+  // Scroll to top when this page mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
   // Trending data & hooks
   const trendingList = [
     { img: trendingImg1, title: 'VIẾT TIẾP CÂU...', author: 'Nguyễn Hùng', price: '$180,025', avatar: trendingAvatar1, icon: <img src={iconTreanding} alt="icon" style={{ width: 28, height: 28, marginLeft: 8, objectFit: 'contain' }} />, color: '#ff9800' },
@@ -90,147 +88,72 @@ function Deatails() {
   ];
 
   return (
-    <>
+    <div style={{
+      backgroundImage: `url(${bgDe})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      width: '100%',
+      overflow: 'hidden'
+    }}>
       <section
         id="service-details"
         className="service-details section"
         style={{ padding: "30px 0", backgroundImage: `url(${bgDe})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-
-        <section
-          id="service-details"
-          className="service-details section"
-          style={{ padding: "30px 0", backgroundSize: 'cover', backgroundPosition: 'center' }}
-        >
-          {/* HERO BANNER SECTION - UI sát mẫu */}
-          <div style={{
-            width: '100%',
-            minHeight: 600,
-
-            position: 'relative',
-            overflow: 'visible',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0 0 40px 0',
-          }}>
-            {/* Star/particle effects */}
-            
-            <div style={{ position: 'absolute', top: 420, left: '60%', width: 7, height: 7, borderRadius: '50%', background: '#f2a3e2', opacity: 0.6, boxShadow: '0 0 10px #f2a3e2' }}></div>
-            {/* Main content */}
-            <div style={{ display: 'flex', width: '100%', maxWidth: 1200, alignItems: 'center', justifyContent: 'space-between', zIndex: 2 }}>
-              {/* Left: Text */}
-              <div style={{ flex: 1, paddingLeft: 32, maxWidth: 540 }}>
-                <div style={{
-                  fontSize: 60,
-                  fontWeight: 800,
-                  lineHeight: 1.08,
-                  marginBottom: 18,
-                  background: 'linear-gradient(90deg, #3cf2b6 10%, #6ec6ff 40%, #b18cff 70%, #f2a3e2 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  display: 'inline-block',
-                  letterSpacing: '-2px',
-                }}>
-                  Tìm Kiếm &<br />Giao Dịch <span style={{ display: 'inline-block' }}>Bản Quyền</span>
+        {/* HERO BANNER (refined) */}
+        <div style={{ width: '100%', minHeight: 420, position: 'relative', padding: '20px 0 80px' }}>
+          {/* Decorative stars */}
+        
+          <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 32px', textAlign: 'center' }}>
+            <h1 style={{
+              margin: 0,
+              fontSize: 'clamp(40px,7vw,64px)',
+              fontWeight: 700,
+              color: '#fff',
+              lineHeight: 1.1,
+              fontFamily: 'Montserrat, sans-serif'
+            }}>SÀN GIAO DỊCH</h1>
+            <h2 style={{
+              margin: '8px 0 0',
+              fontSize: 'clamp(36px,6vw,58px)',
+              fontWeight: 700,
+              lineHeight: 1.08,
+              background: 'linear-gradient(90deg,#3cf2b6 5%, #6ec6ff 35%, #b18cff 65%, #f2a3e2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontFamily: 'Montserrat, sans-serif'
+            }}>Tác Phẩm Bản Quyền</h2>
+            {/* Search bar refined (larger) */}
+            <form role="search" aria-label="Tìm kiếm bản quyền" onSubmit={(e)=>e.preventDefault()} style={{ position: 'relative', margin: '80px auto 0', maxWidth: 760, display: 'flex', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 18, flex: 1 }}>
+                <div style={{ width: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#B6C0D2' }}>
+                  <i className="bi bi-sliders2" style={{ fontSize: 28, lineHeight: 1 }}></i>
                 </div>
-                <div style={{ color: '#c7cbe7', fontSize: 18, marginBottom: 36, maxWidth: 480, fontWeight: 400, lineHeight: 1.5 }}>
-                  Tham gia sàn giao dịch bản quyền giúp các tác giả thương mại hóa tài sản trí tuệ của mình, đồng thời thu hút đầu tư và thúc đẩy sự phát triển của ngành công nghiệp sáng tạo.
-                </div>
-                <div style={{ display: 'flex', gap: 18, marginBottom: 44 }}>
-                  <button style={{
-                    background: 'linear-gradient(90deg,#3a8dff 60%,#6ec6ff 100%)', color: '#fff', border: 'none', borderRadius: 32,
-                    padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
-                    boxShadow: '0 2px 12px 0 #3a8dff44', transition: 'background 0.2s',
-                  }}>Tìm hiểu</button>
-                  <button style={{
-                    background: 'rgba(255,255,255,0.04)', color: '#fff', border: '2px solid #fff', borderRadius: 32,
-                    padding: '13px 38px', fontWeight: 700, fontSize: 18, cursor: 'pointer',
-                    boxShadow: '0 2px 12px 0 #fff2', transition: 'background 0.2s',
-                  }}>Đăng tác phẩm</button>
-                </div>
-                <div style={{ display: 'flex', gap: 56, marginTop: 36 }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>232K+</div>
-                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Tác phẩm</div>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>200K+</div>
-                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Nghệ sĩ</div>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 34, fontWeight: 800, color: '#fff', textShadow: '0 2px 8px #0006' }}>10K+</div>
-                    <div style={{ fontSize: 16, color: '#c7cbe7', marginTop: 4 }}>Giao dịch</div>
-                  </div>
-                </div>
+                <input aria-label="Nhập từ khoá" type="text" placeholder="Nhập từ khoá" style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', fontSize: 24, color: '#d3d9ec', fontWeight: 500, padding: '6px 0 10px' }} />
               </div>
-              {/* Right: Banner Card */}
-              <div className="banner-3d-wrap">
-                <div className="banner-3d-card-bg"></div>
-                <div className="banner-3d-card">
-                  <img src={img99} alt="Lạc Trôi" className="banner-3d-img" />
-                  <div className="banner-3d-info">
-                    <div className="banner-3d-avatar"></div>
-                    <div className="banner-3d-meta">
-                      <div className="banner-3d-title">Lạc Trôi</div>
-                      <div className="banner-3d-user">@sontungmtp</div>
-                      <div className="banner-3d-price">$5758.31</div>
-                    </div>
-                    <div className="banner-3d-dot"></div>
-                  </div>
-                  <div className="banner-3d-timer">
-                    <div className="banner-3d-timer-col"><div>17</div><div className="banner-3d-timer-label">Hours</div></div>
-                    <span>:</span>
-                    <div className="banner-3d-timer-col"><div>56</div><div className="banner-3d-timer-label">Minutes</div></div>
-                    <span>:</span>
-                    <div className="banner-3d-timer-col"><div>03</div><div className="banner-3d-timer-label">Seconds</div></div>
-                  </div>
-                  {/* Star/particle overlay on card */}
-                  <div className="banner-3d-star banner-3d-star1"></div>
-                  <div className="banner-3d-star banner-3d-star2"></div>
-                  <div className="banner-3d-star banner-3d-star3"></div>
+              {/* Underline (thicker, inset 22px from left like mock) */}
+              <div style={{ position: 'absolute', left: -10, right: 0, bottom: 0, height: 2, background: 'rgba(182,192,210,0.75)', zIndex: 5, pointerEvents: 'none' }} />
+              {/* Enlarged geometric button (triangles like screenshot) */}
+              <button type="submit" style={{ position: 'relative', height: 72, width: 150, border: 'none', cursor: 'pointer', background: 'transparent', marginLeft: 18 }} aria-label="Tìm kiếm">
+                <div style={{ position: 'absolute', inset: 0 }}>
+
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: 84, height: 72, background: 'linear-gradient(145deg,#25e6ff 0%,#22e0d9 40%,#6ec6ff 95%)', clipPath: 'polygon(12% 0,80% 0,32% 38%)' }} />
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: 150, height: 72, background: 'rgba(40,55,72,0.6)', clipPath: 'polygon(0 100%,60% 100%,88% 0,32% 0)' }} />
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: 150, height: 72, background: 'linear-gradient(135deg,#bcd5ff 0%,#b18cff 45%,#f2a3e2 100%)', clipPath: 'polygon(40% 0,100% 0,100% 100%,60% 100%,0 100%,26% 34%)' }} />
+                 
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', top: '50%', right: 28, transform: 'translateY(-50%)' }}>
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
                 </div>
-              </div>
-            </div>
+              </button>
+            </form>
           </div>
+        </div>
 
-          <div
-            style={{
-              width: '80%',
-              height: '1px',
-              backgroundColor: '#EDD9B9',
-              margin: '70px auto',
-            }}
-          />
-
-          {/* Partner logos row (three imported images) */}
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 36 }}>
-            <div style={{ display: 'flex', gap: 72, alignItems: 'center' }}>
-              <img
-                src={appa}
-                alt="APPA"
-                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
-                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
-                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              />
-              <img
-                src={vcpmc}
-                alt="VCPMC"
-                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
-                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
-                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              />
-              <img
-                src={riav}
-                alt="RIAV"
-                style={{ height: 64, objectFit: 'contain', opacity: 0.95, transition: 'transform 220ms ease', cursor: 'pointer' }}
-                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.12)')}
-                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              />
-            </div>
-          </div>
-        </section>
-
+        <div style={{ width: '80%', height: 1, backgroundColor: '#EDD9B9', margin: '40px auto 70px' }} />
+      </section>
 
         {/* Trending Section */}
         <section style={{ padding: '48px 0 80px 0' }}>
@@ -294,7 +217,7 @@ function Deatails() {
               ))}
             </div>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-              <button className="license-more-btn" onClick={() => navigate('/ListDeatails')}>Xem thêm</button>
+              <button className="license-more-btn">Xem thêm</button>
             </div>
           </div>
         </section>
@@ -372,79 +295,12 @@ function Deatails() {
             </div>
           </div>
         </section>
-
-          <section id="accompany-artists" style={{ padding: '70px 0 90px' }}>
-            <div style={{ maxWidth: 1250, margin: '0 auto', padding: '0 20px' }}>
-              <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: 32, marginBottom: 20, letterSpacing: .5, color: '#fff' }}>NGHỆ SĨ ĐỒNG HÀNH</h2>
-              <p style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto 58px', lineHeight: 1.55, color: '#c7cbe7', fontSize: 15 }}>
-                VCPC luôn tự hào có sự đồng hành và ủng hộ từ các nghệ sĩ uy tín, góp phần tạo nên một cộng đồng sáng tạo văn minh, tôn trọng bản quyền.
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '26px 28px', justifyItems: 'stretch' }}>
-                {accompanyArtists.map(a => (
-                  <div key={a.id} style={{ position: 'relative' }}>
-                    {/* Outer gradient border wrapper with notch */}
-                    <div style={{
-                      position: 'relative',
-                      background: 'linear-gradient(90deg,#2ab9ff 0%, #4b6ce9 50%, #6a58d9 100%)',
-                      padding: 1,
-                      borderRadius: 12,
-                      clipPath: 'polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 55px) 100%,0 100%)',
-                      boxShadow: '0 4px 12px -2px rgba(40,120,200,0.25), 0 2px 6px 0 rgba(0,0,0,0.35)',
-                      transition: 'transform .25s ease, box-shadow .25s ease'
-                    }}>
-                      {/* Inner content card */}
-                      <div style={{
-                        background: '#121a31',
-                        borderRadius: 11,
-                        clipPath: 'polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 55px) 100%,0 100%)',
-                        padding: '14px 22px 18px 18px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 14,
-                        minHeight: 86,
-                        position: 'relative'
-                      }}>
-                        <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#d9d9d9', flexShrink: 0 }} />
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontWeight: 600, fontSize: 16, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: .2 }}>{a.name}</div>
-                          <div style={{ display: 'flex', alignItems: 'center', marginTop: 5 }}>
-                            <img src={iconTreanding} alt="eth" style={{ width: 16, height: 16, objectFit: 'contain', marginRight: 6 }} />
-                            <span style={{ fontSize: 12, fontWeight: 500, color: '#c7cbe7', letterSpacing: '.3px' }}>{a.eth}</span>
-                          </div>
-                        </div>
-                        <button style={{ background: 'none', border: 'none', color: '#1ea9ff', fontSize: 15, fontWeight: 600, cursor: 'pointer', padding: 4, textDecoration: 'underline' }}>Theo dõi</button>
-                        {/* Diagonal notch subtle fill */}
-                        <div style={{ position: 'absolute', bottom: 0, right: 0, width: 70, height: 36, background: 'linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%)', clipPath: 'polygon(100% 0,0 100%,100% 100%)' }} />
-                      </div>
-                      {/* Star highlight */}
-                      
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 60 }}>
-                <button style={{
-                  background: 'rgba(0,0,0,0.15)',
-                  color: '#fff',
-                  border: '1px solid #1ea9ff',
-                  borderRadius: 40,
-                  padding: '14px 42px',
-                  fontSize: 16,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  boxShadow: '0 0 0 2px rgba(30,169,255,0.25) inset'
-                }}>Xem thêm</button>
-              </div>
-            </div>
-          </section>
-      </section>
-
-    </>
+</div>
 
   );
 }
 
-export default Deatails;
+export default ListDeatails;
 
 
 

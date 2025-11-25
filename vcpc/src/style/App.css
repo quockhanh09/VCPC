@@ -1857,6 +1857,7 @@ float: right;
   font-family: 'Inter','Raleway',sans-serif;
   box-shadow: 0 8px 32px -10px rgba(18,24,48,0.8), 0 0 0 1px #1d2542;
   overflow: hidden;
+  transition: transform .45s cubic-bezier(.4,2,.4,1), box-shadow .55s ease, filter .55s ease;
 }
 .cp-box::before {
   content: "";
@@ -1978,6 +1979,38 @@ float: right;
   animation: cpStar 4s linear infinite;
 }
 @keyframes cpStar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* === Hover Glow Enhancements for Timeline === */
+/* Radial glow layer (hidden by default) */
+.cp-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(105,234,203,0.28) 0%, rgba(102,84,241,0.22) 55%, rgba(102,84,241,0.05) 75%, transparent 85%);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity .55s ease;
+}
+
+.cp-dot { transition: box-shadow .55s ease, transform .55s ease; }
+
+.cp-item:hover .cp-box {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 2px rgba(105,234,203,.35),
+    0 0 0 4px rgba(102,84,241,.25),
+    0 10px 34px -12px rgba(18,24,48,.85),
+    0 0 18px 6px rgba(105,234,203,.28);
+  filter: none;
+}
+.cp-item:hover .cp-box::before { opacity: .7; filter: none; }
+.cp-item:hover .cp-box::after { opacity: .55; }
+
+.cp-item:hover .cp-dot {
+  transform: translate(-50%,-50%) scale(1.05);
+  box-shadow: 0 0 0 4px #181b30, 0 0 12px 5px rgba(105,234,203,0.55), 0 0 16px 8px rgba(102,84,241,.45);
+}
 
 @media (max-width: 992px) {
   .cp-item, .cp-item.right { left: 0; width: 100%; padding: 14px 0; }

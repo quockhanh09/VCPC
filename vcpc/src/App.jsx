@@ -21,6 +21,7 @@ import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
 import Letter from "./components/Letter";
 import Comingsoon from "./components/comingsoon";
+import ListDeatails from "./components/ListDeatails";
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -922,10 +923,10 @@ function AppContent() {
           <Route path="/Deatails" element={<Details />} />
           <Route path="/News" element={<News />} />
           <Route path="/Letter" element={<Letter />} />
-          
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Comingsoon" element={<Comingsoon />} />
+          <Route path="/ListDeatails" element={<ListDeatails />} />
         </Routes>
         {location.pathname !== "/Comingsoon" && <Countdown />}
         {/* ===== FOOTER ===== */}
