@@ -504,10 +504,7 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
                                      
-                     onMouseEnter={(e) =>
-                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
-                      }
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
+                     onMouseEnter={() => hideCard(0)}>
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
 
@@ -548,10 +545,7 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
                     
-                     onMouseEnter={(e) =>
-                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
-                      }
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
+                     onMouseEnter={() => hideCard(1)}>
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
 
@@ -592,10 +586,7 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
 
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
-                      }
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+                      onMouseEnter={() => hideCard(2)}
                     >
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
