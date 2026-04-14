@@ -280,7 +280,7 @@ function AppContent() {
 
                 <section id="about" className="about section" style={{ background: "#FFFAF2", padding: "40px 0" }}>
                   <div style={{
-                    
+                    display: "grid",
                     gridTemplateColumns: "1fr 1fr",
                     gridTemplateRows: "1fr 1fr",
                     gap: 0,
@@ -456,19 +456,6 @@ function AppContent() {
                 </div>
 
 
-                {(() => {
-                  // Track visibility of each service card
-                  const [servicesVisible, setServicesVisible] = useState([true, true, true]);
-
-                  const hideCard = (idx) => {
-                    setServicesVisible((prev) => {
-                      const next = [...prev];
-                      next[idx] = false;
-                      return next;
-                    });
-                  };
-
-                  return (
                 <section
                   id="services"
                   className="services section"
@@ -489,7 +476,6 @@ function AppContent() {
 
                   }}>
                     {/* Card 1 */}
-                    {servicesVisible[0] && (
                     <div style={{
                       width: 340,
                       minHeight: 340,
@@ -504,7 +490,10 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
                                      
-                     onMouseEnter={() => hideCard(0)}>
+                     onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
 
@@ -524,12 +513,10 @@ function AppContent() {
                         Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
                       </div>
 
-                      <button className="btn-service-hero" onClick={() => hideCard(0)}>Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero"  >Đăng ký dịch vụ</button>
                     </div>
-                    )}
                     {/* Card 2 */}
 
-                    {servicesVisible[1] && (
                     <div style={{
                       width: 340,
                       minHeight: 340,
@@ -545,7 +532,10 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
                     
-                     onMouseEnter={() => hideCard(1)}>
+                     onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}>
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
 
@@ -565,12 +555,10 @@ function AppContent() {
                         Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
                       </div>
 
-                      <button className="btn-service-hero" onClick={() => hideCard(1)}>Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero" >Đăng ký dịch vụ</button>
                     </div>
-                    )}
 
                     {/* Card 3 */}
-                    {servicesVisible[2] && (
                     <div style={{
                       width: 340,
                       minHeight: 340,
@@ -586,7 +574,10 @@ function AppContent() {
                       alignItems: "flex-start"
                     }}
 
-                      onMouseEnter={() => hideCard(2)}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.boxShadow = "0px 8px 25px rgba(218, 218, 218, 0.73)")
+                      }
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
                     >
 
                       <div style={{ color: "#B6C0D2", fontSize: 18, fontWeight: 400, marginBottom: 10 }}>Dịch vụ bản quyền</div>
@@ -606,15 +597,12 @@ function AppContent() {
                       <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
                         Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
                       </div>
-                      <button className="btn-service-hero" onClick={() => hideCard(2)}>
+                      <button className="btn-service-hero" >
                         Đăng ký dịch vụ
                       </button>
                     </div>
-                    )}
                   </div>
                 </section>
-                  );
-                })()}
 
 {/* Tin nổi bật section */}
         <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 0 80px 0' }}>
@@ -647,10 +635,10 @@ function AppContent() {
             </div>
           </div>
           <div style={{ borderBottom: '2px solid #222', margin: '16px 0 24px 0' }} />
-          <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
             {/* Main news left */}
             <div style={{ flex: 1.2, minWidth: 340 }}>
-              <img src={main.img} alt={main.title} style={{ width: '100%',  objectFit: 'cover', borderRadius: 4, marginBottom: 18 }} />
+              <img src={main.img} alt={main.title} style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 4, marginBottom: 18 }} />
               <div style={{ color: '#222', fontSize: 14, fontWeight: 700, marginBottom: 8, fontFamily: 'Montserrat, sans-serif' }}>
                 {main.author} <span style={{ fontWeight: 400, color: '#888', marginLeft: 8 }}>| {main.date}</span>
               </div>
