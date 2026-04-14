@@ -510,10 +510,10 @@ function AppContent() {
                       </div>
 
                       <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
-                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
-                      </div>
+ Hỗ trợ trọn gói thủ tục đăng ký quyền tác giả, giúp bạn sở hữu tấm "giấy khai sinh" pháp lý cho mọi sản phẩm sáng tạo nhanh chóng và bảo mật.
+ </div>
 
-                      <button className="btn-service-hero"  >Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>Đăng ký dịch vụ</button>
                     </div>
                     {/* Card 2 */}
 
@@ -552,10 +552,10 @@ function AppContent() {
                       </div>
 
                       <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
-                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
-                      </div>
+Phân tích, đánh giá tính độc bản và mức độ vi phạm của tác phẩm. Cung cấp căn cứ chuyên môn vững chắc để bảo vệ quyền lợi khi có tranh chấp.
+</div>
 
-                      <button className="btn-service-hero" >Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>Đăng ký dịch vụ</button>
                     </div>
 
                     {/* Card 3 */}
@@ -595,9 +595,8 @@ function AppContent() {
                       </div>
 
                       <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
-                        Lorem ipsum dolor sit amet consectetur. Integer sit viverra nullam faucibus dignissim malesuada lacus blandit phasellus. Ac pretium volutpat duis eu enim sem facilisi.
-                      </div>
-                      <button className="btn-service-hero" >
+Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai thác bản quyền. Đảm bảo quy trình mua bán chất xám diễn ra minh bạch, đúng luật.</div>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>
                         Đăng ký dịch vụ
                       </button>
                     </div>
