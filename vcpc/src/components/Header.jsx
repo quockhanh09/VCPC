@@ -49,7 +49,7 @@ function Header() {
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 32 }}>
   <img src={iconGlobal} alt="Globe Icon" style={{ width: 24, height: 24, marginRight: 8, filter: "brightness(0) invert(1)" }} />
-        <Link to="/Login">
+        {/* <Link to="/Login">
           <button className="Login-nav" style={{
             background: "#4569BC",
             color: "#fff",
@@ -63,7 +63,7 @@ function Header() {
           }}>
             Đăng nhập
           </button>
-        </Link>
+        </Link> */}
       </div>
     </header>
   );

@@ -38,8 +38,8 @@ function Footer() {
           <div style={{ color: "#fff", fontSize: 16, fontWeight: 400, marginBottom: 4 }}>
             Số 33 Ngõ 294/2 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội.<br />
             MST: 0110541851<br />
-            Điện thoại:<br />
-            Email:<br />
+            Điện thoại: (+84) 925 332 332<br />
+            Email: cuongvcpc@gmail.com<br />
             Đại diện pháp luật: Nguyễn Văn Cương (Mr.)
           </div>
           <div style={{ color: "#B6C0D2", fontSize: 14}}>

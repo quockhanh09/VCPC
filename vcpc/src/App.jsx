@@ -606,66 +606,32 @@ function AppContent() {
 
 {/* Tin nổi bật section */}
         <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 0 80px 0' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 0 }}>
-            <div style={{ fontWeight: 700, fontSize: 38, color: '#10214B', fontFamily: 'Lora, serif', marginBottom: 0 }}>Tin nổi bật</div>
-            <div style={{ display: 'flex', gap: 12 }}>
-              {tabList.map((tabItem) => (
-                <button
-                  key={tabItem.key}
-                  onClick={() => setTab(tabItem.key)}
-                  style={{
-                    background: tab === tabItem.key ? tabItem.color : '#fff',
-                    color: tab === tabItem.key ? tabItem.text : '#10214B',
-                    fontWeight: 600,
-                    fontSize: 17,
-                    border: 'none',
-                    borderRadius: 8,
-                    padding: '8px 22px',
-                    marginRight: 0,
-                    marginBottom: 0,
-                    cursor: 'pointer',
-                    boxShadow: tab === tabItem.key ? '0 2px 8px 0 rgba(180,180,200,0.10)' : 'none',
-                    transition: 'all 0.2s',
-                    outline: 'none',
-                  }}
-                >
-                  {tabItem.label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div style={{ borderBottom: '2px solid #222', margin: '16px 0 24px 0' }} />
-          <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-            {/* Main news left */}
-            <div style={{ flex: 1.2, minWidth: 340 }}>
+          <div style={{ fontWeight: 700, fontSize: 38, color: '#10214B', fontFamily: 'Lora, serif', marginBottom: 0 }}>Tin nổi bật</div>
+          <div style={{ borderBottom: '2.5px solid #222', margin: '16px 0 24px 0' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+            <div
+              style={{ width: '50%', minWidth: 340, cursor: 'pointer' }}
+              onClick={() => { window.location.href = '/Letter'; }}
+              title="Xem chi tiết tin nổi bật"
+            >
               <img src={main.img} alt={main.title} style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 4, marginBottom: 18 }} />
-              <div style={{ color: '#222', fontSize: 14, fontWeight: 700, marginBottom: 8, fontFamily: 'Montserrat, sans-serif' }}>
-                {main.author} <span style={{ fontWeight: 400, color: '#888', marginLeft: 8 }}>| {main.date}</span>
+              <div style={{ color: '#222', fontSize: 16, fontWeight: 600, marginBottom: 8, fontFamily: 'Montserrat, sans-serif' }}>
+                VCPC News <span style={{ fontWeight: 400, color: '#888', marginLeft: 8 }}>| 14 tháng 04, 2026</span>
               </div>
-              <div style={{ fontWeight: 800, fontSize: 22, color: '#222', marginBottom: 10, lineHeight: 1.3, fontFamily: 'Lora, serif' }}>{main.title}</div>
-              {main.desc && <div style={{ color: '#444', fontSize: 15, lineHeight: 1.6, fontFamily: 'Montserrat, sans-serif' }}>{main.desc}</div>}
-            </div>
-            {/* List news right */}
-            <div style={{ flex: 1, minWidth: 260, display: 'flex', flexDirection: 'column', gap: 18 }}>
-              {list.map((item, idx) => (
-                <div key={idx} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                  <img src={item.img} alt={item.title} style={{ width: 90, height: 60, objectFit: 'cover', borderRadius: 4 }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ color: '#222', fontSize: 13, fontWeight: 700, marginBottom: 2, fontFamily: 'Montserrat, sans-serif' }}>
-                      {item.author} <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>| {item.date}</span>
-                    </div>
-                    <div style={{ fontWeight: 600, fontSize: 15.5, color: '#222', lineHeight: 1.35, fontFamily: 'Lora, serif' }}>{item.title}</div>
-                  </div>
-                </div>
-              ))}
+              <div style={{ fontWeight: 800, fontSize: 26, color: '#222', marginBottom: 10, lineHeight: 1.3, fontFamily: 'Lora, serif' }}>
+                Bản quyền được bảo vệ – Sáng tạo được tôn vinh
+              </div>
+              <div style={{ color: '#444', fontSize: 15, lineHeight: 1.6, fontFamily: 'Montserrat, sans-serif' }}>
+                Trung tâm Bảo vệ Bản quyền Việt Nam (VCPC) khẳng định vai trò tiên phong trong việc bảo vệ quyền tác giả và quyền liên quan, mang đến các giải pháp toàn diện từ giám định, tư vấn pháp lý đến hỗ trợ xử lý vi phạm. Với nền tảng chuyên môn vững chắc và công nghệ hiện đại, VCPC không chỉ bảo vệ giá trị sáng tạo mà còn góp phần thúc đẩy sự phát triển bền vững của ngành công nghiệp văn hóa tại Việt Nam.
+              </div>
             </div>
           </div>
         </section>
 
 
                 {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
-                {(() => {
-                
+                {/* Toggle trending section visibility */}
+                {false && (() => {
                   const trendingList = [
                     {
                       img: trendingImg1,

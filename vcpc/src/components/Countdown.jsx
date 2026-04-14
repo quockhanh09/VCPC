@@ -137,7 +137,7 @@ function Countdown() {
               <span style={{ fontWeight: 700, fontSize: 20 }}>Điện thoại</span>
             </div>
             <div style={{marginLeft: 32, fontSize: 16 }}>
-              (+84) 123 456 780
+               (+84) 925 332 332
             </div>
             <div style={{display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 22 }}>⏰</span>
