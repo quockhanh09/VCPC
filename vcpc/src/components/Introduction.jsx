@@ -132,18 +132,18 @@ function Introduction() {
       </section>
 
       {/* PHẦN LỊCH SỬ HÌNH THÀNH */}
-      <section style={{ background: "#fdf9f3", minHeight: 400, width: "100vw", padding: 0 }}>
+      {/* <section style={{ background: "#fdf9f3", minHeight: 400, width: "100vw", padding: 0 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
-          {/* Tiêu đề và đường kẻ ngang */}
+          
           <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
               LỊCH SỬ HÌNH THÀNH
             </h1>
             <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
           </div>
-          {/* Timeline và content */}
+        
           <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
-            {/* Left: Years timeline */}
+            
             <div style={{ minWidth: 305, marginTop: 60, marginLeft: 80 }}>
               <div>
                 {YEARS.map((item, idx) => (
@@ -186,7 +186,7 @@ function Introduction() {
                 ))}
               </div>
             </div>
-            {/* Right: Content */}
+            
             <div style={{ flex: 1, marginLeft: 40, marginTop: 0, padding: 5 }}>
               <div style={{ fontSize: 16, color: "#222", lineHeight: 1.7, textAlign: "justify" }}>
                 {YEARS[selected].content}
@@ -194,7 +194,7 @@ function Introduction() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* PHẦN CHỨC NĂNG NHIỆM VỤ */}
       <section style={{ background: "#fdf9f3", minHeight: 350, width: "100vw", padding: 0 }}>
@@ -206,7 +206,7 @@ function Introduction() {
             </h1>
             <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
           </div>
-          {/* Nội dung và nút tải PDF */}
+  
           <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
             {/* Left: Văn bản */}
             <div style={{ flex: 2, minWidth: 400, marginLeft: 40, marginRight: 40 }}>
@@ -248,37 +248,37 @@ function Introduction() {
         </div>
       </section>
 
-      {/* ĐỘI NGŨ CỦA CHÚNG TÔI */}
+{/*   
       <section style={{ background: "#fcf8f2", width: "100vw", padding: 0, minHeight: 600, marginTop: 0 }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 40px" }}>
-          {/* Title and border line */}
+         
           <div style={{ display: "flex", alignItems: "center", marginTop: 32, marginBottom: 32 }}>
             <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginRight: 32 }} />
             <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 900, fontSize: 36, color: "#111", margin: 0, letterSpacing: 1, textAlign: "right", minWidth: 420 }}>
               ĐỘI NGŨ CỦA CHÚNG TÔI
             </h1>
           </div>
-          {/* Team grid using TEAM const, 2 rows, 4 columns, gap and card style refined */}
+        
           <div style={{ display: "flex", flexDirection: "column", gap: 80, marginTop: 0, marginBottom: 60 }}>
             {[0, 1].map(rowIdx => (
               <div key={rowIdx} style={{ display: "flex", flexDirection: "row", gap: 0, justifyContent: "space-between" }}>
                 {TEAM.slice(rowIdx * 4, rowIdx * 4 + 4).map((member, idx) => (
                   <div key={member.name} style={{ flex: 1, maxWidth: 260, minWidth: 220, display: "flex", flexDirection: "column", alignItems: "flex-start", background: "transparent", borderRadius: 0, boxShadow: "none", padding: "0 12px", position: "relative", minHeight: 370 }}>
-                    {/* Heart background and avatar */}
+                    
                     <div style={{ position: "relative", width: 140, height: 140, margin: "0 0 0 0" }}>
                     
                       <img src={member.img} alt={member.name} style={{ width: 200, height: 240, objectFit: "cover", zIndex: 1, position: "relative", marginLeft: 15 }} />
                     </div>
-                    {/* Name */}
+               
                     <div style={{ transform: "translateY(110px)" }}>
                     <div style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 22, color: "#3C5DAA", marginBottom: 5, marginTop: 18, textAlign: "left", zIndex: 2, lineHeight: 1.1 }}>
                       {member.name}
                     </div>
-                    {/* Position */}
+                
                     <div style={{ fontFamily: 'SVN-Gilroy', fontWeight: 400, fontSize: 16, color: "#10214B", marginBottom: 10, textAlign: "left", zIndex: 2, lineHeight: 1.1 }}>
                       {member.position}
                     </div>
-                    {/* Description */}
+                
                     <div style={{ fontFamily: 'SVN-Gilroy', fontWeight: 400, fontSize: 15, color: "#222", textAlign: "left", zIndex: 2, lineHeight: 1.5, marginTop: 0 }}>
                       {member.desc}
                     </div>
@@ -289,7 +289,7 @@ function Introduction() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

@@ -5,6 +5,7 @@ import "../style/App.css";
 
 // Import ảnh
 import imgNews1 from "../assets/img/news-related-1.jpg";
+import heroBanner from "../assets/img/herobanner.png";
 import imgNews2 from "../assets/img/news-related-2.jpg";
 import imgNews3 from "../assets/img/news-related-3.jpg";
 import heroInput from "../assets/img/bginput.png";
@@ -29,7 +30,7 @@ const SUB_EVENTS = [
 
 // Dữ liệu tin chính và tin liên quan
 const MAIN_NEWS = {
-  image: imgNews1,
+  image: heroBanner,
   tag: "BẢN QUYỀN",
   title: "Công Bố Báo Cáo Thường Niên: Tình Hình Vi Phạm Bản Quyền Năm 2025",
   author: "VCPC EDITOR",
@@ -148,8 +149,8 @@ function News() {
             </div>
             <div style={{ color: "#444", fontSize: 16, textAlign: "center", marginBottom: 0, maxWidth: 600 }}>{MAIN_NEWS.desc}</div>
           </div>
-          {/* Related News */}
-          <div style={{ flex: 1, minWidth: 320, marginTop: 8 }}>
+          {/* Related News (Ẩn đi, chỉ giữ lại tin nổi bật) */}
+          {/* <div style={{ flex: 1, minWidth: 320, marginTop: 8 }}>
             <h3 style={{ color: "#3C5DAA", fontWeight: 700, fontSize: 24, marginBottom: 28, textAlign: "left", letterSpacing: 0.5 }}>Tin Tức Liên Quan</h3>
             {RELATED_NEWS.map((item, idx) => (
               <div key={idx} style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24, borderBottom: "1px solid #e6e6e6", paddingBottom: 18 }}>
@@ -163,7 +164,7 @@ function News() {
                 <img src={item.image} alt={item.title} style={{ width: 70, height: 70, objectFit: "cover", borderRadius: 8, marginLeft: 8 }} />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div style={{

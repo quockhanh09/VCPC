@@ -895,7 +895,7 @@ Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai t
           <Route path="/ListDeatails" element={<ListDeatails />} />
           <Route path="/Support" element={<Support />} />
         </Routes>
-        {location.pathname !== "/Comingsoon" && <Countdown />}
+        {/* {location.pathname !== "/Comingsoon" && <Countdown />} */}
         {/* ===== FOOTER ===== */}
         <Footer />
 

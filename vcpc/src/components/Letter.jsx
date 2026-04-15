@@ -12,25 +12,25 @@ const RELATED_NEWS = [
         image: imgNews1,
         tag: "HỢP TÁC",
         title: "Hợp tác với Hàn Quốc thiết lập hệ thống quản lý bản quyền số",
-        date: "08-06-2024",
+        date: "14-04-2026",
     },
     {
         image: imgNews2,
         tag: "HỢP TÁC",
         title: "Hợp tác với Hàn Quốc thiết lập hệ thống quản lý bản quyền số",
-        date: "08-06-2024",
+        date: "14-04-2026",
     },
     {
         image: imgNews3,
         tag: "HỢP TÁC",
         title: "Hợp tác với Hàn Quốc thiết lập hệ thống quản lý bản quyền số",
-        date: "08-06-2024",
+        date: "14-04-2026",
     },
     {
         image: imgNews1,
         tag: "HỢP TÁC",
         title: "Hợp tác với Hàn Quốc thiết lập hệ thống quản lý bản quyền số",
-        date: "08-06-2024",
+        date: "14-04-2026",
     },
 ];
 
@@ -127,14 +127,14 @@ function Letter() {
                 </div>
                 <h1 style={{ color: "#22336C", fontWeight: 700, fontSize: 28, textAlign: "center", marginBottom: 12, lineHeight: 1.3 }}>
                     Công Bố Báo Cáo Thường Niên: <br />
-                    Tình Hình Vi Phạm Bản Quyền Năm 2025
+                    Tình Hình Vi Phạm Bản Quyền Năm 2026
                 </h1>
                 <div style={{ display: "flex", justifyContent: "center", gap: 32, color: "#888", fontSize: 15, marginBottom: 18 }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                         <i className="bi bi-person-circle" /> VCPC EDITOR
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <i className="bi bi-calendar" /> 08-06-2025
+                        <i className="bi bi-calendar" /> 14-04-2026
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                         <i className="bi bi-eye" /> 20,546
@@ -227,7 +227,7 @@ function Letter() {
 
             {/* PHẦN TIN TỨC LIÊN QUAN */}
 
-            <section style={{ background: '#fcf8f2', padding: '32px 0 0 0', marginTop: 32 }}>
+            {/* <section style={{ background: '#fcf8f2', padding: '32px 0 0 0', marginTop: 32 }}>
                 <div style={{ maxWidth: 1280, margin: '0 auto', padding: 0 }}>
                     <h3 style={{ color: '#3C5DAA', fontWeight: 700, fontSize: 24, marginBottom: 28, textAlign: 'left', letterSpacing: 0.5 }}>
                         Tin Tức Liên Quan
@@ -273,7 +273,7 @@ function Letter() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }
