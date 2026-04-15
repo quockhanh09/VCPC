@@ -22,6 +22,7 @@ import Login from "./signup-in/Login";
 import Letter from "./components/Letter";
 import Comingsoon from "./components/comingsoon";
 import ListDeatails from "./components/ListDeatails";
+import Support from "./components/Support";
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -892,6 +893,7 @@ Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai t
           <Route path="/Login" element={<Login />} />
           <Route path="/Comingsoon" element={<Comingsoon />} />
           <Route path="/ListDeatails" element={<ListDeatails />} />
+          <Route path="/Support" element={<Support />} />
         </Routes>
         {location.pathname !== "/Comingsoon" && <Countdown />}
         {/* ===== FOOTER ===== */}

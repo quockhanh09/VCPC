@@ -44,7 +44,7 @@ function Header() {
           {/* <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>CÔNG BỐ</Link></li> */}
           {/* <li><Link to="/Deatails" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>DỊCH VỤ BẢN QUYỀN</Link></li> */}
           {/* <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>SÀN GIAO DỊCH</Link></li> */}
-          <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>HỖ TRỢ</Link></li>
+          <li><Link to="/Support" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>HỖ TRỢ</Link></li>
         </ul>
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 32 }}>

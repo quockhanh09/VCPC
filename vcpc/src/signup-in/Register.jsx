@@ -1,3 +1,28 @@
+// Input đẹp như mẫu
+const InputForm = ({ placeholder, value, onChange, ...props }) => (
+  <input
+    {...props}
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+    style={{
+      width: '100%',
+      padding: '14px 18px',
+      border: '2px solid #d2d8e6',
+      borderRadius: 12,
+      fontSize: 22,
+      background: '#fff',
+      outline: 'none',
+      color: '#b3b3b3',
+      fontWeight: 400,
+      boxSizing: 'border-box',
+      transition: 'border 0.2s',
+      marginBottom: 0,
+    }}
+    onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+    onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+  />
+);
 import React, { useState, useRef } from "react";
 import "../style/signup-in.css";
 import vcpcLogo from "../assets/img/Vector-Vcpc.png";
@@ -248,7 +273,14 @@ const Register = () => {
             </div>
             <div style={{ marginBottom: 24 }}>
               <label htmlFor="address" style={{ fontWeight: 600, color: "#444", fontSize: 14, marginBottom: 6, display: "block" }}>Địa chỉ</label>
-              <input id="address" type="text" placeholder="Nhập địa chỉ" value={address} onChange={(e) => setAddress(e.target.value)} style={{ width: "100%", padding: "12px 14px", border: "1.5px solid #e6e6e6", borderRadius: 8, fontSize: 15, background: "#fafbfc", outline: "none", fontWeight: 500, color: "#222" }} />
+              <InputForm
+                id="address"
+                type="text"
+                placeholder="Nhập địa chỉ cụ thể"
+                value={address}
+                onChange={e => setAddress(e.target.value)}
+                autoComplete="off"
+              />
             </div>
             <button type="submit" style={{ width: "100%", background: "#000", color: "#fff", fontWeight: 700, fontSize: 18, border: "none", borderRadius: 24, padding: "14px 0", cursor: "pointer", boxShadow: "0 2px 8px 0 rgba(60,93,170,0.04)" }}>Tiếp theo</button>
           </form>

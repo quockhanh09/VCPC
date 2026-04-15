@@ -1,3 +1,5 @@
+import page1 from "../assets/img/page_1.png";
+import filePdf from "../assets/img/File_in.pdf";
 
 
 
@@ -189,6 +191,58 @@ function Introduction() {
               <div style={{ fontSize: 16, color: "#222", lineHeight: 1.7, textAlign: "justify" }}>
                 {YEARS[selected].content}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PHẦN CHỨC NĂNG NHIỆM VỤ */}
+      <section style={{ background: "#fdf9f3", minHeight: 350, width: "100vw", padding: 0 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
+          {/* Tiêu đề và đường kẻ ngang */}
+          <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
+            <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
+              CHỨC NĂNG NHIỆM VỤ
+            </h1>
+            <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
+          </div>
+          {/* Nội dung và nút tải PDF */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
+            {/* Left: Văn bản */}
+            <div style={{ flex: 2, minWidth: 400, marginLeft: 40, marginRight: 40 }}>
+              <ul style={{ fontSize: 17, color: "#222", lineHeight: 1.7, textAlign: "justify", paddingLeft: 20 }}>
+                <li>Bảo vệ quyền và lợi ích hợp pháp của các tác giả, chủ sở hữu tác phẩm.</li>
+                <li>Tư vấn, hỗ trợ pháp lý về bản quyền tác giả và quyền liên quan.</li>
+                <li>Đăng ký, xác lập quyền tác giả, quyền liên quan theo quy định pháp luật.</li>
+                <li>Phối hợp giải quyết tranh chấp, khiếu nại, tố cáo về bản quyền.</li>
+                <li>Tuyên truyền, phổ biến kiến thức pháp luật về sở hữu trí tuệ.</li>
+                <li>Thực hiện các nhiệm vụ khác theo quy định của pháp luật và cơ quan quản lý nhà nước.</li>
+              </ul>
+            </div>
+            {/* Right: Hình ảnh nhỏ, click mở PDF và tải về */}
+            <div style={{ flex: 1, minWidth: 260, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: 0 }}>
+              <a
+                href={filePdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textDecoration: "none",
+                  
+                }}
+                title="Xem và tải file PDF"
+              >
+                <img
+                  src={page1}
+                  alt="Tải file PDF"
+                  style={{ width: 150, height: "auto",  boxShadow: "0 2px 8px rgba(58,91,183,0.08)", marginBottom: 0, border: "1px solid #e0e0e0", cursor: "pointer" }}
+                />
+                <span style={{ color: "#3a5bb7", fontWeight: 700, fontSize: 16, marginTop: 2 }}>Tải/Xem file PDF</span>
+              </a>
+              <div style={{ fontSize: 14, color: "#888", marginTop: 10 }}>Xem chi tiết chức năng nhiệm vụ</div>
             </div>
           </div>
         </div>
