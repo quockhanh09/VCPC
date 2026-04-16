@@ -19,15 +19,25 @@ const Support = () => {
     setError('');
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.userId.trim() || !form.email.trim() || !form.title.trim() || !form.content.trim()) {
       setError('Vui lòng nhập đầy đủ thông tin bắt buộc.');
       return;
     }
-    // Xử lý gửi form ở đây
-    alert('Gửi thành công!');
-    setForm({ userId: '', email: '', title: '', content: '' });
+    try {
+      const res = await fetch('http://localhost:3000/support-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Có lỗi xảy ra.');
+      alert('Gửi thành công!');
+      setForm({ userId: '', email: '', title: '', content: '' });
+    } catch (err) {
+      setError(err.message || 'Có lỗi xảy ra khi gửi yêu cầu.');
+    }
   };
 
   return (
