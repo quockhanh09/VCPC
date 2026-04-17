@@ -72,26 +72,37 @@ const TEAM = [
 
 const YEARS = [
   {
+    month: 3,
     year: 2025,
-    content: `Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet. Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.`
+    content: `Đây là giai đoạn Trung tâm khẳng định vị thế là một đơn vị sự nghiệp công lập đa chức năng, phù hợp với xu thế chuyển đổi số.<br />
+<ul style="margin: 8px 0 0 18px; padding: 0 0 0 18px;">
+  <li style="margin-bottom: 8px;">
+    <span >Chính thức mang tên VCPC (25/3/2025):</span> Quyết định số 68/QĐ-BQTG của Cục trưởng Cục Bản quyền tác giả đã quy định chức năng, nhiệm vụ mới và chính thức đổi tên đơn vị thành Trung tâm Bảo vệ bản quyền Việt Nam (tên giao dịch quốc tế là Vietnam Copyright Protection Center – VCPC).
+  </li>
+  <li>
+    <span >Vị thế và vai trò hiện tại:</span> VCPC hiện nay hoạt động như một trung tâm cung cấp dịch vụ tổng thể, từ giám định, tư vấn bảo vệ bản quyền đến khai thác tài sản trí tuệ. Đơn vị đóng vai trò là đầu mối hiệu quả hỗ trợ cơ quan quản lý nhà nước, đồng thời là địa chỉ tin cậy cho các tổ chức, cá nhân trong việc bảo hộ quyền lợi sáng tạo trong bối cảnh hội nhập quốc tế sâu rộng.
+  </li>
+</ul>`
   },
   {
-    year: 2024,
-    content: `Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet. Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.`
-  },
-  {
+    month: 10,
     year: 2023,
-    content: `Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet. Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.`
+    content: `Sau 7 năm hoạt động, để đáp ứng sự phát triển của thị trường bản quyền và thúc đẩy công nghiệp văn hóa, Trung tâm đã có bước chuyển đổi lớn.<br/>
+Quyết định kiện toàn (31/10/2023): Theo Quyết định số 374/QĐ-BQTG, Trung tâm được đổi tên thành Trung tâm Giám định, Thông tin và Chuyển giao quyền tác giả, quyền liên quan.<br/>
+Mở rộng nhiệm vụ: Không còn bó hẹp trong lĩnh vực giám định, chức năng của Trung tâm đã bao quát thêm các mảng: thông tin, truyền thông, xây dựng cơ sở dữ liệu và đặc biệt là hỗ trợ chuyển giao, khai thác quyền tác giả, quyền liên quan. Sự thay đổi này đánh dấu nỗ lực của Trung tâm trong việc tham gia sâu hơn vào việc phát hành và lưu thông tài sản trí tuệ trên thị trường.`
   },
   {
-    year: 2022,
-    content: `Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet. Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.`
+    month: 7,
+    year: 2016,
+    content: `Với Quyết định số 88/QĐ-BQTG của Cục trưởng Cục Bản quyền tác giả, quy chế tổ chức và hoạt động của Trung tâm chính thức được ban hành<br/>
+. Đây là cột mốc quan trọng giúp Trung tâm xây dựng đội ngũ giám định viên chuyên nghiệp và triển khai hoạt động giám định một cách bài bản, tạo nền tảng vững chắc cho hoạt động bản quyền tại Việt Nam.`
   },
   {
-    year: 2021,
-    content: `Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet. Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.Lorem ipsum dolor sit amet consectetur. Tristique nulla elit blandit arcu erat sed tempor. Ac dignissim risus volutpat quam consequat. Commodo non donec netus adipiscing. Ac ut eu fringilla morbi nunc sed dictum cras purus. Augue gravida arcu aliquam cursus nunc amet nulla sit. Vel aliquam ut faucibus at augue nunc in. Etiam eget diam purus neque suspendisse ultrices nec id ac. Netus nulla elementum id netus fames dignissim eget. Elementum pellentesque egestas eu amet.`
-  }
-
+    month: 6,
+    year: 2016,
+    content: `Tiền thân của VCPC là Trung tâm Giám định quyền tác giả, quyền liên quan được thành lập theo Quyết định số 1981/QĐ-BVHTTDL của Bộ trưởng Bộ Văn hóa, Thể thao và Du lịch<br/>
+. Trong giai đoạn đầu, Trung tâm tập trung vào các nhiệm vụ chuyên sâu: thực hiện hoạt động giám định, cung cấp ý kiến chuyên môn phục vụ giải quyết tranh chấp, xử lý vi phạm và hỗ trợ quản lý nhà nước về thực thi pháp luật sở hữu trí tuệ.`
+  },
 ];
 
 function Introduction() {
@@ -132,123 +143,281 @@ function Introduction() {
       </section>
 
       {/* PHẦN LỊCH SỬ HÌNH THÀNH */}
-      {/* <section style={{ background: "#fdf9f3", minHeight: 400, width: "100vw", padding: 0 }}>
+      <section style={{ background: "#fdf9f3", minHeight: 400, width: "100vw", padding: 0 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
-          
+
           <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
               LỊCH SỬ HÌNH THÀNH
             </h1>
             <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
           </div>
-        
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
-            
-            <div style={{ minWidth: 305, marginTop: 60, marginLeft: 80 }}>
-              <div>
-                {YEARS.map((item, idx) => (
-                  <div key={item.year} style={{ display: "flex", alignItems: "center", position: "relative" }}>
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 12 }}>
-                      <span
-                        style={{
-                          width: 16,
-                          height: 16,
-                          borderRadius: "50%",
-                          background: idx === selected ? "#3a5bb7" : "#d3d8e6",
-                          display: "block",
-                          marginBottom: 10,
-                          border: idx === selected ? "2px solid #3a5bb7" : "2px solid #d3d8e6"
-                        }}
-                      ></span>
-                      {idx < YEARS.length - 1 && (
-                        <div style={{ width: 2, height: 28, background: "#e0e0e0" }} />
-                      )}
-                    </div>
-                    <button
-                      onClick={() => setSelected(idx)}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        outline: "none",
-                        fontFamily: 'SVN-Gilroy',
-                        fontWeight: idx === selected ? 700 : 500,
-                        fontSize: 25,
-                        color: idx === selected ? "#3a5bb7" : "#CAD9FF",
-                        cursor: "pointer",
-                        transition: "color 0.2s",
-                        marginBottom: 20,
-                        transform: "translateY(-10px)"
-                      }}
-                    >
-                      Năm {item.year}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div style={{ flex: 1, marginLeft: 40, marginTop: 0, padding: 5 }}>
-              <div style={{ fontSize: 16, color: "#222", lineHeight: 1.7, textAlign: "justify" }}>
-                {YEARS[selected].content}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
-      {/* PHẦN CHỨC NĂNG NHIỆM VỤ */}
-      <section style={{ background: "#fdf9f3", minHeight: 350, width: "100vw", padding: 0 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
-          {/* Tiêu đề và đường kẻ ngang */}
-          <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
-            <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
-              CHỨC NĂNG NHIỆM VỤ
-            </h1>
-            <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
-          </div>
-  
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
-            {/* Left: Văn bản */}
-            <div style={{ flex: 2, minWidth: 400, marginLeft: 40, marginRight: 40 }}>
-              <ul style={{ fontSize: 17, color: "#222", lineHeight: 1.7, textAlign: "justify", paddingLeft: 20 }}>
-                <li>Bảo vệ quyền và lợi ích hợp pháp của các tác giả, chủ sở hữu tác phẩm.</li>
-                <li>Tư vấn, hỗ trợ pháp lý về bản quyền tác giả và quyền liên quan.</li>
-                <li>Đăng ký, xác lập quyền tác giả, quyền liên quan theo quy định pháp luật.</li>
-                <li>Phối hợp giải quyết tranh chấp, khiếu nại, tố cáo về bản quyền.</li>
-                <li>Tuyên truyền, phổ biến kiến thức pháp luật về sở hữu trí tuệ.</li>
-                <li>Thực hiện các nhiệm vụ khác theo quy định của pháp luật và cơ quan quản lý nhà nước.</li>
-              </ul>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 0, width: '100%' }}>
+            {/* Cột trái: timeline */}
+            <div style={{ width: 200, minWidth: 180, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 40, paddingBottom: 40, paddingLeft: 18 }}>
+              {YEARS.map((item, idx) => (
+                <button
+                  key={item.year}
+                  onClick={() => setSelected(idx)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    outline: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    cursor: 'pointer',
+                    marginBottom: idx < YEARS.length - 1 ? 70 : 0,
+                    padding: 0,
+                    width: '100%',
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 18,
+                      height: 18,
+                      borderRadius: '50%',
+                      background: idx === selected ? '#233a7c' : '#d3d8e6',
+                      border: idx === selected ? '2.5px solid #233a7c' : '2.5px solid #d3d8e6',
+                      display: 'inline-block',
+                      marginRight: 14,
+                      transition: 'background 0.2s, border 0.2s',
+                    }}
+                  ></span>
+                  {/* Tách số/tháng và năm thành 2 span, style riêng */}
+                  {(() => {
+                    // Hỗ trợ day, month, year
+                    const parts = [];
+                    // Đặt cùng một fontSize cho tất cả các phần
+                    const timeFontSize = idx === selected ? 28 : 22;
+                    if (item.day) {
+                      parts.push({
+                        value: item.day.toString().padStart(2, '0'),
+                        style: {
+                          fontFamily: 'SVN-Gilroy',
+                          fontWeight: 700,
+                          fontSize: timeFontSize,
+                          color: idx === selected ? '#233a7c' : '#c2cbe6',
+                          letterSpacing: 1,
+                          transition: 'color 0.2s, font-size 0.2s',
+                          marginBottom: 0,
+                        }
+                      });
+                    }
+                    if (item.month) {
+                      if (parts.length > 0) parts.push({
+                        value: ' . ',
+                        style: {
+                          fontFamily: 'SVN-Gilroy',
+                          fontWeight: 700,
+                          fontSize: timeFontSize,
+                          color: idx === selected ? '#233a7c' : '#c2cbe6',
+                          margin: '0 2px',
+                          transition: 'color 0.2s, font-size 0.2s',
+                        }
+                      });
+                      parts.push({
+                        value: item.month.toString().padStart(2, '0'),
+                        style: {
+                          fontFamily: 'SVN-Gilroy',
+                          fontWeight: 700,
+                          fontSize: timeFontSize,
+                          color: idx === selected ? '#233a7c' : '#c2cbe6',
+                          letterSpacing: 1,
+                          transition: 'color 0.2s, font-size 0.2s',
+                          marginBottom: 0,
+                        }
+                      });
+                    }
+                    if (item.year) {
+                      if (parts.length > 0) parts.push({
+                        value: ' . ',
+                        style: {
+                          fontFamily: 'SVN-Gilroy',
+                          fontWeight: 700,
+                          fontSize: timeFontSize,
+                          color: idx === selected ? '#233a7c' : '#c2cbe6',
+                          margin: '0 2px',
+                          transition: 'color 0.2s, font-size 0.2s',
+                        }
+                      });
+                      parts.push({
+                        value: item.year,
+                        style: {
+                          fontFamily: 'SVN-Gilroy',
+                          fontWeight: 700,
+                          fontSize: timeFontSize,
+                          color: idx === selected ? '#233a7c' : '#c2cbe6',
+                          marginBottom: 0,
+                          transition: 'color 0.2s, font-size 0.2s',
+                        }
+                      });
+                    }
+                    return (
+                      <>
+                        {parts.map((part, i) => (
+                          <span key={i} style={part.style}>{part.value}</span>
+                        ))}
+                      </>
+                    );
+                  })()}
+                </button>
+              ))}
             </div>
-            {/* Right: Hình ảnh nhỏ, click mở PDF và tải về */}
-            <div style={{ flex: 1, minWidth: 260, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: 0 }}>
-              <a
-                href={filePdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                download
+            {/* Cột phải: nội dung */}
+            <div style={{ flex: 1, marginLeft: 40, marginTop: 30, padding: 5, display: 'flex', justifyContent: 'flex-start' }}>
+              <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textDecoration: "none",
-                  
+                  fontSize: 16,
+                  color: '#222',
+                  lineHeight: 1.7,
+                  textAlign: 'justify',
+                  maxWidth: 750,
+                  width: '100%',
+                  padding: '24px 32px',
                 }}
-                title="Xem và tải file PDF"
-              >
-                <img
-                  src={page1}
-                  alt="Tải file PDF"
-                  style={{ width: 150, height: "auto",  boxShadow: "0 2px 8px rgba(58,91,183,0.08)", marginBottom: 0, border: "1px solid #e0e0e0", cursor: "pointer" }}
-                />
-                <span style={{ color: "#3a5bb7", fontWeight: 700, fontSize: 16, marginTop: 2 }}>Tải/Xem file PDF</span>
-              </a>
-              <div style={{ fontSize: 14, color: "#888", marginTop: 10 }}>Xem chi tiết chức năng nhiệm vụ</div>
+                dangerouslySetInnerHTML={{ __html: YEARS[selected].content }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-{/*   
+      {/* PHẦN CHỨC NĂNG NHIỆM VỤ */}
+      <section style={{ background: "#fdf9f3", minHeight: 350, width: "100vw", padding: 0 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
+          {/* Tiêu đề và đường kẻ ngang */}
+          <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32, position: 'relative' }}>
+            <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
+              CHỨC NĂNG NHIỆM VỤ
+            </h1>
+            <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
+            <button
+              onClick={() => window.location.href = '/chuc-nang-nhiem-vu'}
+              style={{
+                position: 'absolute',
+                right: 0,
+                background: 'none',
+                border: 'none',
+                color: '#222',
+                fontSize: 15,
+                fontFamily: 'SVN-Gilroy',
+                cursor: 'pointer',
+                padding: 0,
+                marginRight: 0,
+                top: 2,
+                fontWeight: 400,
+              }}
+            >
+              Xem thêm &gt;
+            </button>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
+            {/* Left: Danh sách chức năng */}
+            {(() => {
+              const FUNCTION_LIST = [
+                {
+                  label: 'Giám định &\nHỗ trợ thực thi pháp luật',
+                  color: '#233a7c',
+                  content: [
+                    'Trung tâm Bảo vệ bản quyền Việt Nam (VCPC) là đơn vị sự nghiệp công lập trực thuộc Cục Bản quyền tác giả, có tư cách pháp nhân, con dấu riêng và tài khoản tại Kho bạc nhà nước cũng như Ngân hàng thương mại. Trung tâm đồng vai trò then chốt trong việc cung cấp các dịch vụ công và hỗ trợ quản lý nhà nước về quyền tác giả, quyền liên quan và phát triển công nghiệp văn hóa.',
+                    'VCPC chủ trì tiếp nhận và thực hiện hoạt động giám định quyền tác giả, quyền liên quan theo yêu cầu của các tổ chức, cá nhân. Trung tâm chịu trách nhiệm lưu trữ, bảo quản mẫu vật, chứng cứ và hồ sơ giám định, đồng thời cung cấp các dịch vụ giám sát để phát hiện các hành vi vi phạm bản quyền.'
+                  ]
+                },
+                {
+                  label: 'Quản lý dữ liệu &\nChuyển đổi số',
+                  color: '#bfcbe6',
+                  content: [
+                    'Với Quyết định số 88/QĐ-BQTG của Cục trưởng Cục Bản quyền tác giả, quy chế tổ chức và hoạt động của Trung tâm chính thức được ban hành.',
+                    '. Đây là cột mốc quan trọng giúp Trung tâm xây dựng đội ngũ giám định viên chuyên nghiệp và triển khai hoạt động giám định một cách bài bản, tạo nền tảng vững chắc cho hoạt động bản quyền tại Việt Nam.'
+                  ]
+                },
+                {
+                  label: 'Chuyển giao &\nKhai thác quyền',
+                  color: '#bfcbe6',
+                  content: [
+                    'Tiền thân của VCPC là Trung tâm Giám định quyền tác giả, quyền liên quan được thành lập theo Quyết định số 1981/QĐ-BVHTTDL của Bộ trưởng Bộ Văn hóa, Thể thao và Du lịch. Trong giai đoạn đầu, Trung tâm tập trung vào các nhiệm vụ chuyên sâu: thực hiện hoạt động giám định, cung cấp ý kiến chuyên môn phục vụ giải quyết tranh chấp, xử lý vi phạm và hỗ trợ quản lý nhà nước về thực thi pháp luật sở hữu trí tuệ.'
+                  ]
+                },
+                {
+                  label: 'Thông tin, Truyền thông\n & Đào tạo',
+                  color: '#bfcbe6',
+                  content: [
+                    'VCPC thực hiện chức năng thông tin theo quy định quốc tế, phổ biến kiến thức pháp luật và đào tạo bồi dưỡng chuyên môn nghiệp vụ. Trung tâm đồng tổ chức các sự kiện như hội nghị, hội thảo và thực hiện biên soạn, dịch thuật, xuất bản các tài liệu nghiên cứu, hướng dẫn về bản quyền.'
+                  ]
+                },
+                {
+                  label: 'Phát triển\n và Dịch vụ công khác',
+                  color: '#bfcbe6',
+                  content: [
+                    'Trung tâm cung cấp dịch vụ cấp bản sao, phô bản Giấy chứng nhận đăng ký quyền tác giả, quyền liên quan và các bản định hình đối tượng quyền. Ngoài ra, VCPC nghiên cứu đề xuất các dự án liên danh, liên kết và xã hội hóa nhằm thúc đẩy sự phát triển của các ngành công nghiệp văn hóa tại Việt Nam.'
+                  ]
+                }
+              ];
+              const [selectedFunc, setSelectedFunc] = useState(0);
+              return <>
+                <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
+                  {FUNCTION_LIST.map((item, idx) => (
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', marginBottom: 24, paddingLeft: 0, paddingRight: 0 }}>
+                      {/* Cột trái: label chức năng */}
+                      <div
+                        style={{
+                          minWidth: 290,
+                          maxWidth: 340,
+                          paddingLeft: 0,
+                          paddingRight: 24,
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: 12,
+                          cursor: 'pointer',
+                          height: '100%',
+                        }}
+                        onClick={() => setSelectedFunc(idx)}
+                      >
+                        <span style={{
+                          width: 14,
+                          height: 14,
+                          borderRadius: '50%',
+                          background: idx === selectedFunc ? '#233a7c' : '#bfcbe6',
+                          display: 'inline-block',
+                          marginRight: 10,
+                          marginTop: 4,
+                          transition: 'background 0.2s',
+                        }}></span>
+                        <span style={{
+                          color: idx === selectedFunc ? '#233a7c' : '#bfcbe6',
+                          fontWeight: idx === selectedFunc ? 700 : 600,
+                          fontSize: idx === selectedFunc ? 22 : 20,
+                          fontFamily: 'SVN-Gilroy',
+                          lineHeight: 1.2,
+                          whiteSpace: 'pre-line',
+                          wordBreak: 'break-word',
+                          transition: 'color 0.2s, font-size 0.2s, font-weight 0.2s',
+                          textAlign: 'left',
+                          display: 'block',
+                          maxWidth: 300,
+                        }}>{item.label}</span>
+                      </div>
+                      {/* Cột phải: nội dung chức năng */}
+                      <div style={{ flex: 1, minWidth: 400, paddingLeft: 0, paddingRight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        {item.content.map((text, i) => (
+                          <div key={i} style={{ fontSize: 16, color: idx === selectedFunc ? '#222' : '#bfcbe6', lineHeight: 1.7, textAlign: 'justify', marginBottom: 10, transition: 'color 0.2s' }}>
+                            {text}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>;
+            })()}
+          </div>
+        </div>
+      </section>
+
+      {/*   
       <section style={{ background: "#fcf8f2", width: "100vw", padding: 0, minHeight: 600, marginTop: 0 }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 40px" }}>
          
