@@ -7,36 +7,56 @@ import { useState } from 'react';
 
 const Support = () => {
   const [form, setForm] = useState({
-    userId: '',
+    fullName: '',
+    phone: '',
     email: '',
     title: '',
     content: '',
+    image: null,
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === 'image') {
+      setForm({ ...form, image: files[0] });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
     setError('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.userId.trim() || !form.email.trim() || !form.title.trim() || !form.content.trim()) {
+    setError('');
+    setSuccess('');
+    if (!form.fullName.trim() || !form.phone.trim() || !form.email.trim() || !form.title.trim() || !form.content.trim()) {
       setError('Vui lòng nhập đầy đủ thông tin bắt buộc.');
       return;
     }
+    const formData = new FormData();
+    formData.append('fullName', form.fullName);
+    formData.append('phone', form.phone);
+    formData.append('email', form.email);
+    formData.append('title', form.title);
+    formData.append('content', form.content);
+    if (form.image) formData.append('image', form.image);
+
     try {
-      const res = await fetch('http://localhost:3000/support-request', {
+      const res = await fetch('http://localhost:3000/support', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: formData,
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Có lỗi xảy ra.');
-      alert('Gửi thành công!');
-      setForm({ userId: '', email: '', title: '', content: '' });
+      if (res.ok) {
+        setSuccess('Gửi yêu cầu thành công!');
+        setForm({ fullName: '', phone: '', email: '', title: '', content: '', image: null });
+      } else {
+        setError(data.message || 'Gửi yêu cầu thất bại.');
+      }
     } catch (err) {
-      setError(err.message || 'Có lỗi xảy ra khi gửi yêu cầu.');
+      setError('Không thể kết nối máy chủ.');
     }
   };
 
@@ -86,69 +106,98 @@ const Support = () => {
           <h1 style={{ fontWeight: 600, fontSize: 36, marginBottom: 8, color: '#224394', letterSpacing: 0.5, position: 'relative', zIndex: 2 }}>HỖ TRỢ NGƯỜI DÙNG</h1>
         <p style={{ color: '#224394', marginBottom: 8 }}>
             Để được hỗ trợ nhanh chóng, vui lòng cung cấp thông tin và nội dung bạn cần hỗ trợ tại đây.<br />
-          Ngoài ra, bạn cũng có thể gửi email trực tiếp cho chúng tôi theo địa chỉ <br />
+          Ngoài ra, bạn cũng có thể gửi email trực tiếp cho chúng tôi theo địa chỉ: cuongvcpc@gmail.com<br />
           
         </p>
-        <form style={{ marginTop: 24 }} onSubmit={handleSubmit}>
+        <form style={{ marginTop: 24 }} onSubmit={handleSubmit} encType="multipart/form-data">
           {error && <div style={{ color: 'red', marginBottom: 12, fontWeight: 600 }}>{error}</div>}
-          <div style={{ display: 'flex', gap: 16 }}>
-            <div style={{ flex: 1 }}>
-              <label>* ID người dùng</label>
-              <input
-                type="text"
-                name="userId"
-                placeholder="Nhập ID người dùng"
-                value={form.userId}
-                onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '14px 18px',
-                  border: '2px solid #d2d8e6',
-                  borderRadius: 12,
-                  fontSize: 18,
-                  background: '#fff',
-                  outline: 'none',
-                  color: '#222',
-                  fontWeight: 400,
-                  fontFamily: 'Times New Roman, Times, serif',
-                  marginBottom: 0,
-                  boxSizing: 'border-box',
-                  transition: 'border 0.2s',
-                }}
-                onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
-                onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
-              />
-            </div>
-            <div style={{ flex: 1 }}>
-              <label>* Email nhận phản hồi</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Nhập email"
-                value={form.email}
-                onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '14px 18px',
-                  border: '2px solid #d2d8e6',
-                  borderRadius: 12,
-                  fontSize: 18,
-                  background: '#fff',
-                  outline: 'none',
-                  color: '#222',
-                  fontWeight: 400,
-                  fontFamily: 'Times New Roman, Times, serif',
-                  marginBottom: 0,
-                  boxSizing: 'border-box',
-                  transition: 'border 0.2s',
-                }}
-                onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
-                onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
-              />
-            </div>
+          {success && <div style={{ color: 'green', marginBottom: 12, fontWeight: 600 }}>{success}</div>}
+          <div style={{ marginBottom: 16 }}>
+            <label>Họ và tên <span style={{ color: 'red' }}>*</span></label>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Nhập họ và tên"
+              value={form.fullName}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '14px 18px',
+                border: '2px solid #d2d8e6',
+                borderRadius: 12,
+                fontSize: 18,
+                background: '#fff',
+                outline: 'none',
+                color: '#222',
+                fontWeight: 400,
+                fontFamily: 'Times New Roman, Times, serif',
+                marginBottom: 0,
+                boxSizing: 'border-box',
+                transition: 'border 0.2s',
+              }}
+              onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+              onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+              required
+            />
           </div>
-          <div style={{ marginTop: 16 }}>
-            <label>* Tiêu đề</label>
+          <div style={{ marginBottom: 16 }}>
+            <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Nhập số điện thoại"
+              value={form.phone}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '14px 18px',
+                border: '2px solid #d2d8e6',
+                borderRadius: 12,
+                fontSize: 18,
+                background: '#fff',
+                outline: 'none',
+                color: '#222',
+                fontWeight: 400,
+                fontFamily: 'Times New Roman, Times, serif',
+                marginBottom: 0,
+                boxSizing: 'border-box',
+                transition: 'border 0.2s',
+              }}
+              onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+              onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+              required
+            />
+          </div>
+          <div style={{ marginBottom: 16 }}>
+            <label>Email <span style={{ color: 'red' }}>*</span></label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Nhập email"
+              value={form.email}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '14px 18px',
+                border: '2px solid #d2d8e6',
+                borderRadius: 12,
+                fontSize: 18,
+                background: '#fff',
+                outline: 'none',
+                color: '#222',
+                fontWeight: 400,
+                fontFamily: 'Times New Roman, Times, serif',
+                marginBottom: 0,
+                boxSizing: 'border-box',
+                transition: 'border 0.2s',
+              }}
+              onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+              onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+              required
+            />
+          </div>
+          <div style={{ marginBottom: 16 }}>
+            <label>Tiêu đề <span style={{ color: 'red' }}>*</span></label>
             <input
               type="text"
               name="title"
@@ -172,10 +221,11 @@ const Support = () => {
               }}
               onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
               onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+              required
             />
           </div>
-          <div style={{ marginTop: 16 }}>
-            <label>* Nội dung yêu cầu hỗ trợ</label>
+          <div style={{ marginBottom: 16 }}>
+            <label>Nội dung yêu cầu hỗ trợ <span style={{ color: 'red' }}>*</span></label>
             <textarea
               name="content"
               placeholder="Nhập nội dung hỗ trợ"
@@ -202,6 +252,21 @@ const Support = () => {
               }}
               onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
               onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+            />
+          </div>
+          <div style={{ marginBottom: 16 }}>
+            <label>Hình ảnh đính kèm (nếu có)</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '8px 0',
+                fontSize: 16,
+                fontFamily: 'Times New Roman, Times, serif',
+              }}
             />
           </div>
           <button type="submit" style={{ marginTop: 24, background: '#ffe066', color: '#111', fontWeight: 700, border: 'none', borderRadius: 8, padding: '12px 0', width: 160, fontSize: 18, cursor: 'pointer' }}>Gửi yêu cầu</button>

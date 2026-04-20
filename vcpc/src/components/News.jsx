@@ -167,7 +167,7 @@ function News() {
           </div> */}
         </div>
 
-        <div style={{
+        {/* <div style={{
           width: '100%',
           minHeight: 120,
           overflow: 'hidden',
@@ -177,7 +177,7 @@ function News() {
           padding: '48px 0',
           boxSizing: 'border-box',
         }}>
-          {/* Overlay */}
+          
           <div style={{
             position: 'absolute',
             top: 0,
@@ -188,7 +188,7 @@ function News() {
             zIndex: 1,
             padding: '3px 36'
           }} />
-          {/* Content */}
+        
           <div style={{
             width: '100%',
             minWidth: 320,
@@ -228,7 +228,7 @@ function News() {
               Đăng ký tham gia
             </button>
           </div>
-        </div>
+        </div> */}
 
        
       </section>
@@ -282,7 +282,7 @@ function News() {
 
 
          <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
-          <form style={{
+          {/* <form style={{
             display: "flex",
             alignItems: "center",
             width: 800,
@@ -302,7 +302,7 @@ function News() {
               paddingLeft: 18,
               background: "none"
             }}>
-              {/* Centered heroInput image absolutely in the input area */}
+              
               <img
                 src={heroInput}
                 alt="bginput"
@@ -354,15 +354,15 @@ function News() {
             >
               Tìm kiếm
             </button>
-          </form>
+          </form> */}
         </div>
       </section>
 
       {/* Bản quyền mới nhất */}
        {/* Bản quyền mới nhất */}
-            <section style={{ background: '#fcf8f2', padding: '48px 0 32px 0', marginTop: 0 }}>
+            {/* <section style={{ background: '#fcf8f2', padding: '48px 0 32px 0', marginTop: 0 }}>
               <div style={{ maxWidth: 1280, margin: '0 auto', padding: 0 }}>
-                {/* Tiêu đề và gạch riêng */}
+                
                 <div style={{ width: '100%', marginBottom: 0, paddingLeft: 0, position: 'relative' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 0 }}>
                     <span style={{ color: '#22336C', fontWeight: 700, fontSize: 32, letterSpacing: 0.5, lineHeight: 1, zIndex: 2, position: 'relative' }}>BẢN QUYỀN MỚI NHẤT</span>
@@ -397,17 +397,17 @@ function News() {
                       </button>
                     </div>
                   </div>
-                    {/* Gạch divider */}
+                   
                       <div style={{ position: 'relative', width: '100%', marginTop: 8, marginBottom: 28, height: 16 }}>
-                        {/* Top gray line */}
+                     
                         <div style={{ position: 'absolute', left: 60, top: 5, width: 1220, height: 1, background: '#DFDFDF', borderRadius: 1, zIndex: 1 }}></div>
-                        {/* Blue line */}
+                       
                         <div style={{ position: 'absolute', left: 0, top: 5, width: 56, height: 5, background: '#3C5DAA', clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0% 100%)', borderRadius: 2, zIndex: 2 }}></div>
-                        {/* Bottom gray line */}
+                        
                         <div style={{ position: 'absolute', left: 60, top: 9, width: 1220, height: 1, background: '#DFDFDF', borderRadius: 1, zIndex: 1 }}></div>
                     </div>
                 </div>
-                {/* Danh sách bản quyền mới nhất */}
+                
                 <div
                   ref={copyrightListRef}
                   style={{
@@ -425,7 +425,7 @@ function News() {
                     <div key={idx} style={{ minWidth: 320, maxWidth: 340, background: '#fff',  boxShadow: '0 4px 24px 0 rgba(16,33,75,0.07)', padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 0, transition: 'box-shadow 0.2s', cursor: 'pointer' }}>
                       <div style={{ width: '100%', position: 'relative', overflow: 'hidden', height: 200, background: '#222' }}>
                         <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.2s' }} />
-                        {/* Play button overlay */}
+                        
                         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(24,24,24,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <div style={{ width: 64, height: 64, background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)', cursor: 'pointer', transition: 'box-shadow 0.2s' }}>
                             <svg width="50" height="50" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -434,7 +434,7 @@ function News() {
                             </svg>
                           </div>
                         </div>
-                        {/* Official tag */}
+                        
                         {item.official && (
                           <div style={{ position: 'absolute', left: 12, bottom: 12, background: '#183354', color: '#fff', fontWeight: 700, fontSize: 16, borderRadius: 6, padding: '2px 16px', letterSpacing: 1, zIndex: 2 }}>OFFICIAL</div>
                         )}
@@ -451,7 +451,7 @@ function News() {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
     </>
   );
 }

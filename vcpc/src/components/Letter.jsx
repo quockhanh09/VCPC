@@ -126,8 +126,7 @@ function Letter() {
                     </div>
                 </div>
                 <h1 style={{ color: "#22336C", fontWeight: 700, fontSize: 28, textAlign: "center", marginBottom: 12, lineHeight: 1.3 }}>
-                    Công Bố Báo Cáo Thường Niên: <br />
-                    Tình Hình Vi Phạm Bản Quyền Năm 2026
+                    VCPC chính thức triển khai các dịch vụ <br/>quản lý, tư vấn, hỗ trợ toàn diện về quyền tác giả, quyền liên quan
                 </h1>
                 <div style={{ display: "flex", justifyContent: "center", gap: 32, color: "#888", fontSize: 15, marginBottom: 18 }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

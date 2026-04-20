@@ -379,7 +379,7 @@ function AppContent() {
 
                 {/* ===== STATS ===== */}
                 {/* SEARCH BAR (stats section replaced) */}
-                <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
+                {/* <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
                   <form style={{
                     display: "flex",
                     alignItems: "center",
@@ -400,7 +400,7 @@ function AppContent() {
                       paddingLeft: 18,
                       background: "none"
                     }}>
-                      {/* Centered heroInput image absolutely in the input area */}
+                      
                       <img
                         src={heroInput}
                         alt="bginput"
@@ -455,7 +455,7 @@ function AppContent() {
                       Tìm kiếm
                     </button>
                   </form>
-                </div>
+                </div> */}
 
 
                 <section
@@ -515,7 +515,7 @@ function AppContent() {
  Hỗ trợ trọn gói thủ tục đăng ký quyền tác giả, giúp bạn sở hữu tấm "giấy khai sinh" pháp lý cho mọi sản phẩm sáng tạo nhanh chóng và bảo mật.
  </div>
 
-                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Support'; }}>Đăng ký dịch vụ</button>
                     </div>
                     {/* Card 2 */}
 
@@ -557,7 +557,7 @@ function AppContent() {
 Phân tích, đánh giá tính độc bản và mức độ vi phạm của tác phẩm. Cung cấp căn cứ chuyên môn vững chắc để bảo vệ quyền lợi khi có tranh chấp.
 </div>
 
-                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>Đăng ký dịch vụ</button>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Support'; }}>Đăng ký dịch vụ</button>
                     </div>
 
                     {/* Card 3 */}
@@ -598,7 +598,7 @@ Phân tích, đánh giá tính độc bản và mức độ vi phạm của tác
 
                       <div style={{ color: "#E3E6EB", fontSize: 15, fontWeight: 400, marginBottom: 32, lineHeight: 1.5 }}>
 Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai thác bản quyền. Đảm bảo quy trình mua bán chất xám diễn ra minh bạch, đúng luật.</div>
-                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Letter'; }}>
+                      <button className="btn-service-hero" onClick={() => { window.location.href = '/Support'; }}>
                         Đăng ký dịch vụ
                       </button>
                     </div>

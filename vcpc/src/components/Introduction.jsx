@@ -106,7 +106,7 @@ Mở rộng nhiệm vụ: Không còn bó hẹp trong lĩnh vực giám định,
 ];
 
 function Introduction() {
-  const [selected, setSelected] = useState(0);
+  const [activeYear, setActiveYear] = useState(0);
   return (
     <>
       {/* PHẦN GIỚI THIỆU */}
@@ -145,141 +145,68 @@ function Introduction() {
       {/* PHẦN LỊCH SỬ HÌNH THÀNH */}
       <section style={{ background: "#fdf9f3", minHeight: 400, width: "100vw", padding: 0 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
-
           <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
               LỊCH SỬ HÌNH THÀNH
             </h1>
             <div style={{ flex: 1, height: 2, background: "#bdbdbd", marginLeft: 24 }} />
           </div>
-
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 0, width: '100%' }}>
-            {/* Cột trái: timeline */}
-            <div style={{ width: 200, minWidth: 180, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 40, paddingBottom: 40, paddingLeft: 18 }}>
-              {YEARS.map((item, idx) => (
-                <button
-                  key={item.year}
-                  onClick={() => setSelected(idx)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    outline: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                    cursor: 'pointer',
-                    marginBottom: idx < YEARS.length - 1 ? 70 : 0,
-                    padding: 0,
-                    width: '100%',
-                  }}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 48, width: '100%', padding: '24px 0 40px 0' }}>
+            {YEARS.map((item, idx) => {
+              const isActive = activeYear === idx;
+              return (
+                <div
+                  key={idx}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 32, cursor: 'pointer' }}
+                  onClick={() => setActiveYear(idx)}
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setActiveYear(idx); }}
                 >
-                  <span
-                    style={{
+                  {/* Cột trái: thời gian */}
+                  <div style={{ minWidth: 140, maxWidth: 180, display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginTop: 0 }}>
+                    <span style={{
                       width: 18,
                       height: 18,
                       borderRadius: '50%',
-                      background: idx === selected ? '#233a7c' : '#d3d8e6',
-                      border: idx === selected ? '2.5px solid #233a7c' : '2.5px solid #d3d8e6',
+                      background: isActive ? '#233a7c' : '#bfcbe6',
+                      
                       display: 'inline-block',
                       marginRight: 14,
-                      transition: 'background 0.2s, border 0.2s',
+                      transition: 'background 0.2s',
+                    }}></span>
+                    <span style={{
+                      fontFamily: 'SVN-Gilroy',
+                      fontWeight: 700,
+                      fontSize: 28,
+                      color: isActive ? '#233a7c' : '#bfcbe6',
+                      letterSpacing: 1,
+                      transition: 'color 0.2s',
+                    }}>
+                      {(item.month ? (item.month.toString().padStart(2, '0') + ' . ') : '') + item.year}
+                    </span>
+                  </div>
+                  {/* Cột phải: nội dung */}
+                  <div
+                    style={{
+                      flex: 1,
+                      fontSize: 16,
+                      color: isActive ? '#222' : '#bfcbe6',
+                      lineHeight: 1.7,
+                      textAlign: 'justify',
+                      maxWidth: 750,
+                      width: '100%',
+                      padding: '0 0 0 0',
+                      opacity: isActive ? 1 : 0.5,
+                      fontWeight: isActive ? 600 : 400,
+                      transition: 'color 0.2s, opacity 0.2s, font-weight 0.2s',
+                      userSelect: 'none',
                     }}
-                  ></span>
-                  {/* Tách số/tháng và năm thành 2 span, style riêng */}
-                  {(() => {
-                    // Hỗ trợ day, month, year
-                    const parts = [];
-                    // Đặt cùng một fontSize cho tất cả các phần
-                    const timeFontSize = idx === selected ? 28 : 22;
-                    if (item.day) {
-                      parts.push({
-                        value: item.day.toString().padStart(2, '0'),
-                        style: {
-                          fontFamily: 'SVN-Gilroy',
-                          fontWeight: 700,
-                          fontSize: timeFontSize,
-                          color: idx === selected ? '#233a7c' : '#c2cbe6',
-                          letterSpacing: 1,
-                          transition: 'color 0.2s, font-size 0.2s',
-                          marginBottom: 0,
-                        }
-                      });
-                    }
-                    if (item.month) {
-                      if (parts.length > 0) parts.push({
-                        value: ' . ',
-                        style: {
-                          fontFamily: 'SVN-Gilroy',
-                          fontWeight: 700,
-                          fontSize: timeFontSize,
-                          color: idx === selected ? '#233a7c' : '#c2cbe6',
-                          margin: '0 2px',
-                          transition: 'color 0.2s, font-size 0.2s',
-                        }
-                      });
-                      parts.push({
-                        value: item.month.toString().padStart(2, '0'),
-                        style: {
-                          fontFamily: 'SVN-Gilroy',
-                          fontWeight: 700,
-                          fontSize: timeFontSize,
-                          color: idx === selected ? '#233a7c' : '#c2cbe6',
-                          letterSpacing: 1,
-                          transition: 'color 0.2s, font-size 0.2s',
-                          marginBottom: 0,
-                        }
-                      });
-                    }
-                    if (item.year) {
-                      if (parts.length > 0) parts.push({
-                        value: ' . ',
-                        style: {
-                          fontFamily: 'SVN-Gilroy',
-                          fontWeight: 700,
-                          fontSize: timeFontSize,
-                          color: idx === selected ? '#233a7c' : '#c2cbe6',
-                          margin: '0 2px',
-                          transition: 'color 0.2s, font-size 0.2s',
-                        }
-                      });
-                      parts.push({
-                        value: item.year,
-                        style: {
-                          fontFamily: 'SVN-Gilroy',
-                          fontWeight: 700,
-                          fontSize: timeFontSize,
-                          color: idx === selected ? '#233a7c' : '#c2cbe6',
-                          marginBottom: 0,
-                          transition: 'color 0.2s, font-size 0.2s',
-                        }
-                      });
-                    }
-                    return (
-                      <>
-                        {parts.map((part, i) => (
-                          <span key={i} style={part.style}>{part.value}</span>
-                        ))}
-                      </>
-                    );
-                  })()}
-                </button>
-              ))}
-            </div>
-            {/* Cột phải: nội dung */}
-            <div style={{ flex: 1, marginLeft: 40, marginTop: 30, padding: 5, display: 'flex', justifyContent: 'flex-start' }}>
-              <div
-                style={{
-                  fontSize: 16,
-                  color: '#222',
-                  lineHeight: 1.7,
-                  textAlign: 'justify',
-                  maxWidth: 750,
-                  width: '100%',
-                  padding: '24px 32px',
-                }}
-                dangerouslySetInnerHTML={{ __html: YEARS[selected].content }}
-              />
-            </div>
+                  >
+                    <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
