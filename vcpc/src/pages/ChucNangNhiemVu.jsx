@@ -10,10 +10,10 @@ export default function ChucNangNhiemVu() {
           <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 32, color: "#111", margin: 0, marginBottom: 24 }}>
             CHỨC NĂNG NHIỆM VỤ
           </h1>
-          <p style={{ fontSize: 17, color: '#222', lineHeight: 1.7, marginBottom: 18 }}>
+          <p style={{ fontSize: 17, color: '#222', lineHeight: 1.7, marginBottom: 18, textAlign: 'justify' }}>
             Trung tâm Bảo vệ bản quyền Việt Nam là đơn vị sự nghiệp công lập trực thuộc Cục Bản quyền tác giả. Trung tâm có tư cách pháp nhân, con dấu riêng, được mở tài khoản tại Kho bạc nhà nước và Ngân hàng thương mại để hoạt động. Tên giao dịch quốc tế là Vietnam Copyright Protection Center (VCPC).
           </p>
-          <p style={{ fontSize: 17, color: '#222', lineHeight: 1.7, marginBottom: 18 }}>
+          <p style={{ fontSize: 17, color: '#222', lineHeight: 1.7, marginBottom: 18, textAlign: 'justify' }}>
             Trung tâm thực hiện chức năng cung cấp dịch vụ công về: giám định, thông tin, truyền thông, chuyển giao, khai thác quyền tác giả, quyền liên quan; hỗ trợ quản lý nhà nước và thực thi về bản quyền và công nghiệp văn hóa; tư vấn, hỗ trợ bảo vệ quyền lợi cho các tổ chức, cá nhân.
           </p>
 
@@ -35,7 +35,7 @@ export default function ChucNangNhiemVu() {
           <span><i className="fa fa-download" style={{ marginRight: 6 }}></i> TẢI VỀ FILE</span>
         </div>
         <ul style={{
-          textAlign: 'left',
+          textAlign: 'justify',
           maxWidth: 900,
           margin: '0 auto',
           color: '#6d6d6d',
@@ -51,7 +51,7 @@ export default function ChucNangNhiemVu() {
           <li>Căn cứ Quyết định số 693/QĐ-BVHTTDL ngày 18 tháng 3 năm 2025 của Bộ trưởng Bộ Văn hóa,Thể thao và Du lịch, quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Cục Bản quyền tác giả;</li>
           <li>Theo đề nghị của Giám đốc Trung tâm Bảo vệ bản quyền Việt Nam và Chánh Văn phòng Cục.</li>
    </ul>
-        <div style={{ maxWidth: 900, margin: '0 auto', marginBottom: 32, textAlign: 'left' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', marginBottom: 32, textAlign: 'justify' }}>
           <div style={{
             textAlign: 'center',
             fontFamily: 'SVN-Gilroy',
@@ -65,7 +65,7 @@ export default function ChucNangNhiemVu() {
           <div style={{ fontWeight: 700, fontSize: 17, color: '#222', fontFamily: 'SVN-Gilroy', marginBottom: 10, marginTop: 8 }}>
             Điều 1. Vị trí và chức năng
           </div>
-          <ol style={{ color: '#6d6d6d', fontSize: 16, fontFamily: 'SVN-Gilroy', lineHeight: 1.7, paddingLeft: 18, margin: 0, listStylePosition: 'inside' }}>
+          <ol style={{ color: '#6d6d6d', fontSize: 16, fontFamily: 'SVN-Gilroy', lineHeight: 1.7, paddingLeft: 18, margin: 0, listStylePosition: 'inside', textAlign: 'justify' }}>
             <li style={{ marginBottom: 6 }}>Trung tâm Bảo vệ bản quyền Việt Nam là đơn vị sự nghiệp công lập trực thuộc Cục Bản quyền tác giả, thực hiện chức năng cung cấp dịch vụ công về hoạt động giám định, thông tin, truyền thông, chuyển giao, khai thác quyền tác giả, quyền liên quan; hỗ trợ hoạt động quản lý nhà nước và thực thi về quyền tác giả, quyền liên quan và công nghiệp văn hóa; tư vấn, hỗ trợ bảo vệ bản quyền cho các tổ chức, cá nhân.</li>
             <li style={{ marginBottom: 6 }}>Trung tâm có tên quốc tế là: Vietnam Copyright Protection Center (Viết tắt là VCPC).</li>
             <li>Trung tâm có tư cách pháp nhân, con dấu riêng và được mở tài khoản tại Kho bạc nhà nước và Ngân hàng thương mại.</li>
@@ -73,7 +73,7 @@ export default function ChucNangNhiemVu() {
           <div style={{ fontWeight: 700, fontSize: 17, color: '#222', fontFamily: 'SVN-Gilroy', marginBottom: 10, marginTop: 8 }}>
             Điều 2. Nhiệm vụ, quyền hạn
           </div>
-          <ol style={{ color: '#6d6d6d', fontSize: 16, fontFamily: 'SVN-Gilroy', lineHeight: 1.7, paddingLeft: 18, margin: 0, listStylePosition: 'inside' }}>
+          <ol style={{ color: '#6d6d6d', fontSize: 16, fontFamily: 'SVN-Gilroy', lineHeight: 1.7, paddingLeft: 18, margin: 0, listStylePosition: 'inside', textAlign: 'justify' }}>
             <li>Xây dựng, trình Cục trưởng ban hành kế hoạch công tác dài hạn, ngắn hạn, hàng năm và tổ chức thực hiện sau khi được phê duyệt.</li>
             <li>Giúp Cục trưởng xây dựng các cơ chế, chính sách, dự án, đề án về giám định, thông tin, dữ liệu, chuyển đổi số, chuyển giao, khai thác, tư vấn, hỗ trợ bảo vệ quyền tác giả, quyền liên quan trong phạm vi chức năng, nhiệm vụ của Trung tâm.</li>
             <li>Chủ trì, tiếp nhận và thực hiện giám định quyền tác giả, quyền liên quan theo yêu cầu của các tổ chức, cá nhân; hỗ trợ các tổ chức và cá nhân về chuyên môn trong công tác giám định; thực hiện lưu trữ, bảo quản, quản lý và khai thác mẫu vật, chứng cứ, tài liệu, hồ sơ giám định về quyền tác giả, quyền liên quan.</li>
