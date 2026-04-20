@@ -32,7 +32,7 @@ const SUB_EVENTS = [
 const MAIN_NEWS = {
   image: heroBanner,
   tag: "BẢN QUYỀN",
-  title: "Công Bố Báo Cáo Thường Niên: Tình Hình Vi Phạm Bản Quyền Năm 2025",
+  title: "VCPC chính thức triển khai các dịch vụ quản lý, tư vấn, hỗ trợ toàn diện về quyền tác giả, quyền liên quan",
   author: "VCPC EDITOR",
   date: "08-06-2025",
   views: "20,546",
