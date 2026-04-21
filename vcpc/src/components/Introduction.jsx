@@ -110,7 +110,7 @@ function Introduction() {
   return (
     <>
       {/* PHẦN GIỚI THIỆU */}
-      <section style={{ background: "#fdf9f3", minHeight: "100vh", width: "100vw", padding: 0 }}>
+      <section style={{ background: "#fdf9f3", width: "100vw", padding: 0 }}>
         {/* Header title center */}
         <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#3a5bb7", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
@@ -190,14 +190,13 @@ function Introduction() {
                     style={{
                       flex: 1,
                       fontSize: 16,
-                      color: isActive ? '#222' : '#bfcbe6',
+                      color: isActive ? '#222' : '#888',
                       lineHeight: 1.7,
                       textAlign: 'justify',
-                      maxWidth: 750,
+                      maxWidth: 1000,
                       width: '100%',
-                      padding: '0 0 0 0',
+                      padding: 0,
                       opacity: isActive ? 1 : 0.5,
-                      
                       transition: 'color 0.2s, opacity 0.2s, font-weight 0.2s',
                       userSelect: 'none',
                     }}
@@ -215,7 +214,7 @@ function Introduction() {
       <section style={{ background: "#fdf9f3", minHeight: 350, width: "100vw", padding: 0 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0" }}>
           {/* Tiêu đề và đường kẻ ngang */}
-          <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32, position: 'relative' }}>
+          <div style={{ display: "flex", alignItems: "center", marginTop: 60, marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'SVN-Gilroy', fontWeight: 700, fontSize: 36, color: "#111", margin: 0 }}>
               CHỨC NĂNG NHIỆM VỤ
             </h1>
@@ -223,18 +222,17 @@ function Introduction() {
             <button
               onClick={() => window.location.href = '/chuc-nang-nhiem-vu'}
               style={{
-                position: 'absolute',
-                right: 0,
                 background: 'none',
                 border: 'none',
                 color: '#222',
-                fontSize: 15,
+                fontSize: 16,
                 fontFamily: 'SVN-Gilroy',
                 cursor: 'pointer',
                 padding: 0,
-                marginRight: 0,
-                top: 2,
+                marginLeft: 16,
                 fontWeight: 400,
+                lineHeight: 1,
+                alignSelf: 'center',
               }}
             >
               Xem thêm &gt;
