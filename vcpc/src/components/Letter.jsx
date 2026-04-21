@@ -38,7 +38,7 @@ function Letter() {
     return (
         <>
             {/* Banner section at the top */}
-            <div style={{
+            {/* <div style={{
                 width: '100%',
                 minHeight: 120,
                 overflow: 'hidden',
@@ -48,7 +48,7 @@ function Letter() {
                 padding: '48px 0',
                 boxSizing: 'border-box',
             }}>
-                {/* Overlay */}
+                
                 <div style={{
                     position: 'absolute',
                     top: 0,
@@ -59,7 +59,7 @@ function Letter() {
                     zIndex: 1,
                     padding: '3px 36'
                 }} />
-                {/* Content */}
+                
                 <div style={{
                     width: '100%',
                     minWidth: 320,
@@ -100,7 +100,7 @@ function Letter() {
                         Đăng ký tham gia
                     </button>
                 </div>
-            </div>
+            </div> */}
 
             {/* Main content box */}
             <div style={{ maxWidth: 1850, margin: "0 auto", padding: 32, borderRadius: 16, }}>
@@ -146,7 +146,7 @@ function Letter() {
 
 
                 <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "80px 0" }}>
-                    <form style={{
+                    {/* <form style={{
                         display: "flex",
                         alignItems: "center",
                         width: 800,
@@ -166,7 +166,7 @@ function Letter() {
                             paddingLeft: 18,
                             background: "none"
                         }}>
-                            {/* Centered heroInput image absolutely in the input area */}
+                            
                             <img
                                 src={heroInput}
                                 alt="bginput"
@@ -218,7 +218,7 @@ function Letter() {
                         >
                             Tìm kiếm
                         </button>
-                    </form>
+                    </form> */}
                 </div>
             </div>
 
