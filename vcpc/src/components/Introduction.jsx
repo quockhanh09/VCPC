@@ -197,7 +197,7 @@ function Introduction() {
                       width: '100%',
                       padding: '0 0 0 0',
                       opacity: isActive ? 1 : 0.5,
-                      fontWeight: isActive ? 600 : 400,
+                      
                       transition: 'color 0.2s, opacity 0.2s, font-weight 0.2s',
                       userSelect: 'none',
                     }}

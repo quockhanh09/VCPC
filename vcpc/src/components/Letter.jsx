@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import page1 from "../assets/img/page_1.png";
 import imgLette1 from "../assets/img/news-related-3.jpg";
 import imgNews4 from "../assets/img/ads-baner.png";
@@ -35,6 +35,18 @@ const RELATED_NEWS = [
 ];
 
 function Letter() {
+    const [views, setViews] = useState(0);
+
+    useEffect(() => {
+        // Gọi API tăng và lấy lượt xem
+        fetch("http://localhost:3000/views", { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                if (typeof data.views === 'number') setViews(data.views);
+            })
+            .catch(() => setViews(0));
+    }, []);
+    
     return (
         <>
             {/* Banner section at the top */}
@@ -136,7 +148,7 @@ function Letter() {
                         <i className="bi bi-calendar" /> 14-04-2026
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <i className="bi bi-eye" /> 20,546
+                        <i className="bi bi-eye" /> {views.toLocaleString("vi-VN")}
                     </span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", margin: "32px 0" }}>
