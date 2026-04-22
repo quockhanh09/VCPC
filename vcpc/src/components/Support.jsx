@@ -44,7 +44,7 @@ const Support = () => {
     if (form.image) formData.append('image', form.image);
 
     try {
-      const res = await fetch('http://localhost:3000/support', {
+      const res = await fetch('https://vcpc.onrender.com/support', {
         method: 'POST',
         body: formData,
       });

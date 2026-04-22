@@ -69,7 +69,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://vcpc.vercel.app'
+    'https://vcpc.vercel.app',
+    'https://vcpc.onrender.com'
   ],
   credentials: true
 }));
