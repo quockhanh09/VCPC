@@ -1,15 +1,78 @@
+const path = require('path');
+// GOOGLE SHEETS SETUP
+const { google } = require('googleapis');
+const SHEET_ID = '1voH277cNQ5Dgtokcz7Y0tl8Y1pbFdWHWxl-tSGtlF-A';
+const KEYFILEPATH = path.join(__dirname, 'fluent-justice-384908-949be833f84a.json');
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+
+async function appendToSheet(row) {
+  console.log('appendToSheet - row:', row);
+  const auth = new google.auth.GoogleAuth({
+    keyFile: KEYFILEPATH,
+    scopes: SCOPES,
+  });
+  const client = await auth.getClient();
+  const sheets = google.sheets({ version: 'v4', auth: client });
+  try {
+    // Kiểm tra nếu sheet trống thì thêm dòng tiêu đề
+    const getRes = await sheets.spreadsheets.values.get({
+      spreadsheetId: SHEET_ID,
+      range: 'Sheet1!A1:A1',
+    });
+    if (!getRes.data.values || getRes.data.values.length === 0) {
+      const header = [
+        'Họ tên',
+        'Số điện thoại',
+        'Email',
+        'Tiêu đề',
+        'Nội dung',
+        'Tên file ảnh',
+        'Thời gian gửi'
+      ];
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SHEET_ID,
+        range: 'Sheet1!A1',
+        valueInputOption: 'USER_ENTERED',
+        insertDataOption: 'INSERT_ROWS',
+        resource: { values: [header] },
+      });
+    }
+    const result = await sheets.spreadsheets.values.append({
+      spreadsheetId: SHEET_ID,
+      range: 'Sheet1!A1',
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      resource: {
+        values: [row],
+      },
+    });
+    console.log('appendToSheet - result:', result.data);
+  } catch (err) {
+    console.error('appendToSheet - error:', err);
+    throw err;
+  }
+}
+
 
 const express = require("express");
 const app = express();
 const PORT = 3000;
 const cors = require('cors');
 const ExcelJS = require('exceljs');
-const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 // Middleware để đọc JSON và cho phép CORS
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://vcpc.vercel.app'
+  ],
+  credentials: true
+}));
 
 // Route đơn giản
 app.get("/", (req, res) => {
@@ -17,66 +80,33 @@ app.get("/", (req, res) => {
 });
 
 // Route nhận hỗ trợ và ghi vào Excel (dùng promise chain)
-app.post('/support', (req, res) => {
-  const { userId, email, title, content } = req.body;
-  if (!userId || !email || !title || !content) {
+app.post('/support', upload.single('image'), async (req, res) => {
+  const { fullName, phone, email, title, content } = req.body;
+  // image: req.file nếu có
+  console.log('--- POST /support ---');
+  console.log('POST /support body:', req.body);
+  console.log('POST /support file:', req.file);
+  if (!fullName || !phone || !email || !title || !content) {
+    console.log('POST /support: thiếu thông tin');
     return res.status(400).json({ message: 'Thiếu thông tin bắt buộc.' });
   }
-
-  const filePath = path.join(__dirname, 'support_requests.xlsx');
-  const workbook = new ExcelJS.Workbook();
-
-  workbook.xlsx.readFile(filePath)
-    .then(() => {
-      let worksheet = workbook.getWorksheet('SupportRequests');
-      if (!worksheet) {
-        worksheet = workbook.addWorksheet('SupportRequests');
-        worksheet.columns = [
-          { header: 'User ID', key: 'userId', width: 20 },
-          { header: 'Email', key: 'email', width: 30 },
-          { header: 'Tiêu đề', key: 'title', width: 30 },
-          { header: 'Nội dung', key: 'content', width: 50 },
-          { header: 'Thời gian', key: 'createdAt', width: 22 },
-        ];
-      }
-      worksheet.addRow({
-        userId,
-        email,
-        title,
-        content,
-        createdAt: new Date().toLocaleString('vi-VN', { hour12: false })
-      });
-      return workbook.xlsx.writeFile(filePath);
-    })
-    .then(() => {
-      res.json({ message: 'Gửi yêu cầu thành công!' });
-    })
-    .catch(err => {
-      // Nếu file chưa tồn tại thì tạo mới
-      let worksheet = workbook.addWorksheet('SupportRequests');
-      worksheet.columns = [
-        { header: 'User ID', key: 'userId', width: 20 },
-        { header: 'Email', key: 'email', width: 30 },
-        { header: 'Tiêu đề', key: 'title', width: 30 },
-        { header: 'Nội dung', key: 'content', width: 50 },
-        { header: 'Thời gian', key: 'createdAt', width: 22 },
-      ];
-      worksheet.addRow({
-        userId,
-        email,
-        title,
-        content,
-        createdAt: new Date().toLocaleString('vi-VN', { hour12: false })
-      });
-      workbook.xlsx.writeFile(filePath)
-        .then(() => {
-          res.json({ message: 'Gửi yêu cầu thành công!' });
-        })
-        .catch(error => {
-          console.error(error);
-          res.status(500).json({ message: 'Lỗi ghi file Excel.' });
-        });
-    });
+  try {
+    // Ghi vào Google Sheets
+    await appendToSheet([
+      fullName,
+      phone,
+      email,
+      title,
+      content,
+      req.file ? req.file.filename : '',
+      new Date().toLocaleString('vi-VN', { hour12: false })
+    ]);
+    console.log('POST /support: gửi thành công');
+    res.json({ message: 'Gửi yêu cầu thành công!' });
+  } catch (err) {
+    console.error('Lỗi ghi Google Sheets:', err);
+    res.status(500).json({ message: 'Lỗi ghi Google Sheets.' });
+  }
 });
 
 // Route trả về file Excel chứa dữ liệu support

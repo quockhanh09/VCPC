@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "fluent-justice-384908",
+  "private_key_id": "949be833f84a163ff1eec66e2c32dc6415b52198",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDLTXTSNLCxNvA/\n2BqEUYRkvRj88CEoT3rdCElpj2EGcEHOKfCWEPKhVJLOycIQUKjvukeaxEhJ5Ex3\nRP0lcVjxprD6BVIXjPoul8KPZYMiITB5cIuqae1V5nEybkYVv3B1c/qRoe+NpyN3\nsKhLEMynagK8wya9J6gKakaVZDjTH/oKvjHFtxgkjpRKsi12CWZUyuJF2M6hMOvY\n6FskGX5MG8opiiEBvexNiUX2ESOFNvCHWhKy24d8V+k0CDl3lyTJPQMoiTGWvr2k\ntmJU6Rn8kdmboWk6vw9AHqJhO2OhVLaLw+HZtUHY4XNV+5Pah++GOo/+UOIef7DD\nm1hHizyVAgMBAAECggEAMo1IBxzi8q3ef4GU1mIOsZ3zoLF1DTj2LA/rcTwdvCQd\nuM3k7Ou56TPGbXTttHDaEQIY2/sCnp0OBno5GB5fJ3dzejfoecKsUvmZf16WhN4L\n16aMlAtS4JE0hH23H6FCrXHxVFUX4/kzcIeU0VWUDezmUVmVQGOj/TL/6hXJq3VO\nkJQGWf9fgwJrZEODDvYWTrjGKVk+Co5qJ0BXrjd9JLbh0apLCrA9d6Q/lPyrDgmm\n01BxO7+X19U7Se7YGnydLpdxtG+MUsYn3qKKUsnldaV+g9pFAhWZCr8aUZZhaWnm\nMcPdetZq+HJFk1t+5YiGGZWfJ2pq1WNLEd+bN2y24QKBgQDqVfSEI1YvWLybCr5Y\nBB9hTVSeUd9b3DTFyAji9Ka/14MVzKntyvYT8byz+YXgR6Ya+r9aiWh224M0ARDx\nK71gt8z3F4n74RbCZnvGC95OohSgihiSiaF0OzL4Fr2Ya1J/yvrVF/Qq2AQgs5xS\nYgpAXc8FhZtFqQbZMQIXGhJ7LwKBgQDeGQkpNDKC9kSdRsGTDLpOWQobtCQPzbZT\nOEuxQ7Hn3LfE8XwWu7F4+R4FFd0TkTD+UMto67rlBy0iTFGcWhp+ZNAvEZsI7syj\nEdPrQE3modN/DF6ZKxrq0UQPkv6wcgd/lkZcFAKZ2VH680o7jDslIjQbS7FttfkF\n/cHksi+DewKBgQDkxL1NMuI0nsCh678fVgb8iu4NEYiouTWb0Ek8p/MSXmbOpVtP\nllDd76V1XifgaJI0zI566KJfRrWz00ai6zyaa1Vh9Ez05S2+4yX6liOVSI4ynB6Z\nEFvaiOCdajX10vBbaeGunw/zs6dz9WSq2KOBaxNsJJ8NRpI0/q83tnBMaQKBgEOm\nKI4uYfxV+sxVEv0xcUYQBO4vTpSpuhFbImMaFYRkTG1miL976DDK4IP4BuDA5sVv\n4qVQuBqutuatjGYtY8h/+JF9sVVlN1usQHp1mcTYIc2e/Ol2obpIh4ye34jrErGg\nGkpNpgUqlrfzhvbgXduPsYNm6OJb/T//7SE1zRclAoGBAIzIpPVNKTHFZYmvbPau\nJkYda+g1K1UjrNOIoU4M0+i0FCOlBv+/bygTclrpRZatEE3dh5PbpVqcDubQyqxY\nsEnJvLyGzInj8Z8REy9IHejZ2WK/UgLrBIaY7/vESCJFU7E2rB+hTMznEEWVOCrF\nd0MEabYXgKx7sAshKcO9dHDY\n-----END PRIVATE KEY-----\n",
+  "client_email": "data-vcpc@fluent-justice-384908.iam.gserviceaccount.com",
+  "client_id": "113111288987493274995",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/data-vcpc%40fluent-justice-384908.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
