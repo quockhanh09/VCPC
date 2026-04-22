@@ -2,7 +2,15 @@ const path = require('path');
 // GOOGLE SHEETS SETUP
 const { google } = require('googleapis');
 const SHEET_ID = '1voH277cNQ5Dgtokcz7Y0tl8Y1pbFdWHWxl-tSGtlF-A';
-const KEYFILEPATH = path.join(__dirname, 'fluent-justice-384908-949be833f84a.json');
+let KEYFILEPATH = path.join(__dirname, 'fluent-justice-384908-949be833f84a.json');
+// Nếu chạy trên Render, lấy credentials từ biến môi trường và ghi ra file tạm
+if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  const tmpPath = '/tmp/service-account.json';
+  if (!require('fs').existsSync(tmpPath)) {
+    require('fs').writeFileSync(tmpPath, process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  }
+  KEYFILEPATH = tmpPath;
+}
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
 async function appendToSheet(row) {
