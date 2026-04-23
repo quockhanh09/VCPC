@@ -1,3 +1,39 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../assets/SVN-Gilroy/SVN-Gilroy Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../assets/SVN-Gilroy/SVN-Gilroy Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../assets/SVN-Gilroy/SVN-Gilroy Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../assets/SVN-Gilroy/SVN-Gilroy Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
 /* Ẩn thanh kéo cho trending carousel */
 .trending-carousel-hide-scroll {
   scrollbar-width: none; /* Firefox */
@@ -11,7 +47,7 @@
   position: relative;
 }
 .license-tab {
-  font-family: 'Inter', 'Raleway', sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   background: rgba(255,255,255,0.06);
   color: #d5dcf5;
   border: 2px solid rgba(255,255,255,0.14);
@@ -219,9 +255,9 @@
 
 
 :root {
-  --default-font: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --heading-font: "Raleway", sans-serif;
-  --nav-font: "Inter", sans-serif;
+  --default-font: 'Inter', Arial, Helvetica, sans-serif;
+  --heading-font: 'Inter', Arial, Helvetica, sans-serif;
+  --nav-font: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -314,7 +350,7 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: Lora, serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
 
 }
 
@@ -584,7 +620,7 @@ span {
 }
 
 #navmenu ul li a {
-  font-family: 'Times New Roman', serif;
+  font-family: 'SVN-Gilroy', Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #f6d17a;
   /* Màu vàng chữ */

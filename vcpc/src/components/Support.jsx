@@ -70,7 +70,7 @@ const Support = () => {
         minHeight: '80vh',
         width: '100%',
         background: 'none',
-        fontFamily: 'Times New Roman, Times, serif',
+         fontFamily: 'Inter, Arial, Helvetica, sans-serif',
       }}
     >
       {/* Left: Form */}
@@ -92,7 +92,7 @@ const Support = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           minHeight: 480,
-          fontFamily: 'Times New Roman, Times, serif',
+           fontFamily: 'Inter, Arial, Helvetica, sans-serif',
         }}
       >
           {/* Overlay trắng mờ tăng hiệu ứng glassmorphism */}
@@ -130,7 +130,7 @@ const Support = () => {
                 outline: 'none',
                 color: '#222',
                 fontWeight: 400,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
                 marginBottom: 0,
                 boxSizing: 'border-box',
                 transition: 'border 0.2s',
@@ -158,7 +158,7 @@ const Support = () => {
                 outline: 'none',
                 color: '#222',
                 fontWeight: 400,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
                 marginBottom: 0,
                 boxSizing: 'border-box',
                 transition: 'border 0.2s',
@@ -186,7 +186,7 @@ const Support = () => {
                 outline: 'none',
                 color: '#222',
                 fontWeight: 400,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
                 marginBottom: 0,
                 boxSizing: 'border-box',
                 transition: 'border 0.2s',
@@ -214,7 +214,7 @@ const Support = () => {
                 outline: 'none',
                 color: '#222',
                 fontWeight: 400,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
                 marginBottom: 0,
                 boxSizing: 'border-box',
                 transition: 'border 0.2s',
@@ -243,7 +243,7 @@ const Support = () => {
                 outline: 'none',
                 color: '#222',
                 fontWeight: 400,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
                 marginBottom: 0,
                 boxSizing: 'border-box',
                 transition: 'border 0.2s',
@@ -265,7 +265,7 @@ const Support = () => {
                 width: '100%',
                 padding: '8px 0',
                 fontSize: 16,
-                fontFamily: 'Times New Roman, Times, serif',
+                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
               }}
             />
           </div>

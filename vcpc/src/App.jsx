@@ -258,8 +258,8 @@ function AppContent() {
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
-                    minHeight: "380px",
-                    height: "390px",
+                      minHeight: "480px",
+                      height: "500px",
                     width: "100vw",
                     marginTop: "30px",
                   }}
@@ -267,8 +267,8 @@ function AppContent() {
                   <div
                     className="parallax-window fullscreen hero-flex"
                     style={{
-                      width: "100vw",
-                      height: "380px",
+                        width: "100vw",
+                        height: "480px",
                       display: "flex",
                       alignItems: "center",
                       position: "relative",

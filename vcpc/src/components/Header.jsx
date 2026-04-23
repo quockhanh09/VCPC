@@ -23,6 +23,7 @@ function Header() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        fontFamily: 'SVN-Gilroy',
       }}
     >
       <Link to="/">
@@ -30,7 +31,6 @@ function Header() {
       </Link>
       <nav id="navmenu" className="navmenu" style={{ flexShrink: 0 }}>
         <ul style={{
-         
           alignItems: "center",
           justifyContent: "center",
           gap: 32,
@@ -38,17 +38,18 @@ function Header() {
           margin: 0,
           padding: 0,
           minWidth: 700,
+          fontFamily: 'SVN-Gilroy',
         }}>
-          <li><Link to="/Introduction" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>VỀ CHÚNG TÔI</Link></li>
-          <li><Link to="/News" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>TIN TỨC</Link></li>
+          <li><Link to="/Introduction" style={{ color: "#fff", fontWeight: 400, textDecoration: "none", fontSize: 16 }}>VỀ CHÚNG TÔI</Link></li>
+          <li><Link to="/News" style={{ color: "#fff", fontWeight:400, textDecoration: "none", fontSize: 16 }}>TIN TỨC</Link></li>
           {/* <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>CÔNG BỐ</Link></li> */}
           {/* <li><Link to="/Deatails" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>DỊCH VỤ BẢN QUYỀN</Link></li> */}
           {/* <li><Link to="/" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>SÀN GIAO DỊCH</Link></li> */}
-          <li><Link to="/Support" style={{ color: "#fff", fontWeight: 500, textDecoration: "none", fontSize: 16 }}>HỖ TRỢ</Link></li>
+          <li><Link to="/Support" style={{ color: "#fff", fontWeight: 400, textDecoration: "none", fontSize: 16 }}>HỖ TRỢ</Link></li>
         </ul>
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 32 }}>
-  {/* <img src={iconGlobal} alt="Globe Icon" style={{ width: 24, height: 24, marginRight: 8, filter: "brightness(0) invert(1)" }} /> */}
+  <img src={iconGlobal} alt="Globe Icon" style={{ width: 24, height: 24, marginRight: 8, filter: "brightness(0) invert(1)" }} />
         {/* <Link to="/Login">
           <button className="Login-nav" style={{
             background: "#4569BC",
