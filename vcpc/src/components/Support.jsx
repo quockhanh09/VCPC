@@ -8,7 +8,8 @@ import { useState } from 'react';
 const Support = () => {
   const [form, setForm] = useState({
     fullName: '',
-    phone: '',
+    phonePrefix: '+84',
+    phoneNumber: '',
     email: '',
     title: '',
     content: '',
@@ -31,13 +32,13 @@ const Support = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    if (!form.fullName.trim() || !form.phone.trim() || !form.email.trim() || !form.title.trim() || !form.content.trim()) {
+    if (!form.fullName.trim() || !form.phonePrefix.trim() || !form.phoneNumber.trim() || !form.email.trim() || !form.title.trim() || !form.content.trim()) {
       setError('Vui lòng nhập đầy đủ thông tin bắt buộc.');
       return;
     }
     const formData = new FormData();
     formData.append('fullName', form.fullName);
-    formData.append('phone', form.phone);
+    formData.append('phone', form.phonePrefix + form.phoneNumber);
     formData.append('email', form.email);
     formData.append('title', form.title);
     formData.append('content', form.content);
@@ -51,7 +52,7 @@ const Support = () => {
       const data = await res.json();
       if (res.ok) {
         setSuccess('Gửi yêu cầu thành công!');
-        setForm({ fullName: '', phone: '', email: '', title: '', content: '', image: null });
+        setForm({ fullName: '', phonePrefix: '+84', phoneNumber: '', email: '', title: '', content: '', image: null });
       } else {
         setError(data.message || 'Gửi yêu cầu thất bại.');
       }
@@ -142,31 +143,69 @@ const Support = () => {
           </div>
           <div style={{ marginBottom: 16 }}>
             <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-            <input
-              type="text"
-              name="phone"
-              placeholder="Nhập số điện thoại"
-              value={form.phone}
-              onChange={handleChange}
-              style={{
-                width: '100%',
-                padding: '14px 18px',
-                border: '2px solid #d2d8e6',
-                borderRadius: 12,
-                fontSize: 18,
-                background: '#fff',
-                outline: 'none',
-                color: '#222',
-                fontWeight: 400,
-                 fontFamily: 'Inter, Arial, Helvetica, sans-serif',
-                marginBottom: 0,
-                boxSizing: 'border-box',
-                transition: 'border 0.2s',
-              }}
-              onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
-              onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
-              required
-            />
+            <div style={{ display: 'flex', gap: 8 }}>
+              <select
+                name="phonePrefix"
+                value={form.phonePrefix}
+                onChange={handleChange}
+                style={{
+                  padding: '10px 8px',
+                  border: '2px solid #d2d8e6',
+                  borderRadius: 12,
+                  fontSize: 15,
+                  background: '#fff',
+                  outline: 'none',
+                  color: '#222',
+                  fontWeight: 400,
+                  fontFamily: 'Inter, Arial, Helvetica, sans-serif',
+                  marginBottom: 0,
+                  boxSizing: 'border-box',
+                  transition: 'border 0.2s',
+                  minWidth: 80,
+                  maxWidth: 110,
+                }}
+                onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+                onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+                required
+              >
+                <option value="+84">+84</option>
+                <option value="+1">+1</option>
+                <option value="+61">+61</option>
+                <option value="+81">+81</option>
+                <option value="+82">+82</option>
+                <option value="+65">+65</option>
+                <option value="+86">+86</option>
+                <option value="+33">+33</option>
+                <option value="+49">+49</option>
+                <option value="+44">+44</option>
+                {/* Add more as needed */}
+              </select>
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="Nhập số điện thoại"
+                value={form.phoneNumber}
+                onChange={handleChange}
+                style={{
+                  width: '100%',
+                  padding: '14px 18px',
+                  border: '2px solid #d2d8e6',
+                  borderRadius: 12,
+                  fontSize: 18,
+                  background: '#fff',
+                  outline: 'none',
+                  color: '#222',
+                  fontWeight: 400,
+                  fontFamily: 'Inter, Arial, Helvetica, sans-serif',
+                  marginBottom: 0,
+                  boxSizing: 'border-box',
+                  transition: 'border 0.2s',
+                }}
+                onFocus={e => e.target.style.border = '2px solid #a3b6d9'}
+                onBlur={e => e.target.style.border = '2px solid #d2d8e6'}
+                required
+              />
+            </div>
           </div>
           <div style={{ marginBottom: 16 }}>
             <label>Email <span style={{ color: 'red' }}>*</span></label>
