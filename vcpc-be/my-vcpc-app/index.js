@@ -1,3 +1,5 @@
+// Thêm luxon để xử lý múi giờ chuẩn
+const { DateTime } = require('luxon');
 const path = require('path');
 // GOOGLE SHEETS SETUP
 const { google } = require('googleapis');
@@ -101,10 +103,9 @@ app.post('/support', upload.single('image'), async (req, res) => {
   }
   try {
     // Ghi vào Google Sheets
-    // Lấy thời gian gửi theo giờ Việt Nam (GMT+7)
-    const now = new Date();
-    const vnTime = new Date(now.getTime() + (7 - now.getTimezoneOffset() / 60) * 60 * 60 * 1000);
-    const formattedTime = vnTime.toLocaleTimeString('vi-VN', { hour12: false }) + ' ' + vnTime.toLocaleDateString('vi-VN');
+    // Lấy thời gian thực tại Việt Nam (GMT+7) bằng luxon
+    const vnTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
+    const formattedTime = vnTime.toFormat('HH:mm:ss dd/MM/yyyy');
     await appendToSheet([
       fullName,
       phone,
