@@ -104,6 +104,7 @@ app.post('/support', upload.single('image'), async (req, res) => {
   try {
     // Ghi vào Google Sheets
     // Lấy thời gian thực tại Việt Nam (GMT+7) bằng luxon
+    // Lấy thời gian thực tại Việt Nam (GMT+7) bằng luxon (không cộng offset thủ công)
     const vnTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
     const formattedTime = vnTime.toFormat('HH:mm:ss dd/MM/yyyy');
     await appendToSheet([
