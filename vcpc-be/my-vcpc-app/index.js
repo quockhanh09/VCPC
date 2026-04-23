@@ -101,6 +101,10 @@ app.post('/support', upload.single('image'), async (req, res) => {
   }
   try {
     // Ghi vào Google Sheets
+    // Lấy thời gian gửi theo giờ Việt Nam (GMT+7)
+    const now = new Date();
+    const vnTime = new Date(now.getTime() + (7 - now.getTimezoneOffset() / 60) * 60 * 60 * 1000);
+    const formattedTime = vnTime.toLocaleTimeString('vi-VN', { hour12: false }) + ' ' + vnTime.toLocaleDateString('vi-VN');
     await appendToSheet([
       fullName,
       phone,
@@ -108,7 +112,7 @@ app.post('/support', upload.single('image'), async (req, res) => {
       title,
       content,
       req.file ? req.file.filename : '',
-      new Date().toLocaleString('vi-VN', { hour12: false })
+      formattedTime
     ]);
     console.log('POST /support: gửi thành công');
     res.json({ message: 'Gửi yêu cầu thành công!' });
