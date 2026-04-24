@@ -1,29 +1,52 @@
 
+
 import logo from "../assets/img/Logo-name.png";
 import iconGlobal from "../assets/img/Icon.svg";
 import { Link, useLocation } from "react-router-dom";
 import "../style/App.css";
+import { useEffect, useState } from "react";
+
 
 
 function Header() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/Login";
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       id="header"
-      className="header d-flex align-items-center"
+      className={`header d-flex align-items-center${isFixed ? " fixed-header" : ""}`}
       style={{
         background: "#4B4844",
         borderRadius: "40px",
-        margin: "16px auto",
+        margin: isFixed ? "0 auto" : "16px auto",
         maxWidth: "1000px",
         padding: "8px 32px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+        boxShadow: isFixed ? "0 4px 16px rgba(0,0,0,0.10)" : "0 2px 8px rgba(0,0,0,0.04)",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         fontFamily: 'SVN-Gilroy',
+        position: isFixed ? "fixed" : "static",
+        top: isFixed ? 0 : undefined,
+        left: isFixed ? 0 : undefined,
+        right: isFixed ? 0 : undefined,
+        zIndex: isFixed ? 1000 : undefined,
+        width: isFixed ? "100vw" : undefined,
+        transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
       }}
     >
       <Link to="/">
@@ -49,7 +72,7 @@ function Header() {
         </ul>
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 32 }}>
-  <img src={iconGlobal} alt="Globe Icon" style={{ width: 24, height: 24, marginRight: 8, filter: "brightness(0) invert(1)" }} />
+        <img src={iconGlobal} alt="Globe Icon" style={{ width: 24, height: 24, marginRight: 8, filter: "brightness(0) invert(1)" }} />
         {/* <Link to="/Login">
           <button className="Login-nav" style={{
             background: "#4569BC",
@@ -69,5 +92,4 @@ function Header() {
     </header>
   );
 }
-
 export default Header;

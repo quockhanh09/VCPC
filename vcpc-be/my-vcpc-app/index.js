@@ -103,9 +103,8 @@ app.post('/support', upload.single('image'), async (req, res) => {
   }
   try {
     // Ghi vào Google Sheets
-    // Lấy thời gian thực tại Việt Nam (GMT+7) bằng luxon
-    // Lấy thời gian thực tại Hà Nội (Asia/Bangkok là tên IANA cho Hà Nội/VN)
-    const hanoiTime = DateTime.now().setZone('Asia/Bangkok');
+    // Lấy thời gian thực tại Hà Nội (Asia/Ho_Chi_Minh là tên IANA chuẩn cho Việt Nam)
+    const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
     const formattedTime = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
     await appendToSheet([
       fullName,
@@ -152,9 +151,7 @@ app.post('/views', (req, res) => {
   res.json({ views });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// ...existing code...
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
