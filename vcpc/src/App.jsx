@@ -17,6 +17,8 @@ import Contact from "./components/Contact";
 import Introduction from "./components/Introduction";
 import Details from "./components/Deatails";
 import News from "./components/News";
+import DichVuBanQuyen from "./pages/DichVuBanQuyen";
+import DangKyDichVuBanQuyen from "./pages/DangKyDichVuBanQuyen";
 import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
 import Letter from "./components/Letter";
@@ -895,6 +897,8 @@ Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai t
           <Route path="/Comingsoon" element={<Comingsoon />} />
           <Route path="/ListDeatails" element={<ListDeatails />} />
           <Route path="/Support" element={<Support />} />
+          <Route path="/DichVuBanQuyen" element={<DichVuBanQuyen />} />
+          <Route path="/dang-ky-dich-vu-ban-quyen" element={<DangKyDichVuBanQuyen />} />
           <Route path="/chuc-nang-nhiem-vu" element={<ChucNangNhiemVu />} />
         </Routes>
         {/* {location.pathname !== "/Comingsoon" && <Countdown />} */}
