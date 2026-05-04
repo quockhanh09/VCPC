@@ -448,57 +448,106 @@ function DangKyDichVuBanQuyen() {
             <div style={{ flex: 1, padding: 32, borderTopRightRadius: 20, borderBottomRightRadius: 20, background: "#F7F8FE" }}>
               <form>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                  {/* Họ tên chủ sở hữu */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
                   {/* Phân loại */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                     <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
-                    <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
-                      <option>Cá nhân</option>
-                      <option>Tổ chức</option>
+                    <select
+                      value={phanLoai}
+                      onChange={e => setPhanLoai(e.target.value)}
+                      style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                    >
+                      <option value="Cá nhân">Cá nhân</option>
+                      <option value="Tổ chức">Tổ chức</option>
                     </select>
                   </div>
-                  {/* Quốc tịch */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                    <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
-                      <option>Việt Nam</option>
-                      <option>Khác</option>
-                    </select>
-                  </div>
-                  {/* Số CCCD / Hộ chiếu */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Ngày cấp */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                    <input type="text" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Nơi cấp */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Số điện thoại */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Email */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Địa chỉ tác giả */}
-                  <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
+                  {/* Form Cá nhân */}
+                  {phanLoai === "Cá nhân" && (
+                    <>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Nguyễn Thanh Tùng" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                        <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                          <option>Việt Nam</option>
+                          <option>Khác</option>
+                        </select>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="0033 9456 7829" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="01-01-2015" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Cục Cảnh sát Quản lý Hành chính về Trật tự Xã hội" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Email <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                    </>
+                  )}
+                  {/* Form Tổ chức */}
+                  {phanLoai === "Tổ chức" && (
+                    <>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                        <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Công ty Cổ phần ABC" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                        <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                          <option>Việt Nam</option>
+                          <option>Khác</option>
+                        </select>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="0033 9456 7829" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="01-01-2015" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Phòng Đăng ký doanh nghiệp, Bộ Tài chính" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Nguyễn Văn Cường" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Giám đốc" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Email <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                      <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
+                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
                   <button type="button" style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
