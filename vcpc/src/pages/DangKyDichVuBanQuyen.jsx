@@ -41,6 +41,23 @@ function DangKyDichVuBanQuyen() {
     ]));
   };
 
+  // --- Step 2: Nhiều form tác giả ---
+  const [authorForms, setAuthorForms] = useState([
+    { hoten: '', quoctich: 'Việt Nam', butdanh: '', cccd: '', ngaycap: '', noicap: '', sdt: '', email: '', diachi: '' }
+  ]);
+
+  const handleAddAuthorForm = () => {
+    setAuthorForms(forms => ([
+      ...forms,
+      { hoten: '', quoctich: 'Việt Nam', butdanh: '', cccd: '', ngaycap: '', noicap: '', sdt: '', email: '', diachi: '' }
+    ]));
+  };
+  const handleAuthorFormChange = (idx, key, value) => {
+    setAuthorForms(forms => forms.map((form, i) =>
+      i === idx ? { ...form, [key]: value } : form
+    ));
+  };
+
   // --- Step 3: Hồ sơ đính kèm ---
   const [attachedFiles, setAttachedFiles] = useState([]);
   const [dropActive, setDropActive] = useState(false);
@@ -420,75 +437,82 @@ function DangKyDichVuBanQuyen() {
               </form>
             </div>
           </div>
-          {/* Form 2: Thông tin tác giả/đồng tác giả (chuẩn UI ảnh) */}
-          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, padding: 0, marginBottom: 24, border: "none", display: "flex",gap: 20 }}>
-            {/* Left text block */}
-            <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-              <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin tác giả/đồng tác giả</div>
-              <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
-                Thông tin tác giả/đồng tác giả trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
+          {/* Form 2: Thông tin tác giả/đồng tác giả (nhiều form, mỗi form cách nhau vách) */}
+          {authorForms.map((form, idx) => (
+            <React.Fragment key={idx}>
+              <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, padding: 0, marginBottom: 24, border: "none", display: "flex", gap: 20 }}>
+                {/* Left text block */}
+                <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                  <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin tác giả/đồng tác giả</div>
+                  <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
+                    Thông tin tác giả/đồng tác giả trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
+                  </div>
+                </div>
+                {/* Form box */}
+                <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
+                  <form>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                      {/* Họ tên tác giả */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Họ tên tác giả <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.hoten} onChange={e => handleAuthorFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Quốc tịch */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                        <select value={form.quoctich} onChange={e => handleAuthorFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
+                          <option>Việt Nam</option>
+                          <option>Khác</option>
+                        </select>
+                      </div>
+                      {/* Bút danh */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Bút danh thể hiện trên tác phẩm (nếu có) <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.butdanh} onChange={e => handleAuthorFormChange(idx, 'butdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Số CCCD/Hộ chiếu */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.cccd} onChange={e => handleAuthorFormChange(idx, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Ngày cấp */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input type="text" value={form.ngaycap} onChange={e => handleAuthorFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Nơi cấp */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.noicap} onChange={e => handleAuthorFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Số điện thoại */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.sdt} onChange={e => handleAuthorFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Email */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.email} onChange={e => handleAuthorFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                      {/* Địa chỉ tác giả */}
+                      <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                        <input value={form.diachi} onChange={e => handleAuthorFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
-            {/* Form box */}
-            <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
-              <form>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                  {/* Họ tên tác giả */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Họ tên tác giả <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Quốc tịch */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                    <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
-                      <option>Việt Nam</option>
-                      <option>Khác</option>
-                    </select>
-                  </div>
-                  {/* Bút danh */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Bút danh thể hiện trên tác phẩm (nếu có) <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Số CCCD/Hộ chiếu */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Ngày cấp */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                    <input type="text" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Nơi cấp */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Số điện thoại */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Email */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                  {/* Địa chỉ tác giả */}
-                  <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
-                  </div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
-                  <button type="button" style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
-                    + Thêm tác giả
-                  </button>
-                </div>
-              </form>
-            </div>
+              {idx < authorForms.length - 1 && (
+                <div style={{ width: "100%", borderBottom: "2px solid #E0E6F7", margin: 0 }} />
+              )}
+            </React.Fragment>
+          ))}
+          <div style={{ maxWidth: 980, margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+            <button type="button" onClick={handleAddAuthorForm} style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
+              + Thêm tác giả
+            </button>
           </div>
         </>
       )}
