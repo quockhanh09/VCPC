@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import logo from "../assets/img/Vector-Vcpc.png";
 
 function DangKyDichVuBanQuyen() {
+
   const [step, setStep] = useState(1);
   const [phanLoai, setPhanLoai] = useState("Cá nhân");
   const handleSaveDraft = (e) => {
@@ -12,7 +13,64 @@ function DangKyDichVuBanQuyen() {
   const [tinhTrangGCN, setTinhTrangGCN] = useState("chua");
   const [soGCN, setSoGCN] = useState("");
   const isGCN = tinhTrangGCN === "da";
-  // ...existing code...
+
+  // State for multiple owner forms
+  const [ownerForms, setOwnerForms] = useState([
+    { phanLoai: "Cá nhân", fields: {} }
+  ]);
+
+  // Handler for changing a field in a specific owner form
+  const handleOwnerFormChange = (idx, key, value) => {
+    setOwnerForms(forms => forms.map((form, i) =>
+      i === idx ? { ...form, fields: { ...form.fields, [key]: value } } : form
+    ));
+  };
+
+  // Handler for changing 'phanLoai' in a specific owner form
+  const handleOwnerPhanLoaiChange = (idx, value) => {
+    setOwnerForms(forms => forms.map((form, i) =>
+      i === idx ? { ...form, phanLoai: value, fields: {} } : form
+    ));
+  };
+
+  // Add new owner form
+  const handleAddOwnerForm = () => {
+    setOwnerForms(forms => ([
+      ...forms,
+      { phanLoai: "Cá nhân", fields: {} }
+    ]));
+  };
+
+  // --- Step 3: Hồ sơ đính kèm ---
+  const [attachedFiles, setAttachedFiles] = useState([]);
+  const [dropActive, setDropActive] = useState(false);
+  const fileInputRef = useRef();
+
+  // Xử lý chọn file (từ input hoặc drag&drop)
+  const handleFileChange = (e) => {
+    let files = Array.from(e.target.files || []);
+    // Gộp với file cũ, loại trùng tên
+    setAttachedFiles(prev => {
+      const all = [...prev, ...files];
+      const unique = [];
+      const names = new Set();
+      for (const f of all) {
+        if (!names.has(f.name)) {
+          unique.push(f);
+          names.add(f.name);
+        }
+      }
+      return unique;
+    });
+    // Reset input nếu chọn lại cùng file
+    if (e.target.value) e.target.value = "";
+  };
+
+  // Xóa file khỏi danh sách
+  const handleRemoveFile = (idx) => {
+    setAttachedFiles(files => files.filter((_, i) => i !== idx));
+  };
+
   return (
     <div style={{ background: "#FFFAF2", minHeight: "100vh", paddingBottom: 40 }}>
       <div style={{ maxWidth: 520, margin: "0 auto", paddingTop: 32, textAlign: "center" }}>
@@ -145,7 +203,7 @@ function DangKyDichVuBanQuyen() {
                     <>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Họ và tên <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Nguyễn Văn Cường" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
@@ -156,27 +214,27 @@ function DangKyDichVuBanQuyen() {
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="0011 8655 3409" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="01-01-2020" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Cục Cảnh sát Quản lý Hành chính về Trật tự Xã hội" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Email <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Địa chỉ <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                     </>
                   )}
@@ -185,47 +243,47 @@ function DangKyDichVuBanQuyen() {
                     <>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Tên tổ chức <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Công ty Cổ phần ABC" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Mã số doanh nghiệp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="0947356289" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="01-01-2020" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Phòng Đăng ký doanh nghiệp, Bộ Tài chính" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Nguyễn Văn Cường" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Giám đốc" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Người phụ trách công việc <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Phạm Minh Hoàng" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Trợ lý" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Email <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
                     </>
                   )}
@@ -240,16 +298,16 @@ function DangKyDichVuBanQuyen() {
       {step === 2 && (
         <>
           {/* Form 1: Thông tin yêu cầu (chuẩn UI ảnh 2) */}
-          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, background: "#fff", boxShadow: "0 2px 16px rgba(40,82,187,0.08)", padding: 0, marginBottom: 24, border: "none", display: "flex" }}>
+          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, padding: 0, marginBottom: 24, border: "none", display: "flex",gap: 20 }}>
             {/* Left text block */}
-            <div style={{ minWidth: 260, maxWidth: 320, background: "#F7F8FE", borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+            <div style={{ minWidth: 260, maxWidth: 320,  borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
               <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin yêu cầu</div>
               <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
-                Thông tin liên quan đến dịch vụ cần thực hiện
+                Thông tin liên quan đến dịch vụ  cầnthực hiện
               </div>
             </div>
             {/* Form box */}
-            <div style={{ flex: 1, padding: 32, borderTopRightRadius: 20, borderBottomRightRadius: 20, background: "#F7F8FE" }}>
+            <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
               <form>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   {/* Phân loại */}
@@ -363,16 +421,16 @@ function DangKyDichVuBanQuyen() {
             </div>
           </div>
           {/* Form 2: Thông tin tác giả/đồng tác giả (chuẩn UI ảnh) */}
-          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, background: "#fff", boxShadow: "0 2px 16px rgba(40,82,187,0.08)", padding: 0, marginBottom: 24, border: "none", display: "flex" }}>
+          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, padding: 0, marginBottom: 24, border: "none", display: "flex",gap: 20 }}>
             {/* Left text block */}
-            <div style={{ minWidth: 260, maxWidth: 320, background: "#F7F8FE", borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+            <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
               <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin tác giả/đồng tác giả</div>
               <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
                 Thông tin tác giả/đồng tác giả trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
               </div>
             </div>
             {/* Form box */}
-            <div style={{ flex: 1, padding: 32, borderTopRightRadius: 20, borderBottomRightRadius: 20, background: "#F7F8FE" }}>
+            <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
               <form>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   {/* Họ tên tác giả */}
@@ -436,130 +494,237 @@ function DangKyDichVuBanQuyen() {
       )}
         {/* Form 3: Thông tin chủ sở hữu/đồng chủ sở hữu (chuẩn UI ảnh) */}
         {step === 2 && (
-          <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, background: "#fff", boxShadow: "0 2px 16px rgba(40,82,187,0.08)", padding: 0, marginBottom: 24, border: "none", display: "flex" }}>
-            {/* Left text block */}
-            <div style={{ minWidth: 260, maxWidth: 320, background: "#F7F8FE", borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-              <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 22, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin chủ sở hữu/đồng chủ sở hữu</div>
-              <div style={{ color: "#888", fontSize: 13, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
-                Thông tin chủ sở hữu/đồng chủ sở hữu trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
-              </div>
-            </div>
-            {/* Form box */}
-            <div style={{ flex: 1, padding: 32, borderTopRightRadius: 20, borderBottomRightRadius: 20, background: "#F7F8FE" }}>
-              <form>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                  {/* Phân loại */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
-                    <select
-                      value={phanLoai}
-                      onChange={e => setPhanLoai(e.target.value)}
-                      style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
-                    >
-                      <option value="Cá nhân">Cá nhân</option>
-                      <option value="Tổ chức">Tổ chức</option>
-                    </select>
+          <div>
+            {ownerForms.map((form, idx) => (
+              <React.Fragment key={idx}>
+                <div style={{ maxWidth: 980, margin: "0 auto 0 auto", borderRadius: 20, padding: 0, marginBottom: 0, border: "none", display: "flex", gap: 20 }}>
+                  {/* Left text block */}
+                  <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                    <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 22, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin chủ sở hữu/đồng chủ sở hữu</div>
+                    <div style={{ color: "#888", fontSize: 13, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
+                      Thông tin chủ sở hữu/đồng chủ sở hữu trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
+                    </div>
                   </div>
-                  {/* Form Cá nhân */}
-                  {phanLoai === "Cá nhân" && (
-                    <>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Nguyễn Thanh Tùng" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                  {/* Form box */}
+                  <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
+                    <form>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                        {/* Phân loại */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                          <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
+                          <select
+                            value={form.phanLoai}
+                            onChange={e => handleOwnerPhanLoaiChange(idx, e.target.value)}
+                            style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                          >
+                            <option value="Cá nhân">Cá nhân</option>
+                            <option value="Tổ chức">Tổ chức</option>
+                          </select>
+                        </div>
+                        {/* Form Cá nhân */}
+                        {form.phanLoai === "Cá nhân" && (
+                          <>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                              <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                                <option>Việt Nam</option>
+                                <option>Khác</option>
+                              </select>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.cccd || ''} onChange={e => handleOwnerFormChange(idx, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Email <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                          </>
+                        )}
+                        {/* Form Tổ chức */}
+                        {form.phanLoai === "Tổ chức" && (
+                          <>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                              <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                              <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                                <option>Việt Nam</option>
+                                <option>Khác</option>
+                              </select>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.sodkkd || ''} onChange={e => handleOwnerFormChange(idx, 'sodkkd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.nguoidai || ''} onChange={e => handleOwnerFormChange(idx, 'nguoidai', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.chucdanh || ''} onChange={e => handleOwnerFormChange(idx, 'chucdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Email <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                            <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                              <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
+                              <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            </div>
+                          </>
+                        )}
                       </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                        <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
-                          <option>Việt Nam</option>
-                          <option>Khác</option>
-                        </select>
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="0033 9456 7829" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="01-01-2015" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Cục Cảnh sát Quản lý Hành chính về Trật tự Xã hội" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Email <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                    </>
-                  )}
-                  {/* Form Tổ chức */}
-                  {phanLoai === "Tổ chức" && (
-                    <>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
-                        <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Công ty Cổ phần ABC" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                        <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
-                          <option>Việt Nam</option>
-                          <option>Khác</option>
-                        </select>
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="0033 9456 7829" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="01-01-2015" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Phòng Đăng ký doanh nghiệp, Bộ Tài chính" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Nguyễn Văn Cường" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Giám đốc" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="(+84) 987 654 321" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Email <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="cuongvcpc@gmail.com" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                      <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
-                        <input placeholder="Số 33 ngõ 294/2 Kim Mã, phường Ngọc Hà, Thành phố Hà Nội, Việt Nam" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
-                    </>
-                  )}
+                    </form>
+                  </div>
                 </div>
-                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
-                  <button type="button" style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
-                    + Thêm chủ sở hữu
-                  </button>
-                </div>
-              </form>
+                {idx < ownerForms.length - 1 && (
+                  <div
+                    style={{
+                      width: "100%",
+                      borderBottom: "2px solid #E0E6F7",
+                      margin: 0,
+                    }}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+            <div style={{ maxWidth: 980, margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+              <button type="button" onClick={handleAddOwnerForm} style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
+                + Thêm chủ sở hữu
+              </button>
             </div>
           </div>
         )}
-      {/* Form 2: Tổ chức */}
-      
+      {/* Step 3: Hồ Sơ Đính Kèm */}
+      {step === 3 && (
+        <div style={{ maxWidth: 980, margin: "32px auto 0 auto", padding: 0, display: "flex", gap: 32 }}>
+          {/* Left: Label + Mô tả */}
+          <div style={{ minWidth: 260, maxWidth: 320, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+            <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 20, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Hồ Sơ Đính Kèm</div>
+            <div style={{ color: "#B6B6B6", fontSize: 13, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
+              Tải lên các giấy tờ pháp lý liên quan
+            </div>
+          </div>
+          {/* Right: Upload Area */}
+          <div style={{ flex: 1, background: "#f5f5f5", borderRadius: 16, padding: 32, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div
+              onDragOver={e => { e.preventDefault(); setDropActive(true); }}
+              onDragLeave={e => { e.preventDefault(); setDropActive(false); }}
+              onDrop={e => {
+                e.preventDefault();
+                setDropActive(false);
+                const files = Array.from(e.dataTransfer.files);
+                handleFileChange({ target: { files } });
+              }}
+              style={{
+                width: "100%",
+                minHeight: 180,
+                border: dropActive ? "2px dashed #2852BB" : "2px dashed #D9D9D9",
+                borderRadius: 12,
+                background: "#F7F8FE",
+                padding: 48,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "border 0.2s",
+                cursor: "pointer"
+              }}
+              onClick={() => fileInputRef.current && fileInputRef.current.click()}
+            >
+              {/* Icon folder upload */}
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginBottom: 12 }}>
+                <rect width="52" height="52" rx="12" fill="#E6EDFB" />
+                <path d="M16 36C14.8954 36 14 35.1046 14 34V22C14 20.8954 14.8954 20 16 20H20.5858C21.1166 20 21.6247 19.7893 22 19.4142L23.4142 18C23.7893 17.6247 24.2974 17.4142 24.8284 17.4142H36C37.1046 17.4142 38 18.3097 38 19.4142V34C38 35.1046 37.1046 36 36 36H16Z" fill="#2852BB"/>
+                <path d="M26 24V31" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M22.5 27L26 24L29.5 27" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"/>
+              </svg>
+              {/* Hướng dẫn */}
+              <div style={{ color: "#888", fontSize: 15, textAlign: "center", marginBottom: 10 }}>
+                Drag your file(s) to start uploading <span style={{ color: '#B6B6B6' }}>or</span>
+              </div>
+              {/* Button thêm tệp tin */}
+              <button
+                type="button"
+                onClick={e => { e.stopPropagation(); fileInputRef.current && fileInputRef.current.click(); }}
+                style={{
+                  border: "1.5px solid #2852BB",
+                  background: "#fff",
+                  color: "#2852BB",
+                  borderRadius: 999,
+                  padding: "8px 20px",
+                  fontWeight: 500,
+                  fontSize: 15,
+                  cursor: "pointer",
+                  marginTop: 2,
+                  transition: "background 0.2s, color 0.2s, border 0.2s"
+                }}
+                onMouseOver={e => { e.currentTarget.style.background = '#E6EDFB'; }}
+                onMouseOut={e => { e.currentTarget.style.background = '#fff'; }}
+              >
+                Thêm tệp tin
+              </button>
+              <input
+                type="file"
+                multiple
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+              {/* Preview list */}
+              {attachedFiles.length > 0 && (
+                <div style={{ marginTop: 24, width: "100%" }}>
+                  <div style={{ fontWeight: 600, color: "#2852BB", fontSize: 15, marginBottom: 8 }}>Danh sách tệp đã chọn:</div>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {attachedFiles.map((file, idx) => (
+                      <li key={idx} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#fff", borderRadius: 8, padding: "8px 16px", marginBottom: 8, boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+                        <span style={{ color: "#222", fontSize: 15, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 260 }}>{file.name}</span>
+                        <button type="button" onClick={e => { e.stopPropagation(); handleRemoveFile(idx); }} style={{ background: "none", border: "none", color: "#F25C4C", fontWeight: 600, fontSize: 15, cursor: "pointer" }}>X</button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       {/* Cảnh báo và nút thao tác */}
       <div style={{ maxWidth: 980, margin: "32px auto 0 auto", padding: 0 }}>
         <div style={{ background: "#FFD6D0", borderRadius: 12, padding: "18px 24px 18px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
@@ -578,6 +743,9 @@ function DangKyDichVuBanQuyen() {
           <button style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Hủy bỏ</button>
           {step === 1 && (
             <button type="button" onClick={handleSaveDraft} style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Lưu bản nháp</button>
+          )}
+          {step === 2 && (
+            <button type="button" onClick={() => setStep(3)} style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Lưu bản nháp</button>
           )}
           <button style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
             Đăng ký dịch vụ
