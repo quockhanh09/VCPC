@@ -157,7 +157,7 @@ function Introduction() {
               return (
                 <div
                   key={idx}
-                  style={{ display: 'flex', alignItems: 'flex-start', gap: 32, cursor: 'pointer' }}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 135, cursor: 'pointer' }}
                   onClick={() => setActiveYear(idx)}
                   tabIndex={0}
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setActiveYear(idx); }}
@@ -285,7 +285,11 @@ function Introduction() {
               return <>
                 <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', gap: 0 }}>
                   {FUNCTION_LIST.map((item, idx) => (
-                    <div key={idx} style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', marginBottom: 24, paddingLeft: 0, paddingRight: 0 }}>
+                    <div
+                      key={idx}
+                      style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', marginBottom: 24, paddingLeft: 0, paddingRight: 0, cursor: 'pointer' }}
+                      onClick={() => setSelectedFunc(idx)}
+                    >
                       {/* Cột trái: label chức năng */}
                       <div
                         style={{
@@ -296,10 +300,8 @@ function Introduction() {
                           display: 'flex',
                           alignItems: 'flex-start',
                           gap: 12,
-                          cursor: 'pointer',
                           height: '100%',
                         }}
-                        onClick={() => setSelectedFunc(idx)}
                       >
                         <span style={{
                           width: 14,

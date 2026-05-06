@@ -440,16 +440,73 @@ function DangKyDichVuBanQuyen() {
           {/* Form 2: Thông tin tác giả/đồng tác giả (nhiều form, mỗi form cách nhau vách) */}
           {authorForms.map((form, idx) => (
             <React.Fragment key={idx}>
-              <div style={{ maxWidth: 980, margin: "0 auto 32px auto", borderRadius: 20, padding: 0, marginBottom: 24, border: "none", display: "flex", gap: 20 }}>
-                {/* Left text block */}
-                <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                  <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin tác giả/đồng tác giả</div>
-                  <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
-                    Thông tin tác giả/đồng tác giả trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
+              {idx === 0 ? (
+                <div style={{ maxWidth: 980, margin: "0 auto auto", borderRadius: 20, padding: 0,  border: "none", display: "flex", gap: 20 }}>
+                  {/* Left text */}
+                  <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                    <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 24, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin tác giả/đồng tác giả</div>
+                    <div style={{ color: "#888", fontSize: 14, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
+                      Thông tin tác giả/đồng tác giả trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
+                    </div>
+                  </div>
+                  {/* Form box */}
+                  <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
+                    <form>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                        {/* Họ tên tác giả */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Họ tên tác giả <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.hoten} onChange={e => handleAuthorFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Quốc tịch */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                          <select value={form.quoctich} onChange={e => handleAuthorFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
+                            <option>Việt Nam</option>
+                            <option>Khác</option>
+                          </select>
+                        </div>
+                        {/* Bút danh */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Bút danh thể hiện trên tác phẩm (nếu có) <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.butdanh} onChange={e => handleAuthorFormChange(idx, 'butdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Số CCCD/Hộ chiếu */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.cccd} onChange={e => handleAuthorFormChange(idx, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Ngày cấp */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input type="text" value={form.ngaycap} onChange={e => handleAuthorFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Nơi cấp */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.noicap} onChange={e => handleAuthorFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Số điện thoại */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.sdt} onChange={e => handleAuthorFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Email */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.email} onChange={e => handleAuthorFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                        {/* Địa chỉ tác giả */}
+                        <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label style={{ color: "#222", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.diachi} onChange={e => handleAuthorFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                {/* Form box */}
-                <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
+              ) : (
+                <div style={{ maxWidth: 640, margin: "0 auto 32px auto", borderRadius: 20, padding: 32, background: "#F7F8FE", marginLeft: 800 }}>
                   <form>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                       {/* Họ tên tác giả */}
@@ -503,13 +560,13 @@ function DangKyDichVuBanQuyen() {
                     </div>
                   </form>
                 </div>
-              </div>
+              )}
               {idx < authorForms.length - 1 && (
-                <div style={{ width: "100%", borderBottom: "2px solid #E0E6F7", margin: 0 }} />
+                <div style={{ width: "610px", borderBottom: "2px solid #d2dbf7", margin: "0px 0px 0px 820px", alignSelf: "flex-start" }} />
               )}
             </React.Fragment>
           ))}
-          <div style={{ maxWidth: 980, margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+          <div style={{ maxWidth: 980, margin: "20px auto 20px", display: "flex", justifyContent: "flex-end" }}>
             <button type="button" onClick={handleAddAuthorForm} style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
               + Thêm tác giả
             </button>
@@ -519,136 +576,245 @@ function DangKyDichVuBanQuyen() {
         {/* Form 3: Thông tin chủ sở hữu/đồng chủ sở hữu (chuẩn UI ảnh) */}
         {step === 2 && (
           <div>
-            {ownerForms.map((form, idx) => (
-              <React.Fragment key={idx}>
-                <div style={{ maxWidth: 980, margin: "0 auto 0 auto", borderRadius: 20, padding: 0, marginBottom: 0, border: "none", display: "flex", gap: 20 }}>
-                  {/* Left text block */}
-                  <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                    <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 22, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin chủ sở hữu/đồng chủ sở hữu</div>
-                    <div style={{ color: "#888", fontSize: 13, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
-                      Thông tin chủ sở hữu/đồng chủ sở hữu trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
-                    </div>
-                  </div>
-                  {/* Form box */}
-                  <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
-                    <form>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                        {/* Phân loại */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
-                          <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
-                          <select
-                            value={form.phanLoai}
-                            onChange={e => handleOwnerPhanLoaiChange(idx, e.target.value)}
-                            style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
-                          >
-                            <option value="Cá nhân">Cá nhân</option>
-                            <option value="Tổ chức">Tổ chức</option>
-                          </select>
-                        </div>
-                        {/* Form Cá nhân */}
-                        {form.phanLoai === "Cá nhân" && (
-                          <>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                              <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
-                                <option>Việt Nam</option>
-                                <option>Khác</option>
-                              </select>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.cccd || ''} onChange={e => handleOwnerFormChange(idx, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Email <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                          </>
-                        )}
-                        {/* Form Tổ chức */}
-                        {form.phanLoai === "Tổ chức" && (
-                          <>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
-                              <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                              <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
-                                <option>Việt Nam</option>
-                                <option>Khác</option>
-                              </select>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.sodkkd || ''} onChange={e => handleOwnerFormChange(idx, 'sodkkd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.nguoidai || ''} onChange={e => handleOwnerFormChange(idx, 'nguoidai', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.chucdanh || ''} onChange={e => handleOwnerFormChange(idx, 'chucdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Email <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                            <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                              <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
-                              <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </form>
+            {/* Form đầu tiên: luôn có left text và form box */}
+            {ownerForms.length > 0 && (
+              <div style={{ maxWidth: 980, margin: "0 auto 0 auto", borderRadius: 20, padding: 0, marginBottom: 0, border: "none", display: "flex", gap: 20 }}>
+                {/* Left text block */}
+                <div style={{ minWidth: 260, maxWidth: 320, borderTopLeftRadius: 20, borderBottomLeftRadius: 20, padding: "32px 0 32px 32px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                  <div style={{ fontWeight: 800, color: "#2852BB", fontSize: 22, marginBottom: 6, fontFamily: 'SVN-Gilroy', lineHeight: 1.18, letterSpacing: 0.1, textAlign: "left" }}>Thông tin chủ sở hữu/đồng chủ sở hữu</div>
+                  <div style={{ color: "#888", fontSize: 13, fontWeight: 400, lineHeight: 1.5, marginTop: 2, textAlign: "left" }}>
+                    Thông tin chủ sở hữu/đồng chủ sở hữu trên Giấy chứng nhận Quyền tác giả / Quyền liên quan
                   </div>
                 </div>
-                {idx < ownerForms.length - 1 && (
-                  <div
-                    style={{
-                      width: "100%",
-                      borderBottom: "2px solid #E0E6F7",
-                      margin: 0,
-                    }}
-                  />
+                {/* Form box */}
+                <div style={{ flex: 1, padding: 32, borderRadius: 20, background: "#F7F8FE" }}>
+                  <form>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                      {/* Phân loại */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
+                        <select
+                          value={ownerForms[0].phanLoai}
+                          onChange={e => handleOwnerPhanLoaiChange(0, e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                        >
+                          <option value="Cá nhân">Cá nhân</option>
+                          <option value="Tổ chức">Tổ chức</option>
+                        </select>
+                      </div>
+                      {/* Form Cá nhân */}
+                      {ownerForms[0].phanLoai === "Cá nhân" && (
+                        <>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.hoten || ''} onChange={e => handleOwnerFormChange(0, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                            <select value={ownerForms[0].fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(0, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                              <option>Việt Nam</option>
+                              <option>Khác</option>
+                            </select>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.cccd || ''} onChange={e => handleOwnerFormChange(0, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.ngaycap || ''} onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.noicap || ''} onChange={e => handleOwnerFormChange(0, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.sdt || ''} onChange={e => handleOwnerFormChange(0, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Email <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.email || ''} onChange={e => handleOwnerFormChange(0, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.diachi || ''} onChange={e => handleOwnerFormChange(0, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                        </>
+                      )}
+                      {/* Form Tổ chức */}
+                      {ownerForms[0].phanLoai === "Tổ chức" && (
+                        <>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                            <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.hoten || ''} onChange={e => handleOwnerFormChange(0, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                            <select value={ownerForms[0].fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(0, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                              <option>Việt Nam</option>
+                              <option>Khác</option>
+                            </select>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.sodkkd || ''} onChange={e => handleOwnerFormChange(0, 'sodkkd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.ngaycap || ''} onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.noicap || ''} onChange={e => handleOwnerFormChange(0, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.nguoidai || ''} onChange={e => handleOwnerFormChange(0, 'nguoidai', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.chucdanh || ''} onChange={e => handleOwnerFormChange(0, 'chucdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.sdt || ''} onChange={e => handleOwnerFormChange(0, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Email <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.email || ''} onChange={e => handleOwnerFormChange(0, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                          <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                            <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
+                            <input value={ownerForms[0].fields.diachi || ''} onChange={e => handleOwnerFormChange(0, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+            {/* Các form box thêm mới: chỉ nằm dưới, không có left text */}
+            {ownerForms.slice(1).map((form, idx) => (
+              <React.Fragment key={idx}>
+                {/* Vạch ngăn cách phía trên form đầu tiên được thêm mới */}
+                {(idx === 0 && ownerForms.length > 1) && (
+                  <div style={{ width: "610px", borderBottom: "2px solid #E0E6F7", margin: "0px 0px 0px 820px", alignSelf: "flex-start" }} />
+                )}
+                <div style={{ maxWidth: 640, margin: "0 auto 0px auto", borderRadius: 20, padding: 32, background: "#F7F8FE", marginLeft: 805 }}>
+                  <form>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                    {/* Phân loại */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                      <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
+                      <select
+                        value={form.phanLoai}
+                        onChange={e => handleOwnerPhanLoaiChange(idx + 1, e.target.value)}
+                        style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                      >
+                        <option value="Cá nhân">Cá nhân</option>
+                        <option value="Tổ chức">Tổ chức</option>
+                      </select>
+                    </div>
+                    {/* Form Cá nhân */}
+                    {form.phanLoai === "Cá nhân" && (
+                      <>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx + 1, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                          <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx + 1, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                            <option>Việt Nam</option>
+                            <option>Khác</option>
+                          </select>
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.cccd || ''} onChange={e => handleOwnerFormChange(idx + 1, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx + 1, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx + 1, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx + 1, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Email <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx + 1, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx + 1, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                      </>
+                    )}
+                    {/* Form Tổ chức */}
+                    {form.phanLoai === "Tổ chức" && (
+                      <>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
+                          <label>Họ tên chủ sở hữu <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.hoten || ''} onChange={e => handleOwnerFormChange(idx + 1, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                          <select value={form.fields.quoctich || 'Việt Nam'} onChange={e => handleOwnerFormChange(idx + 1, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                            <option>Việt Nam</option>
+                            <option>Khác</option>
+                          </select>
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Số đăng ký kinh doanh <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.sodkkd || ''} onChange={e => handleOwnerFormChange(idx + 1, 'sodkkd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.ngaycap || ''} onChange={e => handleOwnerFormChange(idx + 1, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.noicap || ''} onChange={e => handleOwnerFormChange(idx + 1, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Người đại diện pháp luật <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.nguoidai || ''} onChange={e => handleOwnerFormChange(idx + 1, 'nguoidai', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Chức danh <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.chucdanh || ''} onChange={e => handleOwnerFormChange(idx + 1, 'chucdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.sdt || ''} onChange={e => handleOwnerFormChange(idx + 1, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Email <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.email || ''} onChange={e => handleOwnerFormChange(idx + 1, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                        <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
+                          <label>Địa chỉ tổ chức <span style={{ color: 'red' }}>*</span></label>
+                          <input value={form.fields.diachi || ''} onChange={e => handleOwnerFormChange(idx + 1, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        </div>
+                      </>
+                    )}
+                    </div>
+                  </form>
+                </div>
+                {/* Vạch ngăn cách giữa các form, không ở cuối */}
+                {idx > 0 && idx < ownerForms.length - 1 && (
+                  <div style={{ width: "610px", borderBottom: "2px solid #E0E6F7", margin: "0px 0px 0px 820px", alignSelf: "flex-start" }} />
                 )}
               </React.Fragment>
             ))}
-            <div style={{ maxWidth: 980, margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ maxWidth: 980, margin: "20px auto 0", display: "flex", justifyContent: "flex-end" }}>
               <button type="button" onClick={handleAddOwnerForm} style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
                 + Thêm chủ sở hữu
               </button>
