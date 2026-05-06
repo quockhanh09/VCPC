@@ -346,22 +346,22 @@ function DangKyDichVuBanQuyen() {
                   </div>
                   {/* Tên tác phẩm / Tên cuộc biểu diễn */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Tên tác phẩm / Tên cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
+                    <label style={{ color: "#222", fontSize: 15 }}>Tên tác phẩm / Tên cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
                     <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                   </div>
                   {/* Ngày hình thành */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Ngày hình thành <span style={{ color: 'red' }}>*</span></label>
+                    <label style={{ color: "#222", fontSize: 15 }}>Ngày hình thành <span style={{ color: 'red' }}>*</span></label>
                     <input type="text" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                   </div>
                   {/* Mô tả */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Mô tả về tác phẩm / cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
+                    <label style={{ color: "#222", fontSize: 15 }}>Mô tả về tác phẩm / cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
                     <textarea style={{ width: "100%", minHeight: 80, padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", resize: "vertical", fontSize: 15 }} placeholder="Mô tả về nội dung, thời lượng, công cụ ứng dụng, thao tác đã thực hiện, cấu tạo, ... về tác phẩm" />
                   </div>
                   {/* Tình trạng chứng nhận */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Tình trạng chứng nhận <span style={{ color: 'red' }}>*</span></label>
+                    <label style={{ color: "#222", fontSize: 15 }}>Tình trạng chứng nhận <span style={{ color: 'red' }}>*</span></label>
                     <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
                       <label style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 500, fontSize: 15, cursor: 'pointer' }}>
                         <span style={{
@@ -423,7 +423,7 @@ function DangKyDichVuBanQuyen() {
                   </div>
                   {/* Giấy chứng nhận số */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Giấy chứng nhận số <span style={{ color: 'red' }}>*</span></label>
+                    <label style={{ color: "#222", fontSize: 15 }}>Giấy chứng nhận số <span style={{ color: 'red' }}>*</span></label>
                     <input
                       style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: isGCN ? "#fff" : "#F3F4F6", fontSize: 15 }}
                       placeholder={isGCN ? "Nhập số GCN" : "-"}
@@ -454,12 +454,12 @@ function DangKyDichVuBanQuyen() {
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                       {/* Họ tên tác giả */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Họ tên tác giả <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Họ tên tác giả <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.hoten} onChange={e => handleAuthorFormChange(idx, 'hoten', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Quốc tịch */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
                         <select value={form.quoctich} onChange={e => handleAuthorFormChange(idx, 'quoctich', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}>
                           <option>Việt Nam</option>
                           <option>Khác</option>
@@ -467,37 +467,37 @@ function DangKyDichVuBanQuyen() {
                       </div>
                       {/* Bút danh */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Bút danh thể hiện trên tác phẩm (nếu có) <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Bút danh thể hiện trên tác phẩm (nếu có) <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.butdanh} onChange={e => handleAuthorFormChange(idx, 'butdanh', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Số CCCD/Hộ chiếu */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.cccd} onChange={e => handleAuthorFormChange(idx, 'cccd', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Ngày cấp */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
                         <input type="text" value={form.ngaycap} onChange={e => handleAuthorFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Nơi cấp */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.noicap} onChange={e => handleAuthorFormChange(idx, 'noicap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Số điện thoại */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.sdt} onChange={e => handleAuthorFormChange(idx, 'sdt', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Email */}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Email <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.email} onChange={e => handleAuthorFormChange(idx, 'email', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                       {/* Địa chỉ tác giả */}
                       <div style={{ gridColumn: "1/3", display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
+                        <label style={{ color: "#222", fontSize: 15 }}>Địa chỉ tác giả <span style={{ color: 'red' }}>*</span></label>
                         <input value={form.diachi} onChange={e => handleAuthorFormChange(idx, 'diachi', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
                       </div>
                     </div>
