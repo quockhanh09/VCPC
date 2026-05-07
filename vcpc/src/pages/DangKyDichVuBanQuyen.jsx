@@ -1,8 +1,12 @@
+
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/img/Vector-Vcpc.png";
 
+
 function DangKyDichVuBanQuyen() {
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [phanLoai, setPhanLoai] = useState("Cá nhân");
@@ -86,6 +90,17 @@ function DangKyDichVuBanQuyen() {
   // Xóa file khỏi danh sách
   const handleRemoveFile = (idx) => {
     setAttachedFiles(files => files.filter((_, i) => i !== idx));
+  };
+
+  // Handler for Cancel button
+  const handleCancel = () => {
+    if (step === 1) {
+      navigate("/DichVuBanQuyen");
+    } else if (step === 2) {
+      setStep(1);
+    } else if (step === 3) {
+      setStep(2);
+    }
   };
 
   return (
@@ -832,7 +847,7 @@ function DangKyDichVuBanQuyen() {
             </div>
           </div>
           {/* Right: Upload Area */}
-          <div style={{ flex: 1, background: "#f5f5f5", borderRadius: 16, padding: 32, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ flex: 1, background: "#f5f5f5", borderRadius: 16, padding: 48, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div
               onDragOver={e => { e.preventDefault(); setDropActive(true); }}
               onDragLeave={e => { e.preventDefault(); setDropActive(false); }}
@@ -844,11 +859,11 @@ function DangKyDichVuBanQuyen() {
               }}
               style={{
                 width: "100%",
-                minHeight: 180,
-                border: dropActive ? "2px dashed #2852BB" : "2px dashed #D9D9D9",
-                borderRadius: 12,
+                minHeight: 320,
+                border: dropActive ? "2.5px dashed #2852BB" : "2.5px dashed #D9D9D9",
+                borderRadius: 18,
                 background: "#F7F8FE",
-                padding: 48,
+                padding: 72,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -866,7 +881,7 @@ function DangKyDichVuBanQuyen() {
                 <path d="M22.5 27L26 24L29.5 27" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"/>
               </svg>
               {/* Hướng dẫn */}
-              <div style={{ color: "#888", fontSize: 15, textAlign: "center", marginBottom: 10 }}>
+              <div style={{ color: "#888", fontSize: 18, textAlign: "center", marginBottom: 16 }}>
                 Drag your file(s) to start uploading <span style={{ color: '#B6B6B6' }}>or</span>
               </div>
               {/* Button thêm tệp tin */}
@@ -874,15 +889,15 @@ function DangKyDichVuBanQuyen() {
                 type="button"
                 onClick={e => { e.stopPropagation(); fileInputRef.current && fileInputRef.current.click(); }}
                 style={{
-                  border: "1.5px solid #2852BB",
+                  border: "2px solid #2852BB",
                   background: "#fff",
                   color: "#2852BB",
                   borderRadius: 999,
-                  padding: "8px 20px",
-                  fontWeight: 500,
-                  fontSize: 15,
+                  padding: "12px 32px",
+                  fontWeight: 600,
+                  fontSize: 18,
                   cursor: "pointer",
-                  marginTop: 2,
+                  marginTop: 8,
                   transition: "background 0.2s, color 0.2s, border 0.2s"
                 }}
                 onMouseOver={e => { e.currentTarget.style.background = '#E6EDFB'; }}
@@ -930,7 +945,13 @@ function DangKyDichVuBanQuyen() {
           <button style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "8px 18px", fontWeight: 500, fontSize: 15, cursor: "pointer", minWidth: 120, marginLeft: 24 }}>Xem hướng dẫn</button>
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 16 }}>
-          <button style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Hủy bỏ</button>
+          <button
+            type="button"
+            onClick={handleCancel}
+            style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}
+          >
+            Hủy bỏ
+          </button>
           {step === 1 && (
             <button type="button" onClick={handleSaveDraft} style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Lưu bản nháp</button>
           )}
