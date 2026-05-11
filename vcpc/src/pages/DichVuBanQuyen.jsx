@@ -48,18 +48,13 @@ const services = [
   },
 ];
 
-import React, { useRef } from "react";
+// ...existing code...
 
 function DichVuBanQuyen() {
   const navigate = useNavigate();
-  // Lưu trạng thái các dịch vụ đã click
-  const clickedServices = useRef(new Set());
-  // Xử lý click dịch vụ
+  // Xử lý click dịch vụ: chỉ cần click 1 cái là chuyển trang
   const handleServiceClick = (idx) => {
-    clickedServices.current.add(idx);
-    if (clickedServices.current.size === 3) {
-      navigate("/dang-ky-dich-vu-ban-quyen");
-    }
+    navigate("/dang-ky-dich-vu-ban-quyen");
   };
   return (
     <div style={{ minHeight: "100vh", background: "#F9F8F6", padding: "0 0 48px 0" }}>
@@ -84,43 +79,37 @@ function DichVuBanQuyen() {
         gap: 24,
         justifyItems: "center"
       }}>
-        {services.map((item, idx) => {
-          const isSelected = clickedServices.current.has(idx);
-          return (
-            <div
-              key={idx}
-              style={{
-                width: 260,
-                background: "#F8F8F8",
-                borderRadius: 16,
-                padding: 24,
-                textAlign: "center",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
-                border: isSelected ? "2.5px solid #2852BB" : "2px solid transparent",
-                transition: "border 0.2s, box-shadow 0.2s",
-                cursor: "pointer",
-                boxShadow: isSelected ? "0 4px 16px rgba(40,82,187,0.10)" : "0 1px 4px rgba(0,0,0,0.03)",
-              }}
-              onClick={() => handleServiceClick(idx)}
-              onMouseEnter={e => {
-                e.currentTarget.style.border = "2.5px solid #2852BB";
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(40,82,187,0.10)";
-              }}
-              onMouseLeave={e => {
-                if (!clickedServices.current.has(idx)) {
-                  e.currentTarget.style.border = "2px solid transparent";
-                  e.currentTarget.style.boxShadow = "0 1px 4px rgba(0,0,0,0.03)";
-                }
-              }}
-            >
-              <>
-                <img src={img137} alt="icon" style={{ width: 72, height: 48, marginBottom: 18, objectFit: "contain" }} />
-                <div style={{ color: "#222", fontWeight: 700, fontSize: 17, marginBottom: 10, fontFamily: 'SVN-Gilroy' }}>{item.title}</div>
-                <div style={{ color: "#555", fontSize: 15, fontWeight: 400 }}>{item.desc}</div>
-              </>
-            </div>
-          );
-        })}
+        {services.map((item, idx) => (
+          <div
+            key={idx}
+            style={{
+              width: 260,
+              background: "#F8F8F8",
+              borderRadius: 16,
+              padding: 24,
+              textAlign: "center",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
+              border: "2px solid transparent",
+              transition: "border 0.2s, box-shadow 0.2s",
+              cursor: "pointer",
+            }}
+            onClick={() => handleServiceClick(idx)}
+            onMouseEnter={e => {
+              e.currentTarget.style.border = "2.5px solid #2852BB";
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(40,82,187,0.10)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.border = "2px solid transparent";
+              e.currentTarget.style.boxShadow = "0 1px 4px rgba(0,0,0,0.03)";
+            }}
+          >
+            <>
+              <img src={img137} alt="icon" style={{ width: 72, height: 48, marginBottom: 18, objectFit: "contain" }} />
+              <div style={{ color: "#222", fontWeight: 700, fontSize: 17, marginBottom: 10, fontFamily: 'SVN-Gilroy' }}>{item.title}</div>
+              <div style={{ color: "#555", fontSize: 15, fontWeight: 400 }}>{item.desc}</div>
+            </>
+          </div>
+        ))}
       </div>
       
       {/* Cảnh báo và nút thao tác */}

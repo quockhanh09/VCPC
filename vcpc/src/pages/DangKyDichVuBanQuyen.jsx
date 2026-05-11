@@ -1,3 +1,63 @@
+// Thêm fetch polyfill nếu cần cho trình duyệt cũ
+
+// Hàm gửi dữ liệu đăng ký dịch vụ
+async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN) {
+  if (step === 1) {
+    // Lấy dữ liệu chủ sở hữu đầu tiên (có thể mở rộng cho nhiều owner)
+    const owner = ownerForms[0];
+    const data = {
+      phanLoai: owner.phanLoai,
+      hoten: owner.fields.hoten || '',
+      quoctich: owner.fields.quoctich || '',
+      cccd: owner.fields.cccd || '',
+      ngaycap: owner.fields.ngaycap || '',
+      noicap: owner.fields.noicap || '',
+      sdt: owner.fields.sdt || '',
+      email: owner.fields.email || '',
+      diachi: owner.fields.diachi || '',
+      tentc: owner.fields.tentc || '',
+      masothue: owner.fields.sodkkd || '',
+      nguoidai: owner.fields.nguoidai || '',
+      chucdanh: owner.fields.chucdanh || '',
+      nguoiphutrach: owner.fields.nguoiphutrach || '',
+      chucdanhphutrach: owner.fields.chucdanhphutrach || '',
+      diachitc: owner.fields.diachi || '',
+    };
+    const res = await fetch('http://localhost:3000/register/step1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    alert(result.message || 'Đã gửi đăng ký step 1!');
+  } else if (step === 2) {
+    // Lấy dữ liệu tác phẩm và tác giả đầu tiên (có thể mở rộng cho nhiều tác giả)
+    const author = authorForms[0];
+    const data = {
+      tentacpham: '', // Cần lấy từ input FE nếu có
+      ngayhinhthanh: '', // Cần lấy từ input FE nếu có
+      mota: '', // Cần lấy từ input FE nếu có
+      tinhtranggcn: tinhTrangGCN,
+      sogcn: soGCN,
+      tacgia: author.hoten || '',
+      quoctich: author.quoctich || '',
+      butdanh: author.butdanh || '',
+      cccd: author.cccd || '',
+      ngaycap: author.ngaycap || '',
+      noicap: author.noicap || '',
+      sdt: author.sdt || '',
+      email: author.email || '',
+      diachi: author.diachi || '',
+    };
+    const res = await fetch('http://localhost:3000/register/step2', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    alert(result.message || 'Đã gửi đăng ký step 2!');
+  }
+}
 
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,19 +80,19 @@ function DangKyDichVuBanQuyen() {
 
   // State for multiple owner forms
   const [ownerForms, setOwnerForms] = useState([
-    { phanLoai: "Cá nhân", fields: {} }
+      { phanLoai: "Cá nhân", fields: { ngaycap: '' } }
   ]);
 
   // Handler for changing a field in a specific owner form
   const handleOwnerFormChange = (idx, key, value) => {
-    setOwnerForms(forms => forms.map((form, i) =>
+    setOwnerForms(forms => forms.map((form, i) => 
       i === idx ? { ...form, fields: { ...form.fields, [key]: value } } : form
     ));
   };
 
   // Handler for changing 'phanLoai' in a specific owner form
   const handleOwnerPhanLoaiChange = (idx, value) => {
-    setOwnerForms(forms => forms.map((form, i) =>
+    setOwnerForms(forms => forms.map((form, i) => 
       i === idx ? { ...form, phanLoai: value, fields: {} } : form
     ));
   };
@@ -41,7 +101,7 @@ function DangKyDichVuBanQuyen() {
   const handleAddOwnerForm = () => {
     setOwnerForms(forms => ([
       ...forms,
-      { phanLoai: "Cá nhân", fields: {} }
+      { phanLoai: "Cá nhân", fields: { ngaycap: '' } }
     ]));
   };
 
@@ -248,10 +308,17 @@ function DangKyDichVuBanQuyen() {
                         <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
                         <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
+                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                         <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                         <input
+                           type="date"
+                           value={ownerForms[0].fields.ngaycap || ''}
+                           onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)}
+                           style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", cursor: "pointer" }}
+                           placeholder="Chọn ngày"
+                           onFocus={e => e.target.showPicker && e.target.showPicker()}
+                         />
+                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
                         <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
@@ -281,10 +348,31 @@ function DangKyDichVuBanQuyen() {
                         <label>Mã số doanh nghiệp <span style={{ color: 'red' }}>*</span></label>
                         <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
                       </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
-                      </div>
+                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                         <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
+                         <input
+                           type="date"
+                           value={ownerForms[0].fields.ngaycap || ''}
+                           onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)}
+                           style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", cursor: "pointer" }}
+                           placeholder="Chọn ngày"
+                           onFocus={e => e.target.showPicker && e.target.showPicker()}
+                         />
+                       </div>
+                                      {/* Nếu có nhiều ownerForms thì render đúng input date cho từng form */}
+                                      {ownerForms.length > 1 && ownerForms.map((form, idx) => idx > 0 && (
+                                        <div key={idx} style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
+                                          <label>Ngày cấp (chủ sở hữu {idx + 1}) <span style={{ color: 'red' }}>*</span></label>
+                                          <input
+                                            type="date"
+                                            value={form.fields.ngaycap || ''}
+                                            onChange={e => handleOwnerFormChange(idx, 'ngaycap', e.target.value)}
+                                            style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", cursor: "pointer" }}
+                                            placeholder="Chọn ngày"
+                                            onFocus={e => e.target.showPicker && e.target.showPicker()}
+                                          />
+                                        </div>
+                                      ))}
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
                         <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
@@ -494,7 +582,7 @@ function DangKyDichVuBanQuyen() {
                         {/* Ngày cấp */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                           <label style={{ color: "#222", fontSize: 15 }}>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                          <input type="text" value={form.ngaycap} onChange={e => handleAuthorFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                          <input type="date" value={form.ngaycap} onChange={e => handleAuthorFormChange(idx, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="Chọn ngày" />
                         </div>
                         {/* Nơi cấp */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -637,7 +725,7 @@ function DangKyDichVuBanQuyen() {
                           </div>
                           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
-                            <input value={ownerForms[0].fields.ngaycap || ''} onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                            <input type="date" value={ownerForms[0].fields.ngaycap || ''} onChange={e => handleOwnerFormChange(0, 'ngaycap', e.target.value)} style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} placeholder="Chọn ngày" />
                           </div>
                           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                             <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
@@ -958,7 +1046,10 @@ function DangKyDichVuBanQuyen() {
           {step === 2 && (
             <button type="button" onClick={() => setStep(3)} style={{ background: "#C9C9C9", color: "#10214B", border: "none", borderRadius: 8, padding: "10px 24px", fontWeight: 500, fontSize: 16, cursor: "pointer", minWidth: 110 }}>Lưu bản nháp</button>
           )}
-          <button style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}>
+          <button
+            style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}
+            onClick={() => handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN)}
+          >
             Đăng ký dịch vụ
             <span style={{ fontSize: 20, marginLeft: 4 }}>&rarr;</span>
           </button>
