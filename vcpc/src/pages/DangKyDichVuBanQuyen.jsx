@@ -2,60 +2,50 @@
 
 // Hàm gửi dữ liệu đăng ký dịch vụ
 async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN) {
-  if (step === 1) {
-    // Lấy dữ liệu chủ sở hữu đầu tiên (có thể mở rộng cho nhiều owner)
-    const owner = ownerForms[0];
-    const data = {
-      phanLoai: owner.phanLoai,
-      hoten: owner.fields.hoten || '',
-      quoctich: owner.fields.quoctich || '',
-      cccd: owner.fields.cccd || '',
-      ngaycap: owner.fields.ngaycap || '',
-      noicap: owner.fields.noicap || '',
-      sdt: owner.fields.sdt || '',
-      email: owner.fields.email || '',
-      diachi: owner.fields.diachi || '',
-      tentc: owner.fields.tentc || '',
-      masothue: owner.fields.sodkkd || '',
-      nguoidai: owner.fields.nguoidai || '',
-      chucdanh: owner.fields.chucdanh || '',
-      nguoiphutrach: owner.fields.nguoiphutrach || '',
-      chucdanhphutrach: owner.fields.chucdanhphutrach || '',
-      diachitc: owner.fields.diachi || '',
-    };
-    const res = await fetch('http://localhost:3000/register/step1', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    const result = await res.json();
-    alert(result.message || 'Đã gửi đăng ký step 1!');
-  } else if (step === 2) {
-    // Lấy dữ liệu tác phẩm và tác giả đầu tiên (có thể mở rộng cho nhiều tác giả)
-    const author = authorForms[0];
-    const data = {
-      tentacpham: '', // Cần lấy từ input FE nếu có
-      ngayhinhthanh: '', // Cần lấy từ input FE nếu có
-      mota: '', // Cần lấy từ input FE nếu có
-      tinhtranggcn: tinhTrangGCN,
-      sogcn: soGCN,
-      tacgia: author.hoten || '',
-      quoctich: author.quoctich || '',
-      butdanh: author.butdanh || '',
-      cccd: author.cccd || '',
-      ngaycap: author.ngaycap || '',
-      noicap: author.noicap || '',
-      sdt: author.sdt || '',
-      email: author.email || '',
-      diachi: author.diachi || '',
-    };
-    const res = await fetch('http://localhost:3000/register/step2', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    const result = await res.json();
-    alert(result.message || 'Đã gửi đăng ký step 2!');
+  try {
+    if (step === 1) {
+      // Lấy dữ liệu chủ sở hữu đầu tiên
+      const owner = ownerForms[0] || {};
+      const data = {
+        fullName: owner.fields?.hoten || '',
+        phone: owner.fields?.sdt || '',
+        email: owner.fields?.email || '',
+        phanLoai: owner.phanLoai,
+        ...owner.fields,
+        tinhTrangGCN,
+        soGCN
+      };
+      const res = await fetch('http://localhost:3000/register/step1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký step 1');
+      alert(result.message || 'Đã gửi đăng ký step 1!');
+    } else if (step === 2) {
+      // Lấy dữ liệu tác giả đầu tiên
+      const author = authorForms[0] || {};
+      const data = {
+        fullName: author.hoten || '',
+        phone: author.sdt || '',
+        email: author.email || '',
+        ...author,
+        phanLoai,
+        tinhTrangGCN,
+        soGCN
+      };
+      const res = await fetch('http://localhost:3000/register/step2', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký step 2');
+      alert(result.message || 'Đã gửi đăng ký step 2!');
+    }
+  } catch (err) {
+    alert(err.message || 'Lỗi gửi đăng ký dịch vụ');
   }
 }
 
