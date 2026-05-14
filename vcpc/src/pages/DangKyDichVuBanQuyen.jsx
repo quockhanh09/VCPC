@@ -1,19 +1,21 @@
 // Thêm fetch polyfill nếu cần cho trình duyệt cũ
 
 // Hàm gửi dữ liệu đăng ký dịch vụ
-async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN) {
+async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN, thongTinYeuCau) {
   try {
     if (step === 1) {
       // Lấy dữ liệu chủ sở hữu đầu tiên
       const owner = ownerForms[0] || {};
       const data = {
+        classify: owner.phanLoai || '',
         fullName: owner.fields?.hoten || '',
+        nationality: owner.fields?.quoctich || '',
+        idNumber: owner.fields?.cccd || '',
+        issueDate: owner.fields?.ngaycap || '',
+        issuePlace: owner.fields?.noicap || '',
         phone: owner.fields?.sdt || '',
         email: owner.fields?.email || '',
-        phanLoai: owner.phanLoai,
-        ...owner.fields,
-        tinhTrangGCN,
-        soGCN
+        address: owner.fields?.diachi || ''
       };
       const res = await fetch('http://localhost:3000/register/step1', {
         method: 'POST',
@@ -24,13 +26,36 @@ async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrang
       if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký step 1');
       alert(result.message || 'Đã gửi đăng ký step 1!');
     } else if (step === 2) {
-      // Lấy dữ liệu tác giả đầu tiên
+      // Map dữ liệu thành object phẳng, lấy trường đầu tiên của từng form
       const author = authorForms[0] || {};
+      const owner = ownerForms[0] || {};
       const data = {
-        fullName: author.hoten || '',
-        phone: author.sdt || '',
-        email: author.email || '',
-        ...author,
+        // Thông tin yêu cầu
+        phanLoaiYeuCau: thongTinYeuCau.phanLoai || '',
+        tenTacPham: thongTinYeuCau.tenTacPham || '',
+        ngayHinhThanh: thongTinYeuCau.ngayHinhThanh || '',
+        moTa: thongTinYeuCau.moTa || '',
+        // Thông tin tác giả
+        tacgia_hoten: author.hoten || '',
+        tacgia_quoctich: author.quoctich || '',
+        tacgia_butdanh: author.butdanh || '',
+        tacgia_cccd: author.cccd || '',
+        tacgia_ngaycap: author.ngaycap || '',
+        tacgia_noicap: author.noicap || '',
+        tacgia_sdt: author.sdt || '',
+        tacgia_email: author.email || '',
+        tacgia_diachi: author.diachi || '',
+        // Thông tin chủ sở hữu
+        owner_phanloai: owner.phanLoai || '',
+        owner_hoten: owner.fields?.hoten || '',
+        owner_quoctich: owner.fields?.quoctich || '',
+        owner_cccd: owner.fields?.cccd || '',
+        owner_ngaycap: owner.fields?.ngaycap || '',
+        owner_noicap: owner.fields?.noicap || '',
+        owner_sdt: owner.fields?.sdt || '',
+        owner_email: owner.fields?.email || '',
+        owner_diachi: owner.fields?.diachi || '',
+        // Các trường khác
         phanLoai,
         tinhTrangGCN,
         soGCN
@@ -56,6 +81,13 @@ import logo from "../assets/img/Vector-Vcpc.png";
 
 
 function DangKyDichVuBanQuyen() {
+    // State cho thông tin yêu cầu ở step 2
+    const [thongTinYeuCau, setThongTinYeuCau] = useState({
+      phanLoai: "Tư vấn đăng ký Quyền tác giả",
+      tenTacPham: "",
+      ngayHinhThanh: "",
+      moTa: ""
+    });
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -70,7 +102,19 @@ function DangKyDichVuBanQuyen() {
 
   // State for multiple owner forms
   const [ownerForms, setOwnerForms] = useState([
-      { phanLoai: "Cá nhân", fields: { ngaycap: '' } }
+    {
+      phanLoai: "Cá nhân",
+      fields: {
+        hoten: '',
+        quoctich: 'Việt Nam',
+        cccd: '',
+        ngaycap: '',
+        noicap: '',
+        sdt: '',
+        email: '',
+        diachi: ''
+      }
+    }
   ]);
 
   // Handler for changing a field in a specific owner form
@@ -91,7 +135,19 @@ function DangKyDichVuBanQuyen() {
   const handleAddOwnerForm = () => {
     setOwnerForms(forms => ([
       ...forms,
-      { phanLoai: "Cá nhân", fields: { ngaycap: '' } }
+      {
+        phanLoai: "Cá nhân",
+        fields: {
+          hoten: '',
+          quoctich: 'Việt Nam',
+          cccd: '',
+          ngaycap: '',
+          noicap: '',
+          sdt: '',
+          email: '',
+          diachi: ''
+        }
+      }
     ]));
   };
 
@@ -285,18 +341,30 @@ function DangKyDichVuBanQuyen() {
                     <>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Họ và tên <span style={{ color: 'red' }}>*</span></label>
-                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.hoten || ''}
+                          onChange={e => handleOwnerFormChange(0, 'hoten', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Quốc tịch <span style={{ color: 'red' }}>*</span></label>
-                        <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}>
+                        <select
+                          value={ownerForms[0].fields.quoctich || 'Việt Nam'}
+                          onChange={e => handleOwnerFormChange(0, 'quoctich', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        >
                           <option>Việt Nam</option>
                           <option>Khác</option>
                         </select>
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Số CCCD / Hộ chiếu <span style={{ color: 'red' }}>*</span></label>
-                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.cccd || ''}
+                          onChange={e => handleOwnerFormChange(0, 'cccd', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                          <label>Ngày cấp <span style={{ color: 'red' }}>*</span></label>
@@ -311,19 +379,35 @@ function DangKyDichVuBanQuyen() {
                        </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Nơi cấp <span style={{ color: 'red' }}>*</span></label>
-                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.noicap || ''}
+                          onChange={e => handleOwnerFormChange(0, 'noicap', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Số điện thoại <span style={{ color: 'red' }}>*</span></label>
-                        <input  style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.sdt || ''}
+                          onChange={e => handleOwnerFormChange(0, 'sdt', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         <label>Email <span style={{ color: 'red' }}>*</span></label>
-                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.email || ''}
+                          onChange={e => handleOwnerFormChange(0, 'email', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                         <label>Địa chỉ <span style={{ color: 'red' }}>*</span></label>
-                        <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }} />
+                        <input
+                          value={ownerForms[0].fields.diachi || ''}
+                          onChange={e => handleOwnerFormChange(0, 'diachi', e.target.value)}
+                          style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff" }}
+                        />
                       </div>
                     </>
                   )}
@@ -423,7 +507,12 @@ function DangKyDichVuBanQuyen() {
                   {/* Phân loại */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                     <label style={{ fontWeight: 600, color: "#2852BB", fontSize: 15 }}>Phân loại <span style={{ color: 'red' }}>*</span></label>
-                    <select style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} defaultValue="Tư vấn đăng ký Quyền tác giả">
+                    <select
+                      value={thongTinYeuCau.phanLoai}
+                      onChange={e => setThongTinYeuCau(tt => ({ ...tt, phanLoai: e.target.value }))}
+                      style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                    >
+                      <option>Tư vấn đăng ký Quyền tác giả</option>
                       <option>Dịch vụ công bố bản quyền quyền tác giả</option>
                       <option>Dịch vụ Công bố bản quyền quyền liên quan</option>
                       <option>Dịch vụ tư vấn đăng ký quyền tác giả</option>
@@ -440,17 +529,33 @@ function DangKyDichVuBanQuyen() {
                   {/* Tên tác phẩm / Tên cuộc biểu diễn */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <label style={{ color: "#222", fontSize: 15 }}>Tên tác phẩm / Tên cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
-                    <input style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                    <input
+                      value={thongTinYeuCau.tenTacPham}
+                      onChange={e => setThongTinYeuCau(tt => ({ ...tt, tenTacPham: e.target.value }))}
+                      style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                      placeholder=""
+                    />
                   </div>
                   {/* Ngày hình thành */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <label style={{ color: "#222", fontSize: 15 }}>Ngày hình thành <span style={{ color: 'red' }}>*</span></label>
-                    <input type="text" style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }} placeholder="" />
+                    <input
+                      type="text"
+                      value={thongTinYeuCau.ngayHinhThanh}
+                      onChange={e => setThongTinYeuCau(tt => ({ ...tt, ngayHinhThanh: e.target.value }))}
+                      style={{ width: "100%", padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", fontSize: 15 }}
+                      placeholder=""
+                    />
                   </div>
                   {/* Mô tả */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8, gridColumn: "1/3" }}>
                     <label style={{ color: "#222", fontSize: 15 }}>Mô tả về tác phẩm / cuộc biểu diễn <span style={{ color: 'red' }}>*</span></label>
-                    <textarea style={{ width: "100%", minHeight: 80, padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", resize: "vertical", fontSize: 15 }} placeholder="Mô tả về nội dung, thời lượng, công cụ ứng dụng, thao tác đã thực hiện, cấu tạo, ... về tác phẩm" />
+                    <textarea
+                      value={thongTinYeuCau.moTa}
+                      onChange={e => setThongTinYeuCau(tt => ({ ...tt, moTa: e.target.value }))}
+                      style={{ width: "100%", minHeight: 80, padding: 10, borderRadius: 8, border: "1.5px solid #B6B6B6", background: "#fff", resize: "vertical", fontSize: 15 }}
+                      placeholder="Mô tả về nội dung, thời lượng, công cụ ứng dụng, thao tác đã thực hiện, cấu tạo, ... về tác phẩm"
+                    />
                   </div>
                   {/* Tình trạng chứng nhận */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -1038,7 +1143,7 @@ function DangKyDichVuBanQuyen() {
           )}
           <button
             style={{ background: "#2852BB", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 600, fontSize: 16, cursor: "pointer", minWidth: 170, display: "flex", alignItems: "center", gap: 8 }}
-            onClick={() => handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN)}
+            onClick={() => handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN, thongTinYeuCau)}
           >
             Đăng ký dịch vụ
             <span style={{ fontSize: 20, marginLeft: 4 }}>&rarr;</span>
