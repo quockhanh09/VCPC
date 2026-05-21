@@ -44,7 +44,8 @@ app.use(cors({
     'http://localhost:5173',
     'http://localhost:5174', // Cho phép CMS truy cập
     'https://vcpc.vercel.app',
-    'https://vcpc.onrender.com'
+    'https://vcpc.onrender.com',
+    'https://vcpc-7sca.vercel.app'
   ],
   credentials: true
 }));
