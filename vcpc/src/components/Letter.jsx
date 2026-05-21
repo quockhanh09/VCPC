@@ -39,7 +39,7 @@ function Letter() {
 
     useEffect(() => {
         // Gọi API tăng và lấy lượt xem
-        fetch("http://localhost:3000/views", { method: "POST" })
+        fetch("https://vcpc.onrender.com/views", { method: "POST" })
             .then(res => res.json())
             .then(data => {
                 if (typeof data.views === 'number') setViews(data.views);

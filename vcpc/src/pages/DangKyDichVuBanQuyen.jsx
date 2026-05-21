@@ -39,7 +39,7 @@ async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrang
       tinhTrangGCN,
       soGCN
     };
-    const res = await fetch('http://localhost:3000/register/copyright', {
+    const res = await fetch('https://vcpc.onrender.com/register/copyright', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

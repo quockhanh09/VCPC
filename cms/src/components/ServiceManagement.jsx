@@ -30,7 +30,7 @@ const columns = [
 ];
 
 
-const API_URL = 'http://localhost:3000/register/copyright';
+const API_URL = 'https://vcpc.onrender.com/register/copyright';
 
 
 const ServiceManagement = () => {
