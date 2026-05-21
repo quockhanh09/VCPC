@@ -1,0 +1,60 @@
+.cms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #233a7c;
+  padding: 0 2rem;
+  height: 56px;
+  color: #fff;
+}
+.cms-header__left {
+  display: flex;
+  align-items: center;
+}
+.cms-header__icon {
+  font-size: 1.2rem;
+  margin: 0 0.7rem;
+  cursor: pointer;
+}
+.cms-header__menu {
+  margin-left: 0;
+  margin-right: 1.2rem;
+  font-size: 1.5rem;
+}
+.cms-header__search {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #bdbdbd;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+}
+.cms-header__right {
+  display: flex;
+  align-items: center;
+}
+.cms-header__user {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+.cms-header__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.7rem;
+}
+.cms-header__userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.cms-header__name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.cms-header__email {
+  font-size: 0.85rem;
+  color: #bdbdbd;
+}

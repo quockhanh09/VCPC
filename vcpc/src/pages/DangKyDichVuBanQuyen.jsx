@@ -1,74 +1,52 @@
 // Thêm fetch polyfill nếu cần cho trình duyệt cũ
 
-// Hàm gửi dữ liệu đăng ký dịch vụ
+// Hàm gửi dữ liệu đăng ký dịch vụ (gửi tất cả các trường về backend mới)
 async function handleRegister(step, ownerForms, authorForms, phanLoai, tinhTrangGCN, soGCN, thongTinYeuCau) {
   try {
-    if (step === 1) {
-      // Lấy dữ liệu chủ sở hữu đầu tiên
-      const owner = ownerForms[0] || {};
-      const data = {
-        classify: owner.phanLoai || '',
-        fullName: owner.fields?.hoten || '',
-        nationality: owner.fields?.quoctich || '',
-        idNumber: owner.fields?.cccd || '',
-        issueDate: owner.fields?.ngaycap || '',
-        issuePlace: owner.fields?.noicap || '',
-        phone: owner.fields?.sdt || '',
-        email: owner.fields?.email || '',
-        address: owner.fields?.diachi || ''
-      };
-      const res = await fetch('http://localhost:3000/register/step1', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký step 1');
-      alert(result.message || 'Đã gửi đăng ký step 1!');
-    } else if (step === 2) {
-      // Map dữ liệu thành object phẳng, lấy trường đầu tiên của từng form
-      const author = authorForms[0] || {};
-      const owner = ownerForms[0] || {};
-      const data = {
-        // Thông tin yêu cầu
-        phanLoaiYeuCau: thongTinYeuCau.phanLoai || '',
-        tenTacPham: thongTinYeuCau.tenTacPham || '',
-        ngayHinhThanh: thongTinYeuCau.ngayHinhThanh || '',
-        moTa: thongTinYeuCau.moTa || '',
-        // Thông tin tác giả
-        tacgia_hoten: author.hoten || '',
-        tacgia_quoctich: author.quoctich || '',
-        tacgia_butdanh: author.butdanh || '',
-        tacgia_cccd: author.cccd || '',
-        tacgia_ngaycap: author.ngaycap || '',
-        tacgia_noicap: author.noicap || '',
-        tacgia_sdt: author.sdt || '',
-        tacgia_email: author.email || '',
-        tacgia_diachi: author.diachi || '',
-        // Thông tin chủ sở hữu
-        owner_phanloai: owner.phanLoai || '',
-        owner_hoten: owner.fields?.hoten || '',
-        owner_quoctich: owner.fields?.quoctich || '',
-        owner_cccd: owner.fields?.cccd || '',
-        owner_ngaycap: owner.fields?.ngaycap || '',
-        owner_noicap: owner.fields?.noicap || '',
-        owner_sdt: owner.fields?.sdt || '',
-        owner_email: owner.fields?.email || '',
-        owner_diachi: owner.fields?.diachi || '',
-        // Các trường khác
-        phanLoai,
-        tinhTrangGCN,
-        soGCN
-      };
-      const res = await fetch('http://localhost:3000/register/step2', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký step 2');
-      alert(result.message || 'Đã gửi đăng ký step 2!');
-    }
+    // Lấy dữ liệu chủ sở hữu đầu tiên
+    const owner = ownerForms[0] || {};
+    // Lấy dữ liệu tác giả đầu tiên
+    const author = authorForms[0] || {};
+    // Gom tất cả các trường cần thiết
+    const data = {
+      // Thông tin yêu cầu
+      phanLoaiYeuCau: thongTinYeuCau.phanLoai || '',
+      tenTacPham: thongTinYeuCau.tenTacPham || '',
+      ngayHinhThanh: thongTinYeuCau.ngayHinhThanh || '',
+      moTa: thongTinYeuCau.moTa || '',
+      // Thông tin tác giả
+      tacgia_hoten: author.hoten || '',
+      tacgia_quoctich: author.quoctich || '',
+      tacgia_butdanh: author.butdanh || '',
+      tacgia_cccd: author.cccd || '',
+      tacgia_ngaycap: author.ngaycap || '',
+      tacgia_noicap: author.noicap || '',
+      tacgia_sdt: author.sdt || '',
+      tacgia_email: author.email || '',
+      tacgia_diachi: author.diachi || '',
+      // Thông tin chủ sở hữu
+      owner_phanloai: owner.phanLoai || '',
+      owner_hoten: owner.fields?.hoten || '',
+      owner_quoctich: owner.fields?.quoctich || '',
+      owner_cccd: owner.fields?.cccd || '',
+      owner_ngaycap: owner.fields?.ngaycap || '',
+      owner_noicap: owner.fields?.noicap || '',
+      owner_sdt: owner.fields?.sdt || '',
+      owner_email: owner.fields?.email || '',
+      owner_diachi: owner.fields?.diachi || '',
+      // Các trường khác
+      phanLoai,
+      tinhTrangGCN,
+      soGCN
+    };
+    const res = await fetch('http://localhost:3000/register/copyright', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.message || 'Lỗi gửi đăng ký');
+    alert(result.message || 'Đã gửi đăng ký!');
   } catch (err) {
     alert(err.message || 'Lỗi gửi đăng ký dịch vụ');
   }

@@ -42,6 +42,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'http://localhost:5173',
+    'http://localhost:5174', // Cho phép CMS truy cập
     'http://localhost:3000',
     'https://vcpc.vercel.app',
     'https://vcpc.onrender.com'
@@ -101,85 +102,43 @@ async function appendToSheet(row) {
     'Thời gian gửi'
   ]);
 }
-// Route ghi dữ liệu đăng ký dịch vụ step 1 vào Sheet2
-app.post('/register/step1', async (req, res) => {
-  // Nhận dữ liệu dạng JSON, kiểm tra từng trường như route /support
-  const {
-    classify, // Phân loại
-    fullName, // Họ và tên
-    nationality, // Quốc tịch
-    idNumber, // Số CCCD/Hộ chiếu
-    issueDate, // Ngày cấp
-    issuePlace, // Nơi cấp
-    phone, // Số điện thoại
-    email, // Email
-    address // Địa chỉ
-  } = req.body;
-  // Kiểm tra các trường bắt buộc
-  if (!classify || !fullName || !nationality || !idNumber || !issueDate || !issuePlace || !phone || !email || !address) {
-    return res.status(400).json({ message: 'Thiếu thông tin bắt buộc.' });
-  }
+
+// ĐĂNG KÝ DỊCH VỤ BẢN QUYỀN - LƯU FILE JSON
+const copyrightFile = path.join(__dirname, 'copyright_registrations.json');
+
+// Helper: đọc danh sách đăng ký
+function readCopyrightList() {
+  if (!fs.existsSync(copyrightFile)) return [];
   try {
-    // Ghi vào Google Sheets Sheet2
-    const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
-    const formattedTime = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
-    // Ghi đầy đủ các trường vào row
-    const row = [
-      classify,
-      fullName,
-      nationality,
-      idNumber,
-      issueDate,
-      issuePlace,
-      phone,
-      email,
-      address,
-      formattedTime
-    ];
-    // Header đầy đủ cho Sheet2
-    const header = [
-      'Phân loại',
-      'Họ và tên',
-      'Quốc tịch',
-      'Số CCCD/Hộ chiếu',
-      'Ngày cấp',
-      'Nơi cấp',
-      'Số điện thoại',
-      'Email',
-      'Địa chỉ',
-      'Thời gian gửi'
-    ];
-    await appendToSheetGeneric(row, 'Sheet2', header);
-    res.json({ message: 'Gửi đăng ký Step 1 thành công!' });
-  } catch (err) {
-    console.error('Lỗi ghi Sheet2:', err);
-    res.status(500).json({ message: 'Lỗi ghi Sheet2.' });
+    const data = fs.readFileSync(copyrightFile, 'utf8');
+    return JSON.parse(data);
+  } catch (e) {
+    return [];
   }
+}
+
+// Helper: ghi danh sách đăng ký
+function writeCopyrightList(list) {
+  fs.writeFileSync(copyrightFile, JSON.stringify(list, null, 2), 'utf8');
+}
+
+// API nhận đăng ký dịch vụ bản quyền (tất cả các trường)
+app.post('/register/copyright', (req, res) => {
+  const data = req.body;
+  // Thêm thời gian gửi
+  const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
+  data.createdAt = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
+  // Đọc danh sách cũ, thêm mới, ghi lại
+  const list = readCopyrightList();
+  list.push(data);
+  writeCopyrightList(list);
+  res.json({ message: 'Đăng ký thành công!', data });
 });
 
-// Route ghi dữ liệu đăng ký dịch vụ step 2 vào Sheet3
-app.post('/register/step2', async (req, res) => {
-  // Nhận dữ liệu dạng JSON, kiểm tra từng trường như route /support
-  const fullName = req.body.fullName || '';
-  const phone = req.body.phone || '';
-  const email = req.body.email || '';
-  console.log('POST /register/step2 body:', req.body);
-  if (!fullName || !phone || !email) {
-    console.log('POST /register/step2: thiếu thông tin');
-    return res.status(400).json({ message: 'Thiếu thông tin bắt buộc.' });
-  }
-  try {
-    const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
-    const formattedTime = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
-    const row = [fullName, phone, email, formattedTime];
-    const header = ['Họ tên', 'Số điện thoại', 'Email', 'Thời gian gửi'];
-    console.log('POST /register/step2: row:', row);
-    await appendToSheetGeneric(row, 'Sheet3', header);
-    res.json({ message: 'Gửi đăng ký Step 2 thành công!' });
-  } catch (err) {
-    console.error('Lỗi ghi Sheet3:', err);
-    res.status(500).json({ message: 'Lỗi ghi Sheet3.', error: err.message });
-  }
+// API lấy danh sách đăng ký dịch vụ bản quyền
+app.get('/register/copyright', (req, res) => {
+  const list = readCopyrightList();
+  res.json(list);
 });
 
 
