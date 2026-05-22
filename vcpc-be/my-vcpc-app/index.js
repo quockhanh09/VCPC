@@ -123,15 +123,54 @@ function writeCopyrightList(list) {
 }
 
 // API nhận đăng ký dịch vụ bản quyền (tất cả các trường)
-app.post('/register/copyright', (req, res) => {
+const supabase = require('./supabaseClient');
+app.post('/register/copyright', async (req, res) => {
   const data = req.body;
   // Thêm thời gian gửi
   const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
   data.createdAt = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
-  // Đọc danh sách cũ, thêm mới, ghi lại
+  // Ghi vào file JSON cũ (backup)
   const list = readCopyrightList();
   list.push(data);
   writeCopyrightList(list);
+  // Ghi lên Supabase
+  try {
+    // Map dữ liệu về đúng schema Supabase (snake_case)
+    const supabaseData = {
+      classify: data.classify || data.owner_phanloai || '',
+      full_name: data.fullName || data.owner_hoten || '',
+      nationality: data.nationality || data.owner_quoctich || '',
+      id_number: data.idNumber || data.owner_cccd || '',
+      issue_date: data.issueDate || data.owner_ngaycap || null,
+      issue_place: data.issuePlace || data.owner_noicap || '',
+      phone: data.phone || data.owner_sdt || '',
+      email: data.email || data.owner_email || '',
+      address: data.address || data.owner_diachi || '',
+      ten_tac_pham: data.tenTacPham || data.phanLoaiYeuCau || '',
+      ngay_hinh_thanh: data.ngayHinhThanh || null,
+      mo_ta: data.moTa || '',
+      tinh_trang_gcn: data.tinhTrangGCN || '',
+      so_gcn: data.soGCN || '',
+      tacgia_hoten: data.tacgia_hoten || '',
+      tacgia_quoctich: data.tacgia_quoctich || '',
+      tacgia_butdanh: data.tacgia_butdanh || '',
+      tacgia_cccd: data.tacgia_cccd || '',
+      tacgia_ngaycap: data.tacgia_ngaycap || null,
+      tacgia_noicap: data.tacgia_noicap || '',
+      tacgia_sdt: data.tacgia_sdt || '',
+      tacgia_email: data.tacgia_email || '',
+      tacgia_diachi: data.tacgia_diachi || '',
+      created_at: hanoiTime.toISODate() // ISO date for created_at
+    };
+    const { error } = await supabase.from('copyright_registrations').insert([supabaseData]);
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return res.status(500).json({ message: 'Lỗi ghi Supabase', error: error.message });
+    }
+  } catch (e) {
+    console.error('Supabase exception:', e);
+    return res.status(500).json({ message: 'Lỗi ghi Supabase', error: e.message });
+  }
   res.json({ message: 'Đăng ký thành công!', data });
 });
 
