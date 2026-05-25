@@ -123,7 +123,7 @@ function writeCopyrightList(list) {
 }
 
 // API nhận đăng ký dịch vụ bản quyền (tất cả các trường)
-const supabase = require('./supabaseClient');
+ const supabase = require('./supabaseClient');
 app.post('/register/copyright', async (req, res) => {
   const data = req.body;
   // Thêm thời gian gửi
@@ -162,7 +162,8 @@ app.post('/register/copyright', async (req, res) => {
       tacgia_diachi: data.tacgia_diachi || '',
       created_at: hanoiTime.toISODate() // ISO date for created_at
     };
-    const { error } = await supabase.from('copyright_registrations').insert([supabaseData]);
+    const { data: insertResult, error } = await supabase.from('copyright_services').insert([supabaseData]);
+    console.log('Supabase insert result:', insertResult, 'error:', error);
     if (error) {
       console.error('Supabase insert error:', error);
       return res.status(500).json({ message: 'Lỗi ghi Supabase', error: error.message });
