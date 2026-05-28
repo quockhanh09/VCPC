@@ -1,5 +1,5 @@
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/App.css";
 
@@ -14,19 +14,8 @@ import imgEventMain from "../assets/img/politics_post01.png";
 import imgCopyright1 from "../assets/img/image-100.png";
 
 
-// Dữ liệu event
-const MAIN_EVENT = {
-  image: imgEventMain,
-  tag: 'Cuộc thi',
-  title: 'Phát Động Cuộc Thi "Sáng Tạo Và Tôn Trọng Bản Quyền": Sân Chơi Mới Cho Người Trẻ',
-  date: '08-06-2025',
-  desc: 'Cuộc thi do Trung tâm phối hợp tổ chức nhằm nâng cao nhận thức của giới trẻ về tầm quan trọng của việc tôn trọng bản quyền. Các tác phẩm tham gia thuộc nhiều thể loại, từ video, infographic đến các bài viết, đều thể hiện sự sáng tạo và hiểu biết về pháp luật sở hữu trí tuệ.'
-};
-const SUB_EVENTS = [
-  { title: 'Tập huấn, bồi dưỡng kiến thức pháp luật', date: '08-06-2025' },
-  { title: 'Hội nghị hợp tác quốc tế về bản quyền', date: '08-06-2025' },
-  { title: 'Hội thảo về thực thi bản quyền trên môi trường số', date: '08-06-2025' },
-];
+// Dữ liệu event động từ backend
+
 
 // Dữ liệu tin chính và tin liên quan
 const MAIN_NEWS = {
@@ -123,6 +112,19 @@ function News() {
   // Ref for copyright scrollable list
   const copyrightListRef = useRef(null);
   const navigate = useNavigate();
+  // Khởi tạo state cho eventNews và subEvents
+  const [eventNews, setEventNews] = useState(null);
+  const [subEvents, setSubEvents] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/news')
+      .then(res => res.json())
+      .then(list => {
+        if (list && list.length > 0) {
+          setEventNews(list[0]);
+          setSubEvents(list.slice(1, 4));
+        }
+      });
+  }, []);
   return (
     <>
       {/* PHẦN TIN TỨC CŨ */}
@@ -255,21 +257,28 @@ function News() {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
             {/* Cột trái: ảnh */}
             <div style={{ width: 420, minWidth: 320, maxWidth: 480, marginRight: 32 }}>
-              <img src={MAIN_EVENT.image} alt="Sự kiện chính" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover',  background: '#eee', boxShadow: '0 2px 12px 0 rgba(16,33,75,0.10)' }} />
+              {eventNews && eventNews.image ? (
+                <img src={eventNews.image} alt="Sự kiện chính" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover',  background: '#eee', boxShadow: '0 2px 12px 0 rgba(16,33,75,0.10)' }} />
+              ) : <div style={{width: '100%', aspectRatio: '1/1', background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Không có ảnh</div>}
             </div>
             {/* Cột giữa: nội dung */}
-            <div style={{ flex: 2, minWidth: 0, borderRight: '1.5px solid #E6EAF2', padding: '0 32px 0 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ color: '#7A7A7A', fontWeight: 700, fontSize: 16, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{MAIN_EVENT.tag}</div>
-              <div style={{ color: '#22336C', fontWeight: 700, fontSize: 30, marginBottom: 12, lineHeight: 1.25, wordBreak: 'break-word' }}>{MAIN_EVENT.title}</div>
+            <div style={{ flex: 2, minWidth: 0, borderRight: '1.5px solid #E6EAF2', padding: '0 32px 0 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', cursor: eventNews ? 'pointer' : 'default' }}
+              onClick={() => eventNews && navigate(`/news/0`)}
+            >
+              <div style={{ color: '#7A7A7A', fontWeight: 700, fontSize: 16, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{eventNews?.tag || ''}</div>
+              <div style={{ color: '#22336C', fontWeight: 700, fontSize: 30, marginBottom: 12, lineHeight: 1.25, wordBreak: 'break-word' }}>{eventNews?.title || 'Chưa có sự kiện'}</div>
               <div style={{ color: '#888', fontSize: 15, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, fontWeight: 500 }}>
-                <i className="bi bi-calendar" style={{ fontSize: 16 }} /> {MAIN_EVENT.date}
+                <i className="bi bi-calendar" style={{ fontSize: 16 }} /> {eventNews?.date || ''}
               </div>
-              <div style={{ color: '#444', fontSize: 15, lineHeight: 1.6, fontWeight: 400 }}>{MAIN_EVENT.desc}</div>
+              <div style={{ color: '#444', fontSize: 15, lineHeight: 1.6, fontWeight: 400 }}>{eventNews?.content || eventNews?.desc || ''}</div>
             </div>
             {/* Cột phải: danh sách sự kiện */}
             <div style={{ flex: 1, padding: 20, display: 'flex', flexDirection: 'column', gap: 0, minWidth: 300, marginLeft: 32 }}>
-              {SUB_EVENTS.map((ev, idx) => (
-                <div key={idx} style={{ borderBottom: idx < SUB_EVENTS.length - 1 ? '1px solid #e6e6e6' : 'none', padding: '5px 0 20px 0', display: 'flex', flexDirection: 'column', gap: 5 }}>
+              {subEvents.length === 0 && <div style={{color:'#888'}}>Chưa có sự kiện phụ</div>}
+              {subEvents.map((ev, idx) => (
+                <div key={idx} style={{ borderBottom: idx < subEvents.length - 1 ? '1px solid #e6e6e6' : 'none', padding: '5px 0 20px 0', display: 'flex', flexDirection: 'column', gap: 5, cursor: 'pointer' }}
+                  onClick={() => navigate(`/news/${idx+1}`)}
+                >
                   <div style={{ color: '#22336C', fontWeight: 700, fontSize: 24, lineHeight: 1.3, marginBottom: 2 }}>{ev.title}</div>
                   <div style={{ color: '#888', fontSize: 14, display: 'flex', alignItems: 'center', gap: 7, fontWeight: 500 }}>
                     <i className="bi bi-calendar" style={{ fontSize: 15 }} /> {ev.date}

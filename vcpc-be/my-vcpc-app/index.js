@@ -255,3 +255,31 @@ app.post('/views', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+// ====== API QUẢN LÝ TIN TỨC ======
+const newsFile = path.join(__dirname, 'news.json');
+function readNewsList() {
+  if (!fs.existsSync(newsFile)) return [];
+  try {
+    const data = fs.readFileSync(newsFile, 'utf8');
+    return JSON.parse(data);
+  } catch (e) {
+    return [];
+  }
+}
+function writeNewsList(list) {
+  fs.writeFileSync(newsFile, JSON.stringify(list, null, 2), 'utf8');
+}
+app.get('/news', (req, res) => {
+  const list = readNewsList();
+  res.json(list);
+});
+app.post('/news', (req, res) => {
+  const data = req.body;
+  const hanoiTime = DateTime.now().setZone('Asia/Ho_Chi_Minh');
+  data.createdAt = hanoiTime.toFormat('HH:mm:ss dd/MM/yyyy');
+  const list = readNewsList();
+  list.unshift(data);
+  writeNewsList(list);
+  res.json({ message: 'Đăng tin thành công!', data });
+});

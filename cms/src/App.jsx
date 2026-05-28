@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import ServiceManagement from './components/ServiceManagement';
 import AccountManagement from './components/AccountManagement';
+import NewsManagement from './components/NewsManagement';
 import Header from './components/Header';
 import Login from './components/Login';
 import './App.css';
@@ -51,6 +52,7 @@ function App() {
   let Content;
   if (selected === 'dashboard') Content = <Dashboard />;
   else if (selected === 'service') Content = <ServiceManagement />;
+  else if (selected === 'news') Content = <NewsManagement />;
   else if (selected === 'account') Content = <AccountManagement username={Object.keys(userData).find(k => userData[k].name === user.name)} onChangePassword={handleChangePassword} />;
 
   return (

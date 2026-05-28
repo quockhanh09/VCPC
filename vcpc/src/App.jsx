@@ -17,6 +17,7 @@ import Contact from "./components/Contact";
 import Introduction from "./components/Introduction";
 import Details from "./components/Deatails";
 import News from "./components/News";
+import NewsDetail from "./components/NewsDetail";
 import DichVuBanQuyen from "./pages/DichVuBanQuyen";
 import DangKyDichVuBanQuyen from "./pages/DangKyDichVuBanQuyen";
 import Register from "./signup-in/Register";
@@ -891,6 +892,7 @@ Tư vấn chuyển nhượng, cấp phép và soạn thảo hợp đồng khai t
           <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Deatails" element={<Details />} />
           <Route path="/News" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/Letter" element={<Letter />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />

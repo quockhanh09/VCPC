@@ -5,9 +5,10 @@ import heroBanner from '../assets/img/herobanner-1.png';
 
 const Sidebar = ({ onSelect, selected }) => {
   const menu = [
-    { key: 'dashboard', label: 'Tổng quan' },
-    { key: 'service', label: 'Quản lý dịch vụ bản quyền' },
-    { key: 'account', label: 'Quản lý tài khoản' },
+     { key: 'dashboard', label: 'Tổng quan' },
+     { key: 'service', label: 'Quản lý dịch vụ bản quyền' },
+     { key: 'news', label: 'Quản lý tin tức' },
+     { key: 'account', label: 'Quản lý tài khoản' },
   ];
   return (
     <div className="sidebar">
