@@ -83,8 +83,18 @@ const ServiceManagement = () => {
     fetchData();
   }, []);
 
+  // State cho panel edit
+  const [editPanelOpen, setEditPanelOpen] = useState(false);
+  const [editData, setEditData] = useState(null);
+
   const handleEdit = (idx) => {
-    alert('Chức năng Edit cho dòng #' + (idx + 1));
+    setEditData(data[idx]);
+    setEditPanelOpen(true);
+  };
+
+  const handleClosePanel = () => {
+    setEditPanelOpen(false);
+    setEditData(null);
   };
   const handleDelete = (idx) => {
     if (window.confirm('Xóa dòng này?')) {
@@ -93,7 +103,7 @@ const ServiceManagement = () => {
   };
 
   return (
-    <div style={{ padding: '32px 0', minHeight: '100vh', background: '#f6f7fa', width: '100%' }}>
+    <div style={{ padding: '32px 0', minHeight: '100vh', background: '#f6f7fa', width: '100%', position: 'relative' }}>
       <h2 style={{ marginBottom: 24, textAlign: 'center' }}>Quản lý dịch vụ bản quyền</h2>
       {loading ? (
         <div style={{ textAlign: 'center', marginTop: 40 }}>Đang tải dữ liệu...</div>
@@ -147,6 +157,233 @@ const ServiceManagement = () => {
           </div>
         </div>
       )}
+
+      {/* Panel trượt phải khi edit */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          height: '100vh',
+          width: 540,
+          background: '#fff',
+          boxShadow: '-2px 0 16px rgba(0,0,0,0.12)',
+          zIndex: 1000,
+          transform: editPanelOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 0.35s cubic-bezier(.4,0,.2,1)',
+          overflowY: 'auto',
+          padding: 0,
+        }}
+      >
+        <div style={{ padding: 24, borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontWeight: 700, fontSize: 20 }}>Chi tiết đăng ký</span>
+          <button onClick={handleClosePanel} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#888' }}>&times;</button>
+        </div>
+        {editData && (
+          <div style={{ padding: 24, minWidth: 400 }}>
+            {/* FORM 1: Chủ sở hữu / Bên được ủy quyền */}
+            <form style={{ background: '#f7f8fe', borderRadius: 12, padding: 18, marginBottom: 24 }}>
+              <div style={{ fontWeight: 600, color: '#2852BB', marginBottom: 12 }}>Chủ sở hữu / Bên được ủy quyền</div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Phân loại</label>
+                  <select value={editData.classify} disabled style={{ width: '100%', padding: 8, borderRadius: 6 }}>
+                    <option value="Cá nhân">Cá nhân</option>
+                    <option value="Tổ chức">Tổ chức</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Họ và tên</label>
+                  <input value={editData.fullName} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Quốc tịch</label>
+                  <select value={editData.nationality} disabled style={{ width: '100%', padding: 8, borderRadius: 6 }}>
+                    <option>Việt Nam</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Số CCCD / Hộ chiếu</label>
+                  <input value={editData.idNumber} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Ngày cấp</label>
+                  <input value={editData.issueDate} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 12 }}>
+                <label>Nơi cấp</label>
+                <input value={editData.issuePlace} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Số điện thoại</label>
+                  <input value={editData.phone} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Email</label>
+                  <input value={editData.email} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 0 }}>
+                <label>Địa chỉ</label>
+                <input value={editData.address} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+              </div>
+            </form>
+
+            {/* FORM 2: Thông tin yêu cầu */}
+            <form style={{ background: '#f7f8fe', borderRadius: 12, padding: 18, marginBottom: 24 }}>
+              <div style={{ fontWeight: 600, color: '#2852BB', marginBottom: 12 }}>Thông tin yêu cầu</div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Phân loại</label>
+                  <input value={editData.tenTacPham} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Tên tác phẩm / Tên cuộc biểu diễn</label>
+                  <input value={editData.tenTacPham} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Ngày hình thành</label>
+                  <input value={editData.ngayHinhThanh} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 12 }}>
+                <label>Mô tả về tác phẩm / cuộc biểu diễn</label>
+                <textarea value={editData.moTa} readOnly style={{ width: '100%', padding: 8, borderRadius: 6, minHeight: 60 }} />
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Tình trạng chứng nhận</label>
+                  <input value={editData.tinhTrangGCN} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Giấy chứng nhận số</label>
+                  <input value={editData.soGCN} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+            </form>
+
+            {/* FORM 3: Thông tin tác giả/đồng tác giả */}
+            <form style={{ background: '#f7f8fe', borderRadius: 12, padding: 18, marginBottom: 24 }}>
+              <div style={{ fontWeight: 600, color: '#2852BB', marginBottom: 12 }}>Thông tin tác giả/đồng tác giả</div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Họ tên tác giả</label>
+                  <input value={editData.tacgia_hoten} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Quốc tịch</label>
+                  <select value={editData.tacgia_quoctich} disabled style={{ width: '100%', padding: 8, borderRadius: 6 }}>
+                    <option>Việt Nam</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Bút danh thể hiện trên tác phẩm (nếu có)</label>
+                  <input value={editData.tacgia_butdanh} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Số CCCD / Hộ chiếu</label>
+                  <input value={editData.tacgia_cccd} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Ngày cấp</label>
+                  <input value={editData.tacgia_ngaycap} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Nơi cấp</label>
+                  <input value={editData.tacgia_noicap} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Số điện thoại</label>
+                  <input value={editData.tacgia_sdt} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Email</label>
+                  <input value={editData.tacgia_email} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 0 }}>
+                <label>Địa chỉ tác giả</label>
+                <input value={editData.tacgia_diachi} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+              </div>
+            </form>
+
+            {/* FORM 4: Thông tin chủ sở hữu/đồng chủ sở hữu (giả định giống form 1) */}
+            <form style={{ background: '#f7f8fe', borderRadius: 12, padding: 18, marginBottom: 12 }}>
+              <div style={{ fontWeight: 600, color: '#2852BB', marginBottom: 12 }}>Thông tin chủ sở hữu/đồng chủ sở hữu</div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Phân loại</label>
+                  <select value={editData.classify} disabled style={{ width: '100%', padding: 8, borderRadius: 6 }}>
+                    <option value="Cá nhân">Cá nhân</option>
+                    <option value="Tổ chức">Tổ chức</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Họ tên chủ sở hữu</label>
+                  <input value={editData.fullName} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Quốc tịch</label>
+                  <select value={editData.nationality} disabled style={{ width: '100%', padding: 8, borderRadius: 6 }}>
+                    <option>Việt Nam</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Số CCCD / Hộ chiếu</label>
+                  <input value={editData.idNumber} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Ngày cấp</label>
+                  <input value={editData.issueDate} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Nơi cấp</label>
+                  <input value={editData.issuePlace} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label>Số điện thoại</label>
+                  <input value={editData.phone} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <label>Email</label>
+                  <input value={editData.email} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 0 }}>
+                <label>Địa chỉ tác giả</label>
+                <input value={editData.address} readOnly style={{ width: '100%', padding: 8, borderRadius: 6 }} />
+              </div>
+            </form>
+
+            <div style={{ color: '#888', fontSize: 13, marginTop: 8 }}>Ngày tạo: {editData.createdAt}</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
